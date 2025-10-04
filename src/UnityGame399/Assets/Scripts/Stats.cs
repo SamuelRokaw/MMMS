@@ -13,8 +13,7 @@ public class States : MonoBehaviour
     [SerializeField] private int maxOxygen = -1;
     [SerializeField] private int currentOxygen = -1;
     [SerializeField] private int attack = -1;
-
-    // --- Properties (Read-only access for other scripts) ---
+    
     public int Level => level;
     public int Experience => experience;
     public int ExperienceToNextLevel => experienceToNextLevel;
