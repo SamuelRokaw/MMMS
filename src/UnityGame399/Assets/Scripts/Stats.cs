@@ -1,0 +1,83 @@
+using UnityEngine;
+
+[System.Serializable]
+public class States : MonoBehaviour
+{
+    [SerializeField] private int level = -1;
+    [SerializeField] private int experience = -1;
+    [SerializeField] private int experienceToNextLevel = -1;
+    [SerializeField] private int maxHealth = -1;
+    [SerializeField] private int currentHealth = -1;
+    [SerializeField] private int maxSP = -1;
+    [SerializeField] private int currentSP = -1;
+    [SerializeField] private int maxOxygen = -1;
+    [SerializeField] private int currentOxygen = -1;
+    [SerializeField] private int attack = -1;
+
+    // --- Properties (Read-only access for other scripts) ---
+    public int Level => level;
+    public int Experience => experience;
+    public int ExperienceToNextLevel => experienceToNextLevel;
+    public int MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
+    public int MaxMana => maxSP;
+    public int CurrentMana => currentSP;
+    public int MaxStamina => maxOxygen;
+    public int CurrentStamina => currentOxygen;
+    public int AttackPower => attack;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+        currentSP = maxSP;
+        currentOxygen = maxOxygen;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+    }
+
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+    }
+
+    public void UseSP(int amount)
+    {
+        currentSP = Mathf.Max(0, currentSP - amount);
+    }
+
+    public void GainExperience(int amount)
+    {
+        experience += amount;
+        if (experience >= experienceToNextLevel)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        experience -= experienceToNextLevel;
+        level++;
+
+        experienceToNextLevel = Mathf.RoundToInt(experienceToNextLevel * 1.25f);
+
+        //TODO: handle per level stat changes
+
+        currentHealth = maxHealth;
+        currentSP = maxSP;
+        currentOxygen = maxOxygen;
+    }
+
+    private void Die()
+    {
+        //TODO: Add respawn or game-over logic here.
+    }
+}
