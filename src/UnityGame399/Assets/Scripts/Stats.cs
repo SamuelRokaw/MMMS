@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class States : MonoBehaviour
+public class Stats : MonoBehaviour
 {
     [SerializeField] private int level = -1;
     [SerializeField] private int experience = -1;
