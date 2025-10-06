@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - CombatPlayer
   - Bullet
+  - OverWorldPlayer
+  - Aquarium
   layers:
   - Default
   - TransparentFX
