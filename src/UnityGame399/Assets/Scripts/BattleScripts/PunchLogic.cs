@@ -30,10 +30,10 @@ public class PunchLogic : MonoBehaviour
         
         if (punchSR != null)
         {
-            float t = timer / fadeDuration;
-            Color c = startColor;
-            c.a = Mathf.Lerp(1f, 0f, t);
-            punchSR.color = c;
+            float fadeTimer = timer / fadeDuration;
+            Color punchColor = startColor;
+            punchColor.a = Mathf.Lerp(1f, 0f, fadeTimer);
+            punchSR.color = punchColor;
         }
         
         if (timer >= lifetime)

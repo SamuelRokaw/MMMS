@@ -213,6 +213,18 @@ PrefabInstance:
       propertyPath: skillPrefab
       value: 
       objectReference: {fileID: 7742125793053695611, guid: 1242ef6e2b65c43dcb3c22efcbf2e536, type: 3}
+    - target: {fileID: 2831268973231733639, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831268973231733639, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Color.g
+      value: 0.505162
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831268973231733639, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5437126
+      objectReference: {fileID: 0}
     - target: {fileID: 3272841659320001645, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -265,6 +277,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4462385646953971472, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462385646953971472, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462385646953971472, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4519591606239025391, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
       propertyPath: m_Size.x
       value: 10.67
@@ -280,6 +304,10 @@ PrefabInstance:
     - target: {fileID: 4519591606239025391, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626147664465655944, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 5078576583566377084, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
       propertyPath: m_Size.x
@@ -312,6 +340,18 @@ PrefabInstance:
     - target: {fileID: 5417835121490722409, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955798752178567701, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955798752178567701, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7849423
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955798752178567701, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4138483
       objectReference: {fileID: 0}
     - target: {fileID: 6892514405331830856, guid: c3f3d9adf5692436686f3799917358ce, type: 3}
       propertyPath: heartPrefab

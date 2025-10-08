@@ -9,7 +9,10 @@ public class PlayerStatModel : MonoBehaviour
     
     // air
     public float MaxAir = 100f;
-    public float CurrentAir { get; private set; }
+    public float CurrentAir = 100f;
+
+    [SerializeField] private float airDepletionRate = 5f;
+    private bool depleteAir = true;
     
     // SP
     public int MaxSkillPoints = 5;
@@ -58,6 +61,27 @@ public class PlayerStatModel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DepleteAir();
+    }
+
+    private void DepleteAir()
+    {
+        if (!depleteAir || CurrentAir <= 0) return;
+
+        CurrentAir -= airDepletionRate * Time.deltaTime;
+        CurrentAir = Mathf.Clamp(CurrentAir, 0, MaxAir);
+
+        OnAirChange?.Invoke(CurrentAir, MaxAir);
         
+        if (CurrentAir <= 0)
+        {
+            depleteAir = false;
+            OnAirEmptied();
+        }
+    }
+
+    private void OnAirEmptied()
+    {
+        Debug.Log("You're fuckin dead.");
     }
 }

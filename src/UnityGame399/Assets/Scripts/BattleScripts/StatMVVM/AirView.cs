@@ -23,7 +23,6 @@ public class AirView : MonoBehaviour
 
     private void UpdateAir(float current, float max)
     {
-        airSlider.maxValue = max;
-        airSlider.value = current;
+        airSlider.value = current / max;
     }
 }
