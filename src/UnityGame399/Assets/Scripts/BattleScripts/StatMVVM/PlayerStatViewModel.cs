@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStatViewModel : MonoBehaviour
@@ -24,8 +26,9 @@ public class PlayerStatViewModel : MonoBehaviour
         model.OnSkillPointsChanged -= HandleSkillChanged;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return null;
         HandleHealthChanged(model.CurrentHealth, model.MaxHealth);
         HandleAirChanged(model.CurrentAir, model.MaxAir);
         HandleSkillChanged(model.CurrentSkillPoints, model.MaxSkillPoints);

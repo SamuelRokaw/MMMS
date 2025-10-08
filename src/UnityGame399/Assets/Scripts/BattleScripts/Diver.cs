@@ -52,23 +52,28 @@ public class Diver : MonoBehaviour
 
         LastPunchTime = Time.time;
         
-        Vector2 spawnPosition = (Vector2)DiverSpriteRenderer.transform.position + (lastFacingDirection.normalized * PunchDistance);
+        Vector2 spawnPosition = getSpawnPositioning();
 
         GameObject hurtbox = Instantiate(FistPrefab, spawnPosition, Quaternion.identity);
-        SpriteRenderer sr = hurtbox.GetComponent<SpriteRenderer>();
-        if (sr != null)
+        SpriteRenderer hurtboxSR = hurtbox.GetComponent<SpriteRenderer>();
+        if (hurtboxSR != null)
         {
             if (Mathf.Abs(lastFacingDirection.x) > Mathf.Abs(lastFacingDirection.y))
             {
-                sr.flipX = lastFacingDirection.x < 0;
-                sr.flipY = false;
+                hurtboxSR.flipX = lastFacingDirection.x < 0;
+                hurtboxSR.flipY = false;
             }
             else
             {
-                sr.flipY = lastFacingDirection.y < 0;
-                sr.flipX = false;
+                hurtboxSR.flipY = lastFacingDirection.y < 0;
+                hurtboxSR.flipX = false;
             }
         }
+    }
+
+    private Vector2 getSpawnPositioning()
+    {
+        return (Vector2)DiverSpriteRenderer.transform.position + (lastFacingDirection.normalized * PunchDistance);
     }
     
     private void KeepOnScreen()

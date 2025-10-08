@@ -37,7 +37,8 @@ public class HealthView : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < hearts.Count; i++)
+        for (int i = 0; i < hearts.Count; i++) {
             hearts[i].sprite = (i < current) ? fullHeart : emptyHeart;
+        } 
     }
 }
