@@ -4,6 +4,7 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     [SerializeField] private int level = -1;
+    [SerializeField] private int maxLevel = 60;
     [SerializeField] private int experience = -1;
     [SerializeField] private int experienceToNextLevel = -1;
     [SerializeField] private int maxHealth = -1;
@@ -24,6 +25,7 @@ public class Stats : MonoBehaviour
     public int MaxStamina => maxOxygen;
     public int CurrentStamina => currentOxygen;
     public int AttackPower => attack;
+    
 
     void Start()
     {
@@ -63,6 +65,7 @@ public class Stats : MonoBehaviour
 
     private void LevelUp()
     {
+        if (level >= maxLevel) return;
         experience = 0;
         level++;
         experienceToNextLevel += 1;
