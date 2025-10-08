@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 789545117168464086}
   - component: {fileID: 2584721027798066295}
+  - component: {fileID: -7179364135371396731}
   m_Layer: 0
   m_Name: FistPrefab
   m_TagString: Untagged
@@ -90,3 +91,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7179364135371396731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660926003407206560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c39a0c823b14a37a8a9134e02bde72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PunchLogic
+  lifetime: 0.3
+  moveSpeed: 5
+  fadeDuration: 0.3

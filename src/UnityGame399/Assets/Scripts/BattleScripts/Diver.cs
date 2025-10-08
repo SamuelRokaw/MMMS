@@ -55,6 +55,13 @@ public class Diver : MonoBehaviour
         Vector2 spawnPosition = getSpawnPositioning();
 
         GameObject hurtbox = Instantiate(FistPrefab, spawnPosition, Quaternion.identity);
+
+        PunchLogic decay = hurtbox.GetComponent<PunchLogic>();
+        if (decay != null)
+        {
+            decay.Initialize(lastFacingDirection);
+        }
+        
         SpriteRenderer hurtboxSR = hurtbox.GetComponent<SpriteRenderer>();
         if (hurtboxSR != null)
         {
