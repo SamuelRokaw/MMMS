@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class InputHandler : MonoBehaviour
 {
     //we will have a seperate class that changes these
-    public OverworldMovement owM; 
-    //public CombatControl cC; 
+    public OverworldMovement owM; //overworld
+    public OverworldInteraction owI; //overworld
+    //public CombatControl cC;  //combat
     public bool inCombat = false;
     
     //action dictionary
@@ -51,7 +52,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("using attack");
+            Debug.Log("trying to move up, combat");
         }
         else
         {
@@ -62,7 +63,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("using attack");
+            Debug.Log("trying to move down, combat");
         }
         else
         {
@@ -73,7 +74,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("using attack");
+            Debug.Log("trying to move left, combat");
         }
         else
         {
@@ -84,7 +85,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("using attack");
+            Debug.Log("trying to move right, combat");
         }
         else
         {
@@ -95,7 +96,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("using skill1");
+            Debug.Log("trying to use skill1");
         }
     }
 
@@ -103,7 +104,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("using skill2");
+            Debug.Log("trying to use skill2");
         }
     }
 
@@ -111,11 +112,12 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("using attack");
+            Debug.Log("trying to attack");
         }
         else
         {
-            Debug.Log("interacting");
+            Debug.Log("trying to interact");
+            owI.Interact();
         }
     }
 }

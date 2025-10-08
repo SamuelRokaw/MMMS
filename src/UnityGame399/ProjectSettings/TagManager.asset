@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - OverWorldPlayer
   - Aquarium
+  - Upgrade
   layers:
   - Default
   - TransparentFX
