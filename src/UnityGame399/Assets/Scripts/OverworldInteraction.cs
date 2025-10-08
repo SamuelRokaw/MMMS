@@ -24,6 +24,10 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<UpgradeItem>().Interact();
             }
+            else if (interactTarget.tag == "LG")
+            {
+                interactTarget.GetComponent<LevelGate>().Interact();
+            }
             CloseInteractableIcon();
         }
     }

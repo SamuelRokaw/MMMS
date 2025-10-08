@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3851968053703972690}
   - component: {fileID: 6406105102076758800}
+  - component: {fileID: 5647790457994944588}
   m_Layer: 0
   m_Name: OverWorld_Controller
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   owM: {fileID: 0}
+  owI: {fileID: 0}
   inCombat: 0
   upKey: 273
   downKey: 274
@@ -53,3 +55,25 @@ MonoBehaviour:
   skill1Key: 122
   skill2Key: 120
   attackKey: 32
+--- !u!114 &5647790457994944588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302705262779240682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137b8d663a75740109bd9a54ec0f3dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stats
+  level: -1
+  experience: -1
+  experienceToNextLevel: -1
+  maxHealth: -1
+  currentHealth: -1
+  maxSP: -1
+  currentSP: -1
+  maxOxygen: -1
+  currentOxygen: -1
+  attack: -1

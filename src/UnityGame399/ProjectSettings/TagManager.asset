@@ -10,6 +10,7 @@ TagManager:
   - OverWorldPlayer
   - Aquarium
   - Upgrade
+  - LG
   layers:
   - Default
   - TransparentFX
