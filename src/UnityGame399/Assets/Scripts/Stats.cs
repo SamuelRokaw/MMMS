@@ -38,7 +38,7 @@ public class Stats : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Die();
+            //Player.die();
         }
     }
 
@@ -63,20 +63,21 @@ public class Stats : MonoBehaviour
 
     private void LevelUp()
     {
-        experience -= experienceToNextLevel;
+        experience = 0;
         level++;
+        experienceToNextLevel += 1;
+        maxOxygen += 2;
 
-        experienceToNextLevel = Mathf.RoundToInt(experienceToNextLevel * 1.25f);
+        if (level % 4 == 0)
+        {
+            maxSP += 1;
+        }
+    }
 
-        //TODO: handle per level stat changes
-
+    public void Reset()
+    {
         currentHealth = maxHealth;
         currentSP = maxSP;
         currentOxygen = maxOxygen;
-    }
-
-    private void Die()
-    {
-        //TODO: Add respawn or game-over logic here.
     }
 }
