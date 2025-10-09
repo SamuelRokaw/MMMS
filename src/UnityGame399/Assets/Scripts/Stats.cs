@@ -20,15 +20,16 @@ public class Stats : MonoBehaviour
     public int ExperienceToNextLevel => experienceToNextLevel;
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
-    public int MaxMana => maxSP;
-    public int CurrentMana => currentSP;
-    public int MaxStamina => maxOxygen;
-    public int CurrentStamina => currentOxygen;
+    public int MaxSP => maxSP;
+    public int CurrentSP => currentSP;
+    public int MaxOxygen => maxOxygen;
+    public int CurrentOxygen => currentOxygen;
     public int AttackPower => attack;
     
 
     void Start()
     {
+        DefaultValues(); //temporary, this will be called in save creation or game initialization later on
         currentHealth = maxHealth;
         currentSP = maxSP;
         currentOxygen = maxOxygen;
@@ -40,7 +41,7 @@ public class Stats : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            //Player.die();
+            PlayerStatEvents.Die.Invoke();
         }
     }
 
@@ -52,6 +53,11 @@ public class Stats : MonoBehaviour
     public void UseSP(int amount)
     {
         currentSP = Mathf.Max(0, currentSP - amount);
+    }
+
+    public void GainSP(int amount)
+    {
+        currentSP = Mathf.Min(maxSP, currentSP + amount);
     }
 
     public void GainExperience(int amount)
@@ -77,10 +83,44 @@ public class Stats : MonoBehaviour
         }
     }
 
+    public void increaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+    }
+
+    public void increaseAttack(int amount)
+    {
+        attack += amount;
+    }
+
+    public void decreaseOxygen(int amount)
+    {
+        currentOxygen -= amount;
+        if (currentOxygen <= 0)
+        {
+            currentOxygen = 0;
+            PlayerStatEvents.PlayerTakesDamage.Invoke(1);
+        }
+    }
+
     public void Reset()
     {
         currentHealth = maxHealth;
         currentSP = maxSP;
         currentOxygen = maxOxygen;
+    }
+
+    public void DefaultValues()
+    {
+        level = 0;
+        experience = 0;
+        experienceToNextLevel = 5;
+        maxHealth = 3;
+        currentHealth = maxHealth;
+        maxSP = 5;
+        currentSP = maxSP;
+        maxOxygen = 120;
+        currentOxygen = maxOxygen;
+        attack = 1;
     }
 }

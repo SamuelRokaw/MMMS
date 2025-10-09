@@ -7,7 +7,7 @@ public class Scenes : MonoBehaviour
     [SerializeField]
     private string startScene = "Test_Tom_Start";
     [SerializeField]
-    private string gameScene = "SampleScene";
+    private string gameScene = "PlayTest";
     
     public void LoadGame()
     {

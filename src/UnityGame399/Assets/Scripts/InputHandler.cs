@@ -7,7 +7,7 @@ public class InputHandler : MonoBehaviour
     //we will have a seperate class that changes these
     public OverworldMovement owM; //overworld
     public OverworldInteraction owI; //overworld
-    //public CombatControl cC;  //combat
+    public CombatControl cC;  //combat
     public bool inCombat = false;
     
     //action dictionary
@@ -52,7 +52,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("trying to move up, combat");
+            cC.moveup();
         }
         else
         {
@@ -63,7 +63,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("trying to move down, combat");
+            cC.movedown();
         }
         else
         {
@@ -74,7 +74,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("trying to move left, combat");
+            cC.moveleft();
         }
         else
         {
@@ -85,7 +85,7 @@ public class InputHandler : MonoBehaviour
     {
         if(inCombat)
         {
-            Debug.Log("trying to move right, combat");
+            cC.moveright();
         }
         else
         {
@@ -97,6 +97,7 @@ public class InputHandler : MonoBehaviour
         if(inCombat)
         {
             Debug.Log("trying to use skill1");
+            cC.skill1();
         }
     }
 
@@ -105,6 +106,7 @@ public class InputHandler : MonoBehaviour
         if(inCombat)
         {
             Debug.Log("trying to use skill2");
+            cC.skill2();
         }
     }
 
@@ -113,6 +115,7 @@ public class InputHandler : MonoBehaviour
         if(inCombat)
         {
             Debug.Log("trying to attack");
+            cC.punch();
         }
         else
         {

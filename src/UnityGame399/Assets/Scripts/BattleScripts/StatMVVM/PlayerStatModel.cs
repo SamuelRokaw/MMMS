@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerStatModel : MonoBehaviour
 {
+    public Stats stats;
     // health
     public int MaxHealth = 3;
     public int CurrentHealth { get; private set; }
@@ -25,6 +26,7 @@ public class PlayerStatModel : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
         CurrentHealth = MaxHealth;
         CurrentAir = MaxAir;
         CurrentSkillPoints = MaxSkillPoints;
@@ -82,6 +84,6 @@ public class PlayerStatModel : MonoBehaviour
 
     private void OnAirEmptied()
     {
-        Debug.Log("You're fuckin dead.");
+        PlayerStatEvents.PlayerTakesDamage.Invoke(1); //will still instakill because void Update
     }
 }

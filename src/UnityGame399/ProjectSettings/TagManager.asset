@@ -11,6 +11,8 @@ TagManager:
   - Aquarium
   - Upgrade
   - LG
+  - CombatBarrier
+  - Punch
   layers:
   - Default
   - TransparentFX

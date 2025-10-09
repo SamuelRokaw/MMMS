@@ -1,0 +1,64 @@
+using UnityEngine;
+using System;
+
+public class PlayerStatEvents :MonoBehaviour
+{
+    public Stats stats;
+    
+    
+    //events
+    public static Action<int> PlayerTakesDamage;
+    public static Action Die;
+    public static Action<int> DecreaseOxygen;
+    public static Action<int> DecreaseSP;
+    
+    
+    
+    public void OnEnable()
+    {
+        Subscribe();
+    }
+
+    public void OnDisable()
+    {
+        Unsubscribe();
+    }
+    private void Subscribe()
+    {
+        UpgradeItem.upgradeStat += OnItemInteracted;
+        PlayerTakesDamage += DamageTaken;
+        DecreaseOxygen += Drowning;
+    }
+
+    private void Unsubscribe()
+    {
+        UpgradeItem.upgradeStat -= OnItemInteracted;
+        PlayerTakesDamage -= DamageTaken;
+        DecreaseOxygen -= Drowning;
+    }
+
+    private void OnItemInteracted(string upgradeName)
+    {
+        if (upgradeName.ToLower() == "attack")
+        {
+            Debug.Log("Player Attack increases");
+            stats.increaseAttack(1);
+        }
+        else if (upgradeName.ToLower() == "health")
+        {
+            Debug.Log("Player health increases");
+            stats.increaseMaxHealth(1);
+        }
+    }
+
+    private void DamageTaken(int damage)
+    {
+        Debug.Log("Player Takes Damage");
+        stats.TakeDamage(damage);
+    }
+
+    private void Drowning(int amount)
+    {
+        stats.decreaseOxygen(amount);
+    }
+}
