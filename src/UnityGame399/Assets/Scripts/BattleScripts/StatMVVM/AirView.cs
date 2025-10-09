@@ -3,17 +3,17 @@ using UnityEngine.UI;
 
 public class AirView : MonoBehaviour
 {
-    [SerializeField] private PlayerStatViewModel viewModel;
+    //[SerializeField] private PlayerStatViewModel viewModel;
     [SerializeField] private Slider airSlider;
 
     private void OnEnable()
     {
-        viewModel.OnAirChanged += UpdateAir;
+        PlayerStatViewModel.OnAirChanged += UpdateAir;
     }
 
     private void OnDisable()
     {
-        viewModel.OnAirChanged -= UpdateAir;
+        PlayerStatViewModel.OnAirChanged -= UpdateAir;
     }
 
     private void Start()

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PunchLogic : MonoBehaviour
 {
-    [SerializeField] private float lifetime = 0.3f; 
+    [SerializeField] private float lifetime = 0.5f; 
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float fadeDuration = 0.3f;
-
+    [SerializeField] private float fadeDuration = 0.5f;
+    public int aP= 1;
     private float timer = 0f;
     private SpriteRenderer punchSR;
     private Color startColor;
@@ -18,6 +18,7 @@ public class PunchLogic : MonoBehaviour
 
     private void Awake()
     {
+        aP = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>().AttackPower;
         punchSR = GetComponent<SpriteRenderer>();
         if (punchSR != null)
             startColor = punchSR.color;

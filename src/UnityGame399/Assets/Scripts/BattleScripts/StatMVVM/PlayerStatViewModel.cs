@@ -5,43 +5,50 @@ using UnityEngine;
 
 public class PlayerStatViewModel : MonoBehaviour
 {
+    public Stats stats;
     
-    [SerializeField] private PlayerStatModel model;
+    //[SerializeField] private PlayerStatModel model;
 
-    public event Action<int, int> OnHeartsChanged;
-    public event Action<float, float> OnAirChanged;
-    public event Action<int, int> OnSkillPointsChanged;
+    public static event Action<int, int> OnHeartsChanged;
+    public static event Action<float, float> OnAirChanged;
+    public static event Action<int, int> OnSkillPointsChanged;
 
+    private void Awake()
+    {
+        stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
+    }
     private void OnEnable()
     {
-        model.OnHealthChange += HandleHealthChanged;
-        model.OnAirChange += HandleAirChanged;
-        model.OnSkillPointsChanged += HandleSkillChanged;
+        PlayerStatEvents.PlayerTakesDamage += HandleHealthChanged;
+        PlayerStatEvents.DecreaseOxygen += HandleAirChanged;
+        PlayerStatEvents.DecreaseSP += HandleSkillChanged;
     }
 
     private void OnDisable()
     {
-        model.OnHealthChange -= HandleHealthChanged;
-        model.OnAirChange -= HandleAirChanged;
-        model.OnSkillPointsChanged -= HandleSkillChanged;
+        PlayerStatEvents.PlayerTakesDamage -= HandleHealthChanged;
+        PlayerStatEvents.DecreaseOxygen -= HandleAirChanged;
+        PlayerStatEvents.DecreaseSP -= HandleSkillChanged;
     }
 
+    
     private IEnumerator Start()
     {
         yield return null;
-        HandleHealthChanged(model.CurrentHealth, model.MaxHealth);
-        HandleAirChanged(model.CurrentAir, model.MaxAir);
-        HandleSkillChanged(model.CurrentSkillPoints, model.MaxSkillPoints);
+        HandleHealthChanged(0);
+        HandleAirChanged(0);
+        HandleSkillChanged(0);
     }
+    
 
-    private void HandleHealthChanged(int current, int max)
-        => OnHeartsChanged?.Invoke(current, max);
+    private void HandleHealthChanged(int amount)
+        => OnHeartsChanged?.Invoke(stats.CurrentHealth, stats.MaxHealth);
 
-    private void HandleAirChanged(float current, float max)
-        => OnAirChanged?.Invoke(current, max);
+    private void HandleAirChanged(int amount)
+        => OnAirChanged?.Invoke(stats.CurrentOxygen, stats.MaxOxygen);
 
-    private void HandleSkillChanged(int current, int max)
-        => OnSkillPointsChanged?.Invoke(current, max);
+    private void HandleSkillChanged(int amount)
+        => OnSkillPointsChanged?.Invoke(stats.CurrentSP, stats.MaxSP);
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     // Update is called once per frame

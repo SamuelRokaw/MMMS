@@ -785,7 +785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scenes
   startScene: Test_Tom_Start
-  gameScene: SampleScene
+  gameScene: PlayTest
 --- !u!4 &1756906384
 Transform:
   m_ObjectHideFlags: 0

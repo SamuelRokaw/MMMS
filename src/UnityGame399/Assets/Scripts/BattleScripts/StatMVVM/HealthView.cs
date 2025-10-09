@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class HealthView : MonoBehaviour
 {
-    [SerializeField] private PlayerStatViewModel viewModel;
+    //[SerializeField] private PlayerStatViewModel viewModel;
     [SerializeField] private GameObject heartPrefab;
     [SerializeField] private Transform heartsContainer;
     [SerializeField] private Sprite fullHeart;
@@ -14,12 +14,12 @@ public class HealthView : MonoBehaviour
 
     private void OnEnable()
     {
-        viewModel.OnHeartsChanged += UpdateHearts;
+        PlayerStatViewModel.OnHeartsChanged += UpdateHearts;
     }
 
     private void OnDisable()
     {
-        viewModel.OnHeartsChanged -= UpdateHearts;
+        PlayerStatViewModel.OnHeartsChanged -= UpdateHearts;
     }
 
     private void UpdateHearts(int current, int max)

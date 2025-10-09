@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class SkillView : MonoBehaviour
 {
-    [SerializeField] private PlayerStatViewModel viewModel;
+    //[SerializeField] private PlayerStatViewModel viewModel;
     [SerializeField] private GameObject skillPrefab;
     [SerializeField] private Transform skillContainer;
     [SerializeField] private Sprite fullSkill;
@@ -14,12 +14,12 @@ public class SkillView : MonoBehaviour
 
     private void OnEnable()
     {
-        viewModel.OnSkillPointsChanged += UpdateSkills;
+        PlayerStatViewModel.OnSkillPointsChanged += UpdateSkills;
     }
 
     private void OnDisable()
     {
-        viewModel.OnSkillPointsChanged -= UpdateSkills;
+        PlayerStatViewModel.OnSkillPointsChanged -= UpdateSkills;
     }
 
     private void UpdateSkills(int current, int max)
