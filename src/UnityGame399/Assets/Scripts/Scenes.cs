@@ -5,7 +5,7 @@ using UnityEditor;
 public class Scenes : MonoBehaviour
 {
     [SerializeField]
-    private string startScene = "Test_Tom_Start";
+    private string startScene = "StartScreen";
     [SerializeField]
     private string gameScene = "PlayTest";
     
@@ -31,7 +31,4 @@ public class Scenes : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
-    
-    
-    
 }
