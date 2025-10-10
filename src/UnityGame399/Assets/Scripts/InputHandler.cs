@@ -74,6 +74,7 @@ public class InputHandler : MonoBehaviour
         {
             isStatsOpen = false;
             statsMenu.alpha = 0;
+            statsMenu.blocksRaycasts = false;
             statsMenu.interactable = false;
         }
         else
@@ -81,6 +82,7 @@ public class InputHandler : MonoBehaviour
             statsText.text = $"Level: {playerStats.Level}\nXP: {playerStats.Experience}\nXP needed:  {playerStats.ExperienceToNextLevel}\nHealth: {playerStats.MaxHealth}\nSP: {playerStats.CurrentSP}\nOxygen: {playerStats.MaxOxygen}\nAttack: {playerStats.AttackPower}";
             isStatsOpen = true;
             statsMenu.alpha = 1;
+            statsMenu.blocksRaycasts = true;
             statsMenu.interactable = true;
         }
     }
@@ -96,12 +98,14 @@ public class InputHandler : MonoBehaviour
         {
             isPaused = false;
             pauseMenu.alpha = 0;
+            pauseMenu.blocksRaycasts = false;
             pauseMenu.interactable = false;
         }
         else
         {
             isPaused = true;
             pauseMenu.alpha = 1;
+            pauseMenu.blocksRaycasts = true;
             pauseMenu.interactable = true;
         }
     }

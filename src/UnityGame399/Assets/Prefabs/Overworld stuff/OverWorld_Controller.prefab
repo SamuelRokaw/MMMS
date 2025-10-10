@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3851968053703972690}
   - component: {fileID: 6406105102076758800}
   - component: {fileID: 5647790457994944588}
+  - component: {fileID: -3616292134888043007}
+  - component: {fileID: -5295503473519581077}
   m_Layer: 0
   m_Name: OverWorld_Controller
   m_TagString: GameController
@@ -47,7 +49,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   owM: {fileID: 0}
   owI: {fileID: 0}
+  cC: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  statsMenu: {fileID: 0}
+  statsText: {fileID: 0}
+  playerStats: {fileID: 0}
   inCombat: 0
+  isPaused: 0
+  isStatsOpen: 0
   upKey: 273
   downKey: 274
   leftKey: 276
@@ -55,6 +64,8 @@ MonoBehaviour:
   skill1Key: 122
   skill2Key: 120
   attackKey: 32
+  pauseKey: 0
+  statsKey: 0
 --- !u!114 &5647790457994944588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   level: -1
+  maxLevel: 60
   experience: -1
   experienceToNextLevel: -1
   maxHealth: -1
@@ -77,3 +89,30 @@ MonoBehaviour:
   maxOxygen: -1
   currentOxygen: -1
   attack: -1
+--- !u!114 &-3616292134888043007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302705262779240682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f5079bc1966e488bc0d0518f7c1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  oWCam: {fileID: 0}
+  cCam: {fileID: 0}
+--- !u!114 &-5295503473519581077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302705262779240682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f9846be5e8b204989d89cca1230658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatEvents
+  stats: {fileID: 5647790457994944588}
