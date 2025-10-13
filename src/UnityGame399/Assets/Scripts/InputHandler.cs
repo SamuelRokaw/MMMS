@@ -28,20 +28,24 @@ public class InputHandler : MonoBehaviour
     public KeyCode pauseKey;
     public KeyCode statsKey;
     private Dictionary<KeyCode, Action> inputDictionary;
+    private Dictionary<KeyCode, Action> inputMoveDictionary;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         inputDictionary = new Dictionary<KeyCode, Action>
         {
-            {upKey, moveup },
-            {downKey, movedown},
-            {leftKey, moveleft},
-            {rightKey, moveright},
             {attackKey, attack},
             {skill1Key, skill1},
             {skill2Key, skill2},
             {pauseKey, pause},
             {statsKey, stats}
+        };
+        inputMoveDictionary = new Dictionary<KeyCode, Action>
+        {
+            {upKey, moveup },
+            {downKey, movedown},
+            {leftKey, moveleft},
+            {rightKey, moveright},
         };
         
     }
@@ -52,14 +56,24 @@ public class InputHandler : MonoBehaviour
         // Check for key presses and call the corresponding method
         foreach (var entry in inputDictionary)
         {
-            if (Input.GetKeyDown(entry.Key) && (entry.Key == KeyCode.Escape || entry.Key == KeyCode.Return)) // If the key is pressed down and it's the pause key
+            if (Input.GetKeyDown(entry.Key)) // If the key is pressed down
             {
                 entry.Value.Invoke(); // Call the associated method
             }
-            else if (Input.GetKey(entry.Key) && entry.Key != KeyCode.Escape && entry.Key != KeyCode.Return) // If the key is pressed
+            
+        }
+    }
+
+    void FixedUpdate()  //for movement, should hopefully make it  consistent across all users
+    {
+        // Check for key presses and call the corresponding method
+        foreach (var entry in inputMoveDictionary)
+        {
+            if (Input.GetKey(entry.Key)) // If the key is pressed
             {
                 entry.Value.Invoke(); // Call the associated method
             }
+            
         }
     }
 

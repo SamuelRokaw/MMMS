@@ -28,24 +28,28 @@ public class CombatControl : MonoBehaviour
 
     public void moveup()
     {
+        zerovelocity();
         cPlayerRB.MovePosition(cPlayerRB.position + Vector2.up * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void movedown()
     {
+        zerovelocity();
         cPlayerRB.MovePosition(cPlayerRB.position + Vector2.down * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 180);
     }
 
     public void moveleft()
     {
+        zerovelocity();
         cPlayerRB.MovePosition(cPlayerRB.position + Vector2.left * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 90);
     }
 
     public void moveright()
     {
+        zerovelocity();
         cPlayerRB.MovePosition(cPlayerRB.position + Vector2.right * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 270);
     }
@@ -79,6 +83,11 @@ public class CombatControl : MonoBehaviour
             i += 0.01;
         }
         onCooldown = false;
+    }
+
+    private void zerovelocity()
+    {
+        cPlayerRB.linearVelocity = Vector2.zero;
     }
     
 }
