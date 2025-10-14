@@ -14,8 +14,8 @@ public class CombatControl : MonoBehaviour
     private bool onCooldown;
     
     //skills
-    //public Skill skill1;
-    //public Skill skill2;
+    public Skill firstSkill;
+    public Skill secondSkill;
     
     //movement stats
     public float speed = 1f;
@@ -65,12 +65,29 @@ public class CombatControl : MonoBehaviour
 
     public void skill1()
     {
-        Debug.Log("a skill would go here");
+        if(firstSkill != null)
+        {
+            Debug.Log("a skill would go here");
+            firstSkill.skillActivate();
+        }
+        else
+        {
+            Debug.Log("no skill to use");
+        }
+
     }
 
     public void skill2()
     {
-        Debug.Log("a 2nd skill would go here");
+        if(secondSkill != null)
+        {
+            Debug.Log("a skill would go here");
+            secondSkill.skillActivate();
+        }
+        else
+        {
+            Debug.Log("no skill to use");
+        }
     }
 
     IEnumerator Cooldown(double amount)

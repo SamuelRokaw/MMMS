@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de098302af177a94bbb5898555afc770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicChargeAttack
-  chargeSpeed: 8
+  chargeSpeed: 6
   chargeTime: 3
   stunTime: 1
   em: {fileID: 3523731676427675883}

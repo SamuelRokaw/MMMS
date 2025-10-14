@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [System.Serializable]
 public class Stats : MonoBehaviour
@@ -14,7 +15,6 @@ public class Stats : MonoBehaviour
     [SerializeField] private int maxOxygen = -1;
     [SerializeField] private int currentOxygen = -1;
     [SerializeField] private int attack = -1;
-    
     public int Level => level;
     public int Experience => experience;
     public int ExperienceToNextLevel => experienceToNextLevel;
@@ -36,7 +36,7 @@ public class Stats : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {
+    {         
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
