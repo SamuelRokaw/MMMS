@@ -4,8 +4,9 @@ using System.Collections;
 public class EnemyCollisionScript : MonoBehaviour
 {
     public BasicEnemy be;
-    public bool onCooldown = false;
-    private void OnCollisionEnter2D(Collision2D collision)
+    [SerializeField] private bool onCooldown = false;
+    [SerializeField] private float attackCoolDown = 2f;
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Punch"))
         {
@@ -24,7 +25,7 @@ public class EnemyCollisionScript : MonoBehaviour
     IEnumerator Cooldown()
     {
         onCooldown = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(attackCoolDown);
         onCooldown = false;
     }
 }

@@ -146,7 +146,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0542d2e1c0763124cb6e09e6ea258b8e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de098302af177a94bbb5898555afc770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicChargeAttack
-  chargeSpeed: 8
+  chargeSpeed: 6
   chargeTime: 3
   stunTime: 1
   em: {fileID: 3523731676427675883}
@@ -183,7 +183,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0542d2e1c0763124cb6e09e6ea258b8e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -16,6 +16,7 @@ public class OverworldMovement : MonoBehaviour
 
     public void moveup()
     {
+        
         owPlayerRB.MovePosition(owPlayerRB.position + Vector2.up * speed * Time.deltaTime);
     }
 

@@ -14,8 +14,8 @@ public class CombatControl : MonoBehaviour
     private bool onCooldown;
     
     //skills
-    //public Skill skill1;
-    //public Skill skill2;
+    public Skill firstSkill;
+    public Skill secondSkill;
     
     //movement stats
     public float speed = 1f;
@@ -28,24 +28,28 @@ public class CombatControl : MonoBehaviour
 
     public void moveup()
     {
+        zerovelocity();
         cPlayerRB.MovePosition(cPlayerRB.position + Vector2.up * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void movedown()
     {
+        zerovelocity();
         cPlayerRB.MovePosition(cPlayerRB.position + Vector2.down * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 180);
     }
 
     public void moveleft()
     {
+        zerovelocity();
         cPlayerRB.MovePosition(cPlayerRB.position + Vector2.left * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 90);
     }
 
     public void moveright()
     {
+        zerovelocity();
         cPlayerRB.MovePosition(cPlayerRB.position + Vector2.right * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 270);
     }
@@ -61,12 +65,29 @@ public class CombatControl : MonoBehaviour
 
     public void skill1()
     {
-        Debug.Log("a skill would go here");
+        if(firstSkill != null)
+        {
+            Debug.Log("a skill would go here");
+            firstSkill.skillActivate();
+        }
+        else
+        {
+            Debug.Log("no skill to use");
+        }
+
     }
 
     public void skill2()
     {
-        Debug.Log("a 2nd skill would go here");
+        if(secondSkill != null)
+        {
+            Debug.Log("a skill would go here");
+            secondSkill.skillActivate();
+        }
+        else
+        {
+            Debug.Log("no skill to use");
+        }
     }
 
     IEnumerator Cooldown(double amount)
@@ -79,6 +100,11 @@ public class CombatControl : MonoBehaviour
             i += 0.01;
         }
         onCooldown = false;
+    }
+
+    private void zerovelocity()
+    {
+        cPlayerRB.linearVelocity = Vector2.zero;
     }
     
 }

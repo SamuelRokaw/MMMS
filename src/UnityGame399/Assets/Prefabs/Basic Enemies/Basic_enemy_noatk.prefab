@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8143951636752000675, guid: 9e68b8a092393a641895adf7c40c890a, type: 3}
+  m_Sprite: {fileID: 5325763238602809956, guid: 9925b3a746e31714fb3dd959bdac3b02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -145,7 +145,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0542d2e1c0763124cb6e09e6ea258b8e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -166,7 +166,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0542d2e1c0763124cb6e09e6ea258b8e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

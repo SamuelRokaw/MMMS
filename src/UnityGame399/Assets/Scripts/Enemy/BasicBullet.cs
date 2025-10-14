@@ -31,7 +31,7 @@ public class BasicBullet : MonoBehaviour
         spriteTransform.Rotate(Vector3.forward, bulletRotationSpeed * Time.fixedDeltaTime, Space.Self);
     }
     
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("CombatPlayer"))
         {
