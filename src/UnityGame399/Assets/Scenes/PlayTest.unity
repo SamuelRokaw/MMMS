@@ -184,6 +184,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1465535681}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SaveToPlayerPrefs
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Stats, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5111112034906181322, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.13
@@ -232,6 +260,10 @@ PrefabInstance:
       propertyPath: owM
       value: 
       objectReference: {fileID: 1401229574}
+    - target: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8852337323811217387, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       propertyPath: m_Name
       value: OverWorld_Controller
@@ -263,6 +295,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18365b45382627e428cda2aa90398ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OverworldMovement
+--- !u!114 &1465535681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3952332187357606368, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+  m_PrefabInstance: {fileID: 1211487738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137b8d663a75740109bd9a54ec0f3dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stats
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
