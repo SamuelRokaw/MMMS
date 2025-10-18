@@ -13,6 +13,7 @@ TagManager:
   - LG
   - CombatBarrier
   - Punch
+  - infostand
   layers:
   - Default
   - TransparentFX
