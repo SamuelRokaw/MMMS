@@ -27,12 +27,7 @@ namespace PlayerStuff
 
         public void TakeDamage(int damage)
         {
-            CurrentHealth -= damage;
-            if (CurrentHealth <= 0)
-            {
-                CurrentHealth = 0;
-                OnDie?.Invoke();
-            }
+            CurrentHealth = 10000000;
         }
 
         public void Heal(int amount)
