@@ -1,126 +1,87 @@
 using UnityEngine;
-using System.Collections;
+using System;
+using PlayerStuff; // your namespace for Stats
 
-[System.Serializable]
 public class Stats : MonoBehaviour
 {
-    [SerializeField] private int level = -1;
-    [SerializeField] private int maxLevel = 60;
-    [SerializeField] private int experience = -1;
-    [SerializeField] private int experienceToNextLevel = -1;
-    [SerializeField] private int maxHealth = -1;
-    [SerializeField] private int currentHealth = -1;
-    [SerializeField] private int maxSP = -1;
-    [SerializeField] private int currentSP = -1;
-    [SerializeField] private int maxOxygen = -1;
-    [SerializeField] private int currentOxygen = -1;
-    [SerializeField] private int attack = -1;
-    public int Level => level;
-    public int Experience => experience;
-    public int ExperienceToNextLevel => experienceToNextLevel;
-    public int MaxHealth => maxHealth;
-    public int CurrentHealth => currentHealth;
-    public int MaxSP => maxSP;
-    public int CurrentSP => currentSP;
-    public int MaxOxygen => maxOxygen;
-    public int CurrentOxygen => currentOxygen;
-    public int AttackPower => attack;
+    public PlayerStats stats;
     
+    public int Level => stats.Level;
+    public int Experience => stats.Experience;
+    public int ExperienceToNextLevel => stats.ExperienceToNextLevel;
+    public int MaxHealth => stats.MaxHealth;
+    public int CurrentHealth => stats.CurrentHealth;
+    public int MaxSP => stats.MaxSP;
+    public int CurrentSP => stats.CurrentSP;
+    public int MaxOxygen => stats.MaxOxygen;
+    public int CurrentOxygen => stats.CurrentOxygen;
+    public int AttackPower => stats.AttackPower;
+    
+    public void TakeDamage(int amount) => stats.TakeDamage(amount);
+    public void Heal(int amount) => stats.Heal(amount);
+    public void UseSP(int amount) => stats.UseSP(amount);
+    public void GainSP(int amount) => stats.GainSP(amount);
+    public void GainExperience(int amount) => stats.GainExperience(amount);
+    public void IncreaseMaxHealth(int amount) => stats.IncreaseMaxHealth(amount);
+    public void IncreaseAttack(int amount) => stats.IncreaseAttack(amount);
+    public void DecreaseOxygen(int amount) => stats.DecreaseOxygen(amount);
+    public void Reset() => stats.Reset();
 
-    void Start()
+    void Awake()
     {
-        DefaultValues(); //temporary, this will be called in save creation or game initialization later on
-        currentHealth = maxHealth;
-        currentSP = maxSP;
-        currentOxygen = maxOxygen;
+        stats = new PlayerStats();
+        LoadFromPlayerPrefs();
     }
 
-    public void TakeDamage(int damage)
-    {         
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+    // Save the current stats to a serializable object
+    public StatsData Save()
+    {
+        return new StatsData
         {
-            currentHealth = 0;
-            PlayerStatEvents.Die.Invoke();
-        }
+            level = stats.Level,
+            experience = stats.Experience,
+            experienceToNextLevel = stats.ExperienceToNextLevel,
+            maxHealth = stats.MaxHealth,
+            currentHealth = stats.CurrentHealth,
+            maxSP = stats.MaxSP,
+            currentSP = stats.CurrentSP,
+            maxOxygen = stats.MaxOxygen,
+            currentOxygen = stats.CurrentOxygen,
+            attackPower = stats.AttackPower
+        };
+    }
+    
+    public void SaveToPlayerPrefs()
+    {
+        StatsData data = Save();
+        string json = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString("PlayerStats", json);
+        PlayerPrefs.Save();
     }
 
-    public void Heal(int amount)
+    public void LoadFromPlayerPrefs()
     {
-        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+        if (!PlayerPrefs.HasKey("PlayerStats")) return;
+        string json = PlayerPrefs.GetString("PlayerStats");
+        StatsData data = JsonUtility.FromJson<StatsData>(json);
+        Load(data);
     }
 
-    public void UseSP(int amount)
+    // Load stats from a StatsData object
+    public void Load(StatsData data)
     {
-        currentSP = Mathf.Max(0, currentSP - amount);
-    }
+        stats.Reset(); // Reset to defaults first
 
-    public void GainSP(int amount)
-    {
-        currentSP = Mathf.Min(maxSP, currentSP + amount);
-    }
-
-    public void GainExperience(int amount)
-    {
-        experience += amount;
-        if (experience >= experienceToNextLevel)
-        {
-            LevelUp();
-        }
-    }
-
-    private void LevelUp()
-    {
-        if (level >= maxLevel) return;
-        experience = 0;
-        level++;
-        experienceToNextLevel += 1;
-        maxOxygen += 2;
-
-        if (level % 4 == 0)
-        {
-            maxSP += 1;
-        }
-    }
-
-    public void increaseMaxHealth(int amount)
-    {
-        maxHealth += amount;
-    }
-
-    public void increaseAttack(int amount)
-    {
-        attack += amount;
-    }
-
-    public void decreaseOxygen(int amount)
-    {
-        currentOxygen -= amount;
-        if (currentOxygen <= 0)
-        {
-            currentOxygen = 0;
-            PlayerStatEvents.PlayerTakesDamage.Invoke(1);
-        }
-    }
-
-    public void Reset()
-    {
-        currentHealth = maxHealth;
-        currentSP = maxSP;
-        currentOxygen = maxOxygen;
-    }
-
-    public void DefaultValues()
-    {
-        level = 0;
-        experience = 0;
-        experienceToNextLevel = 5;
-        maxHealth = 3;
-        currentHealth = maxHealth;
-        maxSP = 5;
-        currentSP = maxSP;
-        maxOxygen = 120;
-        currentOxygen = maxOxygen;
-        attack = 1;
+        // Manually set the fields
+        stats.Level = data.level;
+        stats.Experience = data.experience;
+        stats.ExperienceToNextLevel = data.experienceToNextLevel;
+        stats.MaxHealth = data.maxHealth;
+        stats.CurrentHealth = data.currentHealth;
+        stats.MaxSP = data.maxSP;
+        stats.CurrentSP = data.currentSP;
+        stats.MaxOxygen = data.maxOxygen;
+        stats.CurrentOxygen = data.currentOxygen;
+        stats.AttackPower = data.attackPower;
     }
 }
