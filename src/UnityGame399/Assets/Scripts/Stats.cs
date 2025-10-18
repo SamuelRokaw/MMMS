@@ -66,6 +66,13 @@ public class Stats : MonoBehaviour
         StatsData data = JsonUtility.FromJson<StatsData>(json);
         Load(data);
     }
+    
+    [ContextMenu("Reset Stats")]
+    public void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteKey("PlayerStats");
+        PlayerPrefs.Save();
+    }
 
     // Load stats from a StatsData object
     public void Load(StatsData data)
