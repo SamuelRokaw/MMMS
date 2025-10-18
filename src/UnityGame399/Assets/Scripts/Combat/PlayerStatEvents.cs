@@ -43,12 +43,12 @@ public class PlayerStatEvents :MonoBehaviour
         if (upgradeName.ToLower() == "attack")
         {
             Debug.Log("Player Attack increases");
-            stats.increaseAttack(1);
+            stats.IncreaseAttack(1);
         }
         else if (upgradeName.ToLower() == "health")
         {
             Debug.Log("Player health increases");
-            stats.increaseMaxHealth(1);
+            stats.IncreaseMaxHealth(1);
         }
     }
 
@@ -60,6 +60,6 @@ public class PlayerStatEvents :MonoBehaviour
 
     private void Drowning(int amount)
     {
-        stats.decreaseOxygen(amount);
+        stats.DecreaseOxygen(amount);
     }
 }
