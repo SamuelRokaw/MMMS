@@ -16,7 +16,7 @@ public class LevelGate : Interactable
         {
             used = true;
             Debug.Log("level gate opened");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         
 

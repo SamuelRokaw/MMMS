@@ -16,6 +16,7 @@ public class InputHandler : MonoBehaviour
     public bool inCombat = false;
     public bool isPaused = false;
     public bool isStatsOpen = false;
+    public bool inDialogue = false;
     
     //action dictionary
     public KeyCode upKey;
@@ -79,7 +80,7 @@ public class InputHandler : MonoBehaviour
 
     public void stats()
     {
-        if (inCombat || isPaused)
+        if (inCombat || isPaused || inDialogue)
         {
             return;
         }
@@ -103,7 +104,7 @@ public class InputHandler : MonoBehaviour
     
     public void pause()
     {
-        if (inCombat || isStatsOpen)
+        if (inCombat || isStatsOpen || inDialogue)
         {
             return;
         }
@@ -127,7 +128,7 @@ public class InputHandler : MonoBehaviour
     
     private void moveup()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
@@ -142,7 +143,7 @@ public class InputHandler : MonoBehaviour
     }
     private void movedown()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
@@ -157,7 +158,7 @@ public class InputHandler : MonoBehaviour
     }
     private void moveleft()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
@@ -172,7 +173,7 @@ public class InputHandler : MonoBehaviour
     }
     private void moveright()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
@@ -187,7 +188,7 @@ public class InputHandler : MonoBehaviour
     }
     private void skill1()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
@@ -200,7 +201,7 @@ public class InputHandler : MonoBehaviour
 
     private void skill2()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
@@ -213,7 +214,7 @@ public class InputHandler : MonoBehaviour
 
     private void attack()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }

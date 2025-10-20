@@ -28,6 +28,10 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<LevelGate>().Interact();
             }
+            else if (interactTarget.tag == "infostand")
+            {
+                interactTarget.GetComponent<InfoSign>().Interact();
+            }
             CloseInteractableIcon();
         }
     }
