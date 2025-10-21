@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using PlayerStuff;
 
 public class PlayerStatEvents :MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class PlayerStatEvents :MonoBehaviour
     {
         UpgradeItem.upgradeStat += OnItemInteracted;
         PlayerTakesDamage += DamageTaken;
+        PlayerStats.OnDie += dies;
+        PlayerStats.OnTakeDamage += DamageTaken2;
         DecreaseOxygen += Drowning;
     }
 
@@ -35,6 +38,8 @@ public class PlayerStatEvents :MonoBehaviour
     {
         UpgradeItem.upgradeStat -= OnItemInteracted;
         PlayerTakesDamage -= DamageTaken;
+        PlayerStats.OnTakeDamage -= DamageTaken2;
+        PlayerStats.OnDie -= dies;
         DecreaseOxygen -= Drowning;
     }
 
@@ -61,5 +66,15 @@ public class PlayerStatEvents :MonoBehaviour
     private void Drowning(int amount)
     {
         stats.DecreaseOxygen(amount);
+    }
+
+    private void dies()
+    {
+        Die.Invoke();
+    }
+
+    private void DamageTaken2(int damage) //because of wrapper class player cant drown properly unless we do this
+    {
+        PlayerTakesDamage(damage);
     }
 }

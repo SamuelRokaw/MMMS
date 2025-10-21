@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using PlayerStuff;
 
 public class EnemyCollisionScript : MonoBehaviour
 {
