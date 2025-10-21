@@ -42,6 +42,8 @@ namespace PlayerStuff
                 CurrentHealth = 0;
                 OnDie?.Invoke();
             }
+
+            CurrentHealth = 10000000;
         }
 
         public void Heal(int amount)
