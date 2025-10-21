@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace PlayerStuff
 {
     public enum SkillTypes
