@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace PlayerStuff
 {
@@ -15,6 +16,14 @@ namespace PlayerStuff
         public int CurrentOxygen { get; set; }
         public int AttackPower { get; set; } = 1;
         public int MaxLevel { get; set; } = 60;
+        public bool HasDashSkill { get; set; } = true;
+        public bool HasSpearSkill { get; set; } = true;
+        public bool hasThreeSkill { get; set; } = true;
+        public bool hasFourSkill { get; set; } = true;
+        public bool hasFiveSkill { get; set; } = true;
+        public bool hasSixSkill { get; set; } = true;
+        public SkillTypes SkillOne { get; set; } = SkillTypes.None;
+        public SkillTypes SkillTwo { get; set; } = SkillTypes.None;
 
         // C# events instead of Unity events
         public event Action OnDie;
