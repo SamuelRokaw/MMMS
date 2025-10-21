@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using PlayerStuff; // your namespace for Stats
 
 public class Stats : MonoBehaviour
@@ -22,7 +23,15 @@ public class Stats : MonoBehaviour
     public bool HasFourSkill => stats.hasFourSkill;
     public bool HasFiveSkill => stats.hasFiveSkill;
     public bool HasSixSkill => stats.hasSixSkill;
-    
+    public SkillTypes SkillOne
+    {
+        get => stats.SkillOne;
+        set => stats.SkillOne = value;
+    }
+    public SkillTypes SkillTwo{
+        get => stats.SkillTwo;
+        set => stats.SkillTwo = value;
+    }
     public void TakeDamage(int amount) => stats.TakeDamage(amount);
     public void Heal(int amount) => stats.Heal(amount);
     public void UseSP(int amount) => stats.UseSP(amount);
@@ -53,7 +62,15 @@ public class Stats : MonoBehaviour
             currentSP = stats.CurrentSP,
             maxOxygen = stats.MaxOxygen,
             currentOxygen = stats.CurrentOxygen,
-            attackPower = stats.AttackPower
+            attackPower = stats.AttackPower,
+            hasDashSkill = stats.HasDashSkill,
+            hasSpearSkill = stats.HasSpearSkill,
+            hasThreeSkill = stats.hasThreeSkill,
+            hasFourSkill = stats.hasFourSkill,
+            hasFiveSkill = stats.hasFiveSkill,
+            hasSixSkill = stats.hasSixSkill,
+            skillOne = stats.SkillOne,
+            skillTwo = stats.SkillTwo,
         };
     }
     
@@ -96,5 +113,13 @@ public class Stats : MonoBehaviour
         stats.MaxOxygen = data.maxOxygen;
         stats.CurrentOxygen = data.currentOxygen;
         stats.AttackPower = data.attackPower;
+        stats.HasDashSkill = data.hasDashSkill;
+        stats.HasSpearSkill = data.hasSpearSkill;
+        stats.hasThreeSkill = data.hasThreeSkill;
+        stats.hasFourSkill = data.hasFourSkill;
+        stats.hasFiveSkill = data.hasFiveSkill;
+        stats.hasSixSkill = data.hasSixSkill;
+        stats.SkillOne = data.skillOne;
+        stats.SkillTwo = data.skillTwo;
     }
 }

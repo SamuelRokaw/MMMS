@@ -16,6 +16,7 @@ public class InputHandler : MonoBehaviour
     public TextMeshProUGUI statsText;
     public Button[] skillButton;
     public Stats playerStats;
+    public SkillButtons skillButtons;
     public bool inCombat = false;
     public bool isPaused = false;
     public bool isStatsOpen = false;
@@ -121,7 +122,7 @@ public class InputHandler : MonoBehaviour
             {
                 skillButton[5].interactable = true;
             }
-            
+            skillButtons.OnOpen();
             isStatsOpen = true;
             statsMenu.alpha = 1;
             statsMenu.blocksRaycasts = true;
