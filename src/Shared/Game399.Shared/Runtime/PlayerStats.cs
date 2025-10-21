@@ -15,6 +15,12 @@ namespace PlayerStuff
         public int CurrentOxygen { get; set; }
         public int AttackPower { get; set; } = 1;
         public int MaxLevel { get; set; } = 60;
+        public bool HasDashSkill { get; set; } = true;
+        public bool HasSpearSkill { get; set; } = true;
+        public bool hasThreeSkill { get; set; } = true;
+        public bool hasFourSkill { get; set; } = false;
+        public bool hasFiveSkill { get; set; } = false;
+        public bool hasSixSkill { get; set; } = false;
 
         // C# events instead of Unity events
         public event Action OnDie;

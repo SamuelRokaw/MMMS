@@ -2,6 +2,8 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class InputHandler : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class InputHandler : MonoBehaviour
     public CanvasGroup pauseMenu; //pause menu
     public CanvasGroup statsMenu;
     public TextMeshProUGUI statsText;
+    public Button[] skillButton;
     public Stats playerStats;
     public bool inCombat = false;
     public bool isPaused = false;
@@ -94,6 +97,31 @@ public class InputHandler : MonoBehaviour
         else
         {
             statsText.text = $"Level: {playerStats.Level}\nXP: {playerStats.Experience}\nXP needed:  {playerStats.ExperienceToNextLevel}\nHealth: {playerStats.MaxHealth}\nSP: {playerStats.CurrentSP}\nOxygen: {playerStats.MaxOxygen}\nAttack: {playerStats.AttackPower}";
+            if (playerStats.HasDashSkill)
+            {
+                skillButton[0].interactable = true;
+            }
+            if (playerStats.HasSpearSkill)
+            {
+                skillButton[1].interactable = true;
+            }
+            if (playerStats.HasThreeSkill)
+            {
+                skillButton[2].interactable = true;
+            }
+            if (playerStats.HasFourSkill)
+            {
+                skillButton[3].interactable = true;
+            }
+            if (playerStats.HasFiveSkill)
+            {
+                skillButton[4].interactable = true;
+            }
+            if (playerStats.HasSixSkill)
+            {
+                skillButton[5].interactable = true;
+            }
+            
             isStatsOpen = true;
             statsMenu.alpha = 1;
             statsMenu.blocksRaycasts = true;

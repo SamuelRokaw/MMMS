@@ -16,6 +16,12 @@ public class Stats : MonoBehaviour
     public int MaxOxygen => stats.MaxOxygen;
     public int CurrentOxygen => stats.CurrentOxygen;
     public int AttackPower => stats.AttackPower;
+    public bool HasDashSkill => stats.HasDashSkill;
+    public bool HasSpearSkill => stats.HasSpearSkill;
+    public bool HasThreeSkill => stats.hasThreeSkill;
+    public bool HasFourSkill => stats.hasFourSkill;
+    public bool HasFiveSkill => stats.hasFiveSkill;
+    public bool HasSixSkill => stats.hasSixSkill;
     
     public void TakeDamage(int amount) => stats.TakeDamage(amount);
     public void Heal(int amount) => stats.Heal(amount);

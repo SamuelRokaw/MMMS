@@ -11,4 +11,10 @@ public class StatsData
     public int maxOxygen;
     public int currentOxygen;
     public int attackPower;
+    public bool hasDashSkill;
+    public bool hasSpearSkill;
+    public bool hasThreeSkill;
+    public bool hasFourSkill;
+    public bool hasFiveSkill;
+    public bool hasSixSkill;
 }
