@@ -15,6 +15,10 @@ TagManager:
   - Punch
   - infostand
   - Sounds
+  - TopWall
+  - BottomWall
+  - LeftWall
+  - RightWall
   layers:
   - Default
   - TransparentFX
