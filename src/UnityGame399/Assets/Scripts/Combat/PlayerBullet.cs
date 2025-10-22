@@ -3,20 +3,18 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     public float bulletSpeed = 1f;
-    public float bulletRotationSpeed = 15f;
     private Rigidbody2D _rb;
-    public Transform spriteTransform;
+    public int aP= 1;
     
     private void Awake()
     {
-        
+        aP = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>().AttackPower;
         _rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
         move();
-        rotate();
     }
 
     private void move()
@@ -24,19 +22,10 @@ public class PlayerBullet : MonoBehaviour
         Vector2 direction = transform.right;
         _rb.MovePosition(_rb.position + direction * bulletSpeed * Time.fixedDeltaTime);
     }
-
-    private void rotate()
-    {
-        spriteTransform.Rotate(Vector3.forward, bulletRotationSpeed * Time.fixedDeltaTime, Space.Self);
-    }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("CombatBarrier"))
+        if (collision.gameObject.CompareTag("CombatBarrier"))
         {
             Destroy(gameObject);
         }

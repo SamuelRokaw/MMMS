@@ -982,7 +982,7 @@ MonoBehaviour:
   punchSpawn: {fileID: 7196388480585361300}
   punchPrefab: {fileID: 3110260225468949744, guid: aa78259d815b90c43b521527eb12778f, type: 3}
   firstSkill: {fileID: 4481052975815658481}
-  secondSkill: {fileID: 0}
+  secondSkill: {fileID: 6494461949044919936}
   speed: 10
   spdMod: 1
 --- !u!114 &4481052975815658481
@@ -999,6 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DashSkill
   spCost: 1
   combatControl: {fileID: 6612970182489979094}
+  playerSprite: {fileID: 0}
   dashMultiplier: 2
   dashDuration: 1
 --- !u!114 &6494461949044919936
@@ -1014,7 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileSkill
   spCost: 1
-  projectilePrefab: {fileID: 8789316286346777287, guid: b91f614139c71724284d2cc4b128d7f6, type: 3}
+  projectilePrefab: {fileID: 2779627770615186967, guid: c82469d83817740ae865fdf07d18136d, type: 3}
   playerTransform: {fileID: 7196388480585361300}
   playerRB: {fileID: 1455760162804786471}
 --- !u!1 &3112600070791218010

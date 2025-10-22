@@ -6,7 +6,7 @@ public class DashSkill : Skill
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private CombatControl combatControl;
     [SerializeField] private SpriteRenderer playerSprite;
-    [SerializeField] private float dashMultiplier = 2f;
+    [SerializeField] private float dashMultiplier = 5f;
     [SerializeField] private float dashDuration = 1f;
 
     private Color originalColor = Color.white;
