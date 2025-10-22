@@ -4,6 +4,7 @@ using UnityEngine;
 public class CombatLoader : MonoBehaviour
 {
     public static CombatLoader Instance;
+    [SerializeField] private CanvasGroup bTO;
     private void Awake() // singleton???
     {
         if (Instance == null)
@@ -41,6 +42,10 @@ public class CombatLoader : MonoBehaviour
 
     private IEnumerator LoadCombatWithFade(GameObject encounterPrefab)
     {
+        bTO.alpha = 0;
+        bTO.interactable = false;
+        bTO.blocksRaycasts = false;
+        
         yield return StartCoroutine(FadeController.Instance.FadeToBlack());
 
         GameObject encounter = Instantiate(encounterPrefab);

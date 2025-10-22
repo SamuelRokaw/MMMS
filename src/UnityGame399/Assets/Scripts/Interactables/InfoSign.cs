@@ -6,7 +6,7 @@ public class InfoSign : Interactable
 
     public override void Interact()
     {
-            Debug.Log("Info Sign Interacted");
+            Logger.Instance.Info("Info Sign Interacted");
             infoDialog.SetActive(true);
     }
 }

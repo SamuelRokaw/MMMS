@@ -7,6 +7,7 @@ public class EndScreenController : MonoBehaviour
     
     [SerializeField] private GameObject endScreenPanel;
     [SerializeField] private Text endText;
+    [SerializeField] private CanvasGroup bTO;
     
     private void Awake()
     {
@@ -40,5 +41,8 @@ public class EndScreenController : MonoBehaviour
     public void Hide()
     {
         endScreenPanel.SetActive(false);
+        bTO.alpha = 0;
+        bTO.interactable = false;
+        bTO.blocksRaycasts = false;
     }
 }
