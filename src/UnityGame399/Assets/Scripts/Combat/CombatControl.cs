@@ -106,5 +106,4 @@ public class CombatControl : MonoBehaviour
     {
         cPlayerRB.linearVelocity = Vector2.zero;
     }
-    
 }
