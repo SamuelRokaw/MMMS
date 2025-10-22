@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 7963063440511966017}
   - component: {fileID: 5315069935653641981}
   - component: {fileID: 6008177164682632178}
-  - component: {fileID: 3334479481582897640}
   - component: {fileID: 3134832735127305546}
   - component: {fileID: 7658237000272043475}
   - component: {fileID: 2601431314632238875}
   - component: {fileID: 6037110040995269209}
+  - component: {fileID: -520315275715037438}
+  - component: {fileID: -189236543493295225}
   m_Layer: 0
   m_Name: Boss_enemy_sharkmom
   m_TagString: Enemy
@@ -110,26 +111,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
   maxHealth: 5
   currentHealth: 0
-  atkCooldown: 9
+  atkCooldown: 6
   attacking: 0
-  ap: {fileID: 0}
+  ap: {fileID: -520315275715037438}
   player: {fileID: 0}
---- !u!114 &3334479481582897640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6294379027174352848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd2dc390bc3f38046b20738edc8fac6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  speed: 1
-  spdMod: 1
-  rotationSpeed: 15
-  rotspdMod: 1
 --- !u!50 &3134832735127305546
 Rigidbody2D:
   serializedVersion: 5
@@ -233,3 +218,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnEnemyOnDeath
   enemyToSpawn: {fileID: 0}
+--- !u!114 &-520315275715037438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294379027174352848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d48d28a88cd44d7aa5b50531d26c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossEnemyAttack
+  chargeSpeed: 5
+  chargeTime: 10
+  stunTime: 1
+  chargeCount: 2
+  bem: {fileID: -189236543493295225}
+--- !u!114 &-189236543493295225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294379027174352848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d451327497e33411b92ac8b248b899b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossEnemyMovement
+  speed: 5
+  spdMod: 1
+  rotationSpeed: 15
+  rotspdMod: 1
+  chargeCount: 2
