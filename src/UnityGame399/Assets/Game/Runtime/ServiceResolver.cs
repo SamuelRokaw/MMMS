@@ -16,8 +16,8 @@ namespace Game.Runtime
         private static readonly Lazy<IMiniContainer> Container = new (() =>
         {
             var container = new MiniContainer();
-
             var logger = new UnityGameLogger();
+            var combatLoader = new CombatLoader();
             container.RegisterSingletonInstance<IGameLog>(logger);
 
             var gameState = new GameState();
@@ -28,7 +28,8 @@ namespace Game.Runtime
             gameState.BadGuy.Health.Value = 10;
             gameState.BadGuy.Damage.Value = 1;
             container.RegisterSingletonInstance(gameState);
-
+            container.RegisterSingletonInstance(combatLoader);
+            
             var damageService = new DamageService(logger);
             container.RegisterSingletonInstance<IDamageService>(damageService);
             

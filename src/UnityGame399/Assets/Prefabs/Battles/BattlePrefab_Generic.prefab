@@ -811,6 +811,8 @@ GameObject:
   - component: {fileID: 2547289960754353595}
   - component: {fileID: 1455760162804786471}
   - component: {fileID: 6612970182489979094}
+  - component: {fileID: 4481052975815658481}
+  - component: {fileID: 6494461949044919936}
   m_Layer: 0
   m_Name: Diver
   m_TagString: CombatPlayer
@@ -979,8 +981,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatControl
   punchSpawn: {fileID: 7196388480585361300}
   punchPrefab: {fileID: 3110260225468949744, guid: aa78259d815b90c43b521527eb12778f, type: 3}
+  firstSkill: {fileID: 4481052975815658481}
+  secondSkill: {fileID: 0}
   speed: 10
   spdMod: 1
+--- !u!114 &4481052975815658481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2927522817469242045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1510a44c009ec4812aa7b4fe9e23262b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DashSkill
+  spCost: 1
+  combatControl: {fileID: 6612970182489979094}
+  dashMultiplier: 2
+  dashDuration: 1
+--- !u!114 &6494461949044919936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2927522817469242045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7e393890ad54154bdbe5142c20859c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSkill
+  spCost: 1
+  projectilePrefab: {fileID: 8789316286346777287, guid: b91f614139c71724284d2cc4b128d7f6, type: 3}
+  playerTransform: {fileID: 7196388480585361300}
+  playerRB: {fileID: 1455760162804786471}
 --- !u!1 &3112600070791218010
 GameObject:
   m_ObjectHideFlags: 0
