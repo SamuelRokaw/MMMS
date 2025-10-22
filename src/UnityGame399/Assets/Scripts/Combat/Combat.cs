@@ -83,14 +83,40 @@ public class Combat : MonoBehaviour
         
     }
 
+    private IEnumerator ExitCombatWithFade(bool playerWon)
+    {
+        Time.timeScale = 0f;
+
+        yield return StartCoroutine(FadeController.Instance.FadeToBlack());
+
+        if (playerWon)
+        {
+            EndScreenController.Instance.ShowWin();
+        }
+        else
+        {
+            EndScreenController.Instance.ShowLose();
+        }
+        yield return new WaitForSecondsRealtime(2f);
+
+        EndScreenController.Instance.Hide();
+        
+        Time.timeScale = 1f;
+        
+        FadeController.Instance.hideBlackScreen();
+        
+        exitCombat();
+        
+    }
+
     private void lose()
     {
-        exitCombat();
+        StartCoroutine(ExitCombatWithFade(false));
     }
     private void win()
     {
         stats.GainExperience(xpCollected);
-        exitCombat();
+        StartCoroutine(ExitCombatWithFade(true));
     }
 
     private void clearCombat()
