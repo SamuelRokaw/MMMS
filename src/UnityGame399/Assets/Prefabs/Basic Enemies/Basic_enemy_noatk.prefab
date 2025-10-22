@@ -216,3 +216,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCollisionScript
   be: {fileID: 6289654903676855585}
   onCooldown: 0
+  attackCoolDown: 2
+  takeDamageOnCooldown: 0
+  damageCoolDown: 0.51
