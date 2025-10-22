@@ -219,7 +219,7 @@ MonoBehaviour:
   onCooldown: 0
   attackCoolDown: 2
   takeDamageOnCooldown: 0
-  damageCoolDown: 2
+  damageCoolDown: 0.51
 --- !u!114 &6037110040995269209
 MonoBehaviour:
   m_ObjectHideFlags: 0

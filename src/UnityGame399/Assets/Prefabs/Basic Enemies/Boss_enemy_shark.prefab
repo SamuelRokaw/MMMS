@@ -217,3 +217,5 @@ MonoBehaviour:
   be: {fileID: 2114354051255133159}
   onCooldown: 0
   attackCoolDown: 2
+  takeDamageOnCooldown: 0
+  damageCoolDown: 0.51
