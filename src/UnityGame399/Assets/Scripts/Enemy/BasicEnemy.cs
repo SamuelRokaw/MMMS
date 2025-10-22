@@ -35,6 +35,11 @@ public class BasicEnemy : MonoBehaviour
     private void die()
     {
         benemyDied.Invoke();
+        SpawnEnemyOnDeath spawner = GetComponent<SpawnEnemyOnDeath>();
+        if (spawner != null)
+        {
+            spawner.SpawnEnemy();
+        }
         Destroy(gameObject);
     }
 
