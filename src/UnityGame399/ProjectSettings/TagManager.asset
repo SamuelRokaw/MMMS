@@ -14,6 +14,7 @@ TagManager:
   - CombatBarrier
   - Punch
   - infostand
+  - Sounds
   layers:
   - Default
   - TransparentFX
