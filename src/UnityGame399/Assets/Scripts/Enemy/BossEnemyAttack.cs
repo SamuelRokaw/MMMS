@@ -45,6 +45,7 @@ public class BossEnemyAttack : AttackPattern
             
             if (i < chargeCount - 1)
             {
+                bem.SetTargetNode(null, bem.GetLastWallTag());
                 yield return new WaitForSeconds(delayBetweenCharges);
             }
         }
