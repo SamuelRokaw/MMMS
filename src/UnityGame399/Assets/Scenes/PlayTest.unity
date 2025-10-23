@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 673463375}
   - component: {fileID: 673463376}
   - component: {fileID: 673463377}
+  - component: {fileID: 673463378}
   m_Layer: 0
   m_Name: SingletonHolder
   m_TagString: Untagged
@@ -339,6 +340,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EndScreenController
   endScreenPanel: {fileID: 419621013}
   endText: {fileID: 1822202398}
+--- !u!114 &673463378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673463373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f0b18daae404eb1b79e2340be83bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathEffectsManager
+  defaultDeathSound: {fileID: 8300000, guid: 2468cdbce079f4769b3ebe457855d988, type: 3}
+  defaultBloodSplatter: {fileID: 8360106563332105676, guid: 6af1c03bc31934555a83bb9fb4e0dce3, type: 3}
 --- !u!1 &929180977
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -10.29, y: -15.3}
   m_SizeDelta: {x: 1950, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1211487738
