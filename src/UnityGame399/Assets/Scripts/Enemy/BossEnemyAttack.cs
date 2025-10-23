@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossEnemyAttack : AttackPattern
@@ -8,6 +9,8 @@ public class BossEnemyAttack : AttackPattern
     public int chargeCount = 3;
     public float stunTime = 1f;
     public float delayBetweenCharges = 0.5f;
+    public GameObject projectile;
+    public List<Transform> spawnPoints;
     public BossEnemyMovement bem;
     
     private GameObject[] topWallNodes;
@@ -48,8 +51,8 @@ public class BossEnemyAttack : AttackPattern
 
         bem.spdMod = 0f;
         bem.rotspdMod = 0f;
+        bem.SetTargetNode(null, "");
         yield return new WaitForSeconds(stunTime);
-
         bem.spdMod = 1f;
         bem.rotspdMod = 1f;
     }
@@ -134,11 +137,19 @@ public class BossEnemyAttack : AttackPattern
     
     private void PerformNodeAction()
     {
-        Debug.Log("Boss reached node!");
+        spawnBullets();
     }
     
     private void PerformFinalNodeAction()
     {
-        Debug.Log("Boss reached final node!");
+        Debug.Log("boss reached final node");
+    }
+    
+    private void spawnBullets()
+    {
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 }

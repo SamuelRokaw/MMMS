@@ -23,7 +23,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7963063440511966017
 Transform:
   m_ObjectHideFlags: 0
@@ -232,8 +232,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemyAttack
   chargeSpeed: 5
   chargeTime: 10
-  stunTime: 1
   chargeCount: 2
+  stunTime: 1
+  delayBetweenCharges: 0.5
   bem: {fileID: -189236543493295225}
 --- !u!114 &-189236543493295225
 MonoBehaviour:
@@ -249,6 +250,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemyMovement
   speed: 5
   spdMod: 1
-  rotationSpeed: 15
+  rotationSpeed: 2515
   rotspdMod: 1
-  chargeCount: 2
