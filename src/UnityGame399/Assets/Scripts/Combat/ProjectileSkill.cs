@@ -3,16 +3,16 @@ using UnityEngine;
 public class ProjectileSkill : Skill
 {
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform spawnPointTransform;
     [SerializeField] private Rigidbody2D playerRB;
     
     private void Awake()
     {
         spCost = 3;
         
-        if (playerTransform == null)
+        if (spawnPointTransform == null)
         {
-            playerTransform = GetComponentInParent<Transform>();
+            spawnPointTransform = GetComponentInParent<Transform>();
         }
         if (playerRB == null)
         {
@@ -36,6 +36,6 @@ public class ProjectileSkill : Skill
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0, 0, angle - 90);
         
-        Instantiate(projectilePrefab, playerTransform.position, rotation);
+        Instantiate(projectilePrefab, spawnPointTransform.position, spawnPointTransform.rotation);
     }
 }

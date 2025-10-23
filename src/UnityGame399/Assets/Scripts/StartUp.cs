@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class StartUp : MonoBehaviour
 {
-    public Logger logger;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Stats stats;
+
+    public void NewGame()
     {
-        logger.createLogFile();
+        Logger.Instance.Info("Creating new game");
+        PlayerPrefs.DeleteAll(); //deletes all saved data, player stat, area interactables data
+        stats.ResetPlayerPrefs(); // makes a new player saved data to be loaded
+
     }
+
+    public void LoadGame()
+    {
+        Logger.Instance.Info("Loading Saved Game");
+    }
+
     
 }

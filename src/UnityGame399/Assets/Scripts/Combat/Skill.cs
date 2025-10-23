@@ -7,5 +7,6 @@ public class Skill : MonoBehaviour
     public virtual void skillActivate()
     {
         Debug.Log("skill used");
+        
     }
 }

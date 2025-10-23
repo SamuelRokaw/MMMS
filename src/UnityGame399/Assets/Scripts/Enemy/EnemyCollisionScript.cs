@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using PlayerStuff;
@@ -24,6 +25,17 @@ public class EnemyCollisionScript : MonoBehaviour
             StartCoroutine(Cooldown());
         }
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Punch") && !takeDamageOnCooldown)
+        {
+            Debug.Log("Fish Takes Damage");
+            int amount = other.gameObject.GetComponent<PlayerBullet>().aP;
+            be.changeHealth(amount);
+            StartCoroutine(TakeDamageCoolDown());
+        }
     }
 
     IEnumerator Cooldown()

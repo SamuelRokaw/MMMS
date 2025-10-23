@@ -42,9 +42,9 @@ public class CombatLoader : MonoBehaviour
 
     private IEnumerator LoadCombatWithFade(GameObject encounterPrefab)
     {
-        bTO.alpha = 0;
-        bTO.interactable = false;
-        bTO.blocksRaycasts = false;
+        bTO.alpha = 1;
+        bTO.interactable = true;
+        bTO.blocksRaycasts = true;
         
         yield return StartCoroutine(FadeController.Instance.FadeToBlack());
 

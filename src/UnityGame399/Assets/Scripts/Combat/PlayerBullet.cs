@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    public float bulletSpeed = 1f;
+    public float bulletSpeed = 15f;
     private Rigidbody2D _rb;
     public int aP= 1;
     
@@ -19,7 +19,7 @@ public class PlayerBullet : MonoBehaviour
 
     private void move()
     {
-        Vector2 direction = transform.right;
+        Vector2 direction = transform.up;
         _rb.MovePosition(_rb.position + direction * bulletSpeed * Time.fixedDeltaTime);
     }
     

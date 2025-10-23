@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileSkill
   spCost: 1
   projectilePrefab: {fileID: 2779627770615186967, guid: c82469d83817740ae865fdf07d18136d, type: 3}
-  playerTransform: {fileID: 7196388480585361300}
+  spawnPointTransform: {fileID: 7196388480585361300}
   playerRB: {fileID: 1455760162804786471}
 --- !u!1 &3112600070791218010
 GameObject:

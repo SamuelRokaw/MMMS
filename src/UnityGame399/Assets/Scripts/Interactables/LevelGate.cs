@@ -7,7 +7,10 @@ public class LevelGate : Interactable
     private Stats pStats;
     private void Awake()
     {
-        used = false;
+        if (used)
+        {
+            gameObject.SetActive(false);
+        }
         pStats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
     }
     public override void Interact()
@@ -15,7 +18,7 @@ public class LevelGate : Interactable
         if (pStats.Level >= LevelRequirement)
         {
             used = true;
-            Debug.Log("level gate opened");
+            Logger.Instance.Info("level gate opened");
             gameObject.SetActive(false);
         }
         

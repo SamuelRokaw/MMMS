@@ -9,12 +9,15 @@ public class UpgradeItem : Interactable
 
     private void Awake()
     {
-        used = false;
+        if (used)
+        {
+            gameObject.SetActive(false);
+        }
     }
     public override void Interact()
     {
         used = true;
-        Debug.Log($"{upgradeName} interact");
+        Logger.Instance.Info($"{upgradeName} interact");
         upgradeStat.Invoke(upgradeName);
         gameObject.SetActive(false);
     }

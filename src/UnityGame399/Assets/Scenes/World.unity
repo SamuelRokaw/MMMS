@@ -803,7 +803,7 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 5889a6e9b36f07e4eadea0d0b9466587, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 3
       objectReference: {fileID: 0}
     - target: {fileID: 9019395896531661403, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_FlipX
@@ -823,6 +823,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34987182780286794, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
   m_PrefabInstance: {fileID: 63478860}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &63478862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 63478860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &71579762
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +932,22 @@ MonoBehaviour:
   owCam: {fileID: 665902955}
   owM: {fileID: 1395830174}
   owI: {fileID: 1395830173}
+  interactables:
+  - {fileID: 860102415}
+  - {fileID: 453598771}
+  - {fileID: 63478862}
+  - {fileID: 207068004}
+  - {fileID: 604067936}
+  - {fileID: 501727811}
+  - {fileID: 1698717463}
+  - {fileID: 1529627211}
+  - {fileID: 1743319485}
+  - {fileID: 1063242747}
+  - {fileID: 1745779520}
+  - {fileID: 2049400791}
+  - {fileID: 1127277384}
+  - {fileID: 866562343}
+  AreaName: Level1
 --- !u!4 &95086878
 Transform:
   m_ObjectHideFlags: 0
@@ -2022,7 +2049,7 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 675e27059f140bd41aac0687cbc9160d, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 4
       objectReference: {fileID: 0}
     - target: {fileID: 9019395896531661403, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_FlipX
@@ -2042,6 +2069,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34987182780286794, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
   m_PrefabInstance: {fileID: 207068002}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &207068004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 207068002}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &219963148
 GameObject:
   m_ObjectHideFlags: 0
@@ -4680,13 +4718,24 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 14c557182fd62ec469880be54d2c9f4d, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+--- !u!114 &453598771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 453598770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &498009788
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,7 +4927,7 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 9c091e644cbc1404181e307d27804d17, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 6
       objectReference: {fileID: 0}
     - target: {fileID: 9019395896531661403, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_FlipX
@@ -4898,6 +4947,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34987182780286794, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
   m_PrefabInstance: {fileID: 501727809}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &501727811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 501727809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1001 &517079133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6075,13 +6135,24 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 6a7c6e5b0b15217498f4007d19d73452, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+--- !u!114 &604067936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 604067935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &613158971
 GameObject:
   m_ObjectHideFlags: 0
@@ -8371,7 +8442,7 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: af81a7c125543144981f77eb6eb14551, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8383,6 +8454,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34987182780286794, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
   m_PrefabInstance: {fileID: 860102413}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &860102415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 860102413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &861453166
 GameObject:
   m_ObjectHideFlags: 0
@@ -8530,7 +8612,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1517247657903462683, guid: 522f48c693500c04d8815436f4597a22, type: 3}
       propertyPath: m_Name
-      value: health_upgrade
+      value: health_upgrade lvl3
       objectReference: {fileID: 0}
     - target: {fileID: 8452276582040038658, guid: 522f48c693500c04d8815436f4597a22, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8582,6 +8664,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8452276582040038658, guid: 522f48c693500c04d8815436f4597a22, type: 3}
   m_PrefabInstance: {fileID: 866562341}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &866562343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6064726626103454273, guid: 522f48c693500c04d8815436f4597a22, type: 3}
+  m_PrefabInstance: {fileID: 866562341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae70cb6e6c49d14d898fdc1157efe86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeItem
 --- !u!1 &908509650
 GameObject:
   m_ObjectHideFlags: 0
@@ -9681,13 +9774,24 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 7e8670e598f5dd8498bf75b40e964f71, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+--- !u!114 &1063242747 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 1063242746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &1083322632
 GameObject:
   m_ObjectHideFlags: 0
@@ -9971,7 +10075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5701405216083036945, guid: 59a9125ad512bf94788aadc4198fac6b, type: 3}
       propertyPath: m_Name
-      value: Level Gate
+      value: Level Gate lvl3
       objectReference: {fileID: 0}
     - target: {fileID: 6518269226573559718, guid: 59a9125ad512bf94788aadc4198fac6b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10035,6 +10139,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6518269226573559718, guid: 59a9125ad512bf94788aadc4198fac6b, type: 3}
   m_PrefabInstance: {fileID: 1127277382}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1127277384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2602439292896236265, guid: 59a9125ad512bf94788aadc4198fac6b, type: 3}
+  m_PrefabInstance: {fileID: 1127277382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c96533ee28b8c4d9a60d7c020158b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelGate
 --- !u!1 &1172656294
 GameObject:
   m_ObjectHideFlags: 0
@@ -12783,13 +12898,24 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 81e8fed28869a2044af10a2c4982b77c, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+--- !u!114 &1529627211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 1529627210}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &1538543544
 GameObject:
   m_ObjectHideFlags: 0
@@ -13393,10 +13519,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 95086877}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SaveToPlayerPrefs
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Area, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897494601176426874, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3032099395258078589, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       propertyPath: bTO
       value: 
       objectReference: {fileID: 1624961227}
+    - target: {fileID: 3952332187357606368, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: loadDataOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4053342635813039035, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -14222,13 +14380,24 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 7e8670e598f5dd8498bf75b40e964f71, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+--- !u!114 &1698717463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 1698717462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &1718270174
 GameObject:
   m_ObjectHideFlags: 0
@@ -14705,13 +14874,24 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: a94931744df6aae4c8afaab43ea101bb, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+--- !u!114 &1743319485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 1743319484}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1001 &1745779518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14766,7 +14946,7 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: a94931744df6aae4c8afaab43ea101bb, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14778,6 +14958,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34987182780286794, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
   m_PrefabInstance: {fileID: 1745779518}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1745779520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 1745779518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!114 &1760918580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
@@ -21453,7 +21644,7 @@ PrefabInstance:
       objectReference: {fileID: 32406368267824115, guid: 270d71ad3cb852b43a38d08b885cf201, type: 3}
     - target: {fileID: 4287983397952921617, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
       propertyPath: m_Name
-      value: aquarium_filled_0
+      value: encounter 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21465,6 +21656,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34987182780286794, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
   m_PrefabInstance: {fileID: 2049400789}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2049400791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664565306147277101, guid: 51dd5eb0c6bf2584694d3efa3caac297, type: 3}
+  m_PrefabInstance: {fileID: 2049400789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67adcc5edacf44e92c6e9661c5ce6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aquarium
 --- !u!1 &2057893759
 GameObject:
   m_ObjectHideFlags: 0

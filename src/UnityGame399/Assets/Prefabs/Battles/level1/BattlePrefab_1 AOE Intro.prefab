@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6494461949044919936, guid: 5648df60a33e51249967d094f440f697, type: 3}
+      propertyPath: spawnPointTransform
+      value: 
+      objectReference: {fileID: 5233104837327802173}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4685383772492225823, guid: 5648df60a33e51249967d094f440f697, type: 3}
@@ -116,6 +120,11 @@ PrefabInstance:
 --- !u!4 &1448758146828455687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4564972123074095022, guid: 5648df60a33e51249967d094f440f697, type: 3}
+  m_PrefabInstance: {fileID: 3116785810944141481}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5233104837327802173 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7196388480585361300, guid: 5648df60a33e51249967d094f440f697, type: 3}
   m_PrefabInstance: {fileID: 3116785810944141481}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3740476674649063784

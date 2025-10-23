@@ -17,7 +17,7 @@ public class Aquarium : Interactable
         if (!used)
         {
             used = true;
-            Debug.Log("Aquarium interact");
+            Logger.Instance.Info("Aquarium interact");
             CombatLoader.Instance.LoadCombat(combatEncounterPrefab);
             setSprite();
         }
