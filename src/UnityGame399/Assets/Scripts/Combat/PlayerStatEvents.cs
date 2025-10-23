@@ -13,6 +13,7 @@ public class PlayerStatEvents :MonoBehaviour
     public static Action Die;
     public static Action<int> DecreaseOxygen;
     public static Action<int> DecreaseSP;
+    public static Action<int> IncreaseSP;
     
     
     
@@ -32,6 +33,8 @@ public class PlayerStatEvents :MonoBehaviour
         PlayerStats.OnDie += dies;
         PlayerStats.OnTakeDamage += DamageTaken2;
         DecreaseOxygen += Drowning;
+        DecreaseSP += useSP;
+        IncreaseSP += gainSP;
     }
 
     private void Unsubscribe()
@@ -41,6 +44,8 @@ public class PlayerStatEvents :MonoBehaviour
         PlayerStats.OnTakeDamage -= DamageTaken2;
         PlayerStats.OnDie -= dies;
         DecreaseOxygen -= Drowning;
+        DecreaseSP -= useSP;
+        IncreaseSP -= gainSP;
     }
 
     private void OnItemInteracted(string upgradeName)
@@ -76,5 +81,15 @@ public class PlayerStatEvents :MonoBehaviour
     private void DamageTaken2(int damage) //because of wrapper class player cant drown properly unless we do this
     {
         PlayerTakesDamage(damage);
+    }
+
+    private void useSP(int amount)
+    {
+        stats.UseSP(amount);
+    }
+
+    private void gainSP(int amount)
+    {
+        stats.GainSP(amount);
     }
 }

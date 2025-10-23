@@ -1,12 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
+using PlayerStuff;
 
 public class CombatControl : MonoBehaviour
 {
     // movement objects idk
     private Rigidbody2D cPlayerRB;
     private Transform cPlayerTran;
+    private Stats stats;
     
     //punching
     [SerializeField] private Transform punchSpawn;
@@ -14,8 +17,14 @@ public class CombatControl : MonoBehaviour
     private bool onCooldown;
     
     //skills
-    public Skill firstSkill;
-    public Skill secondSkill;
+    public Dictionary<SkillTypes, Skill> skills =  new Dictionary<SkillTypes, Skill>();
+    public Skill dash;
+    public Skill spear;
+    
+    
+    //skills to be called
+    private Skill firstSkill = null;
+    private Skill secondSkill = null;
     
     //movement stats
     public float speed = 1f;
@@ -24,6 +33,16 @@ public class CombatControl : MonoBehaviour
     {
         cPlayerRB = GetComponent<Rigidbody2D>();
         cPlayerTran = cPlayerRB.transform;
+        stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
+        fillSkillDict();
+        if (stats.SkillOne != SkillTypes.None)
+        {
+            firstSkill = skills[stats.SkillOne];
+        }
+        if (stats.SkillTwo != SkillTypes.None)
+        {
+            secondSkill = skills[stats.SkillTwo];
+        }
     }
 
     public void moveup()
@@ -68,7 +87,7 @@ public class CombatControl : MonoBehaviour
         if(firstSkill != null)
         {
             Debug.Log("a skill would go here");
-            firstSkill.skillActivate();
+            firstSkill.skillActivate(stats.CurrentSP);
         }
         else
         {
@@ -82,7 +101,7 @@ public class CombatControl : MonoBehaviour
         if(secondSkill != null)
         {
             Debug.Log("a skill would go here");
-            secondSkill.skillActivate();
+            secondSkill.skillActivate(stats.CurrentSP);
         }
         else
         {
@@ -105,5 +124,18 @@ public class CombatControl : MonoBehaviour
     private void zerovelocity()
     {
         cPlayerRB.linearVelocity = Vector2.zero;
+    }
+
+    private void fillSkillDict()
+    {
+        if (dash != null)
+        {
+            skills.Add(SkillTypes.Dash, dash);
+        }
+        if (spear != null)
+        {
+            skills.Add(SkillTypes.Spear, spear);
+        }
+        
     }
 }

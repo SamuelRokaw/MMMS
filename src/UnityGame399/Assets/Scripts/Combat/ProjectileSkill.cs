@@ -20,7 +20,17 @@ public class ProjectileSkill : Skill
         }
     }
     
-    public override void skillActivate()
+    public override void skillActivate(int currentSP)
+    {
+        if (currentSP >= spCost)
+        {
+            doStuff();
+            PlayerStatEvents.DecreaseSP(spCost);
+        }
+        
+    }
+
+    private void doStuff()
     {
         Vector2 direction;
         

@@ -13755,6 +13755,9 @@ PrefabInstance:
       addedObject: {fileID: 1446474045}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8852337323811217387, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1760918585}
+    - targetCorrespondingSourceObject: {fileID: 8852337323811217387, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1760918581}
     - targetCorrespondingSourceObject: {fileID: 8871142954881407074, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
@@ -15019,6 +15022,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5111112034906181322, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
   m_PrefabInstance: {fileID: 1624961225}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1760918585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320727465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2583cfdae6d5f3b4db13189df2d95a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SPRegen
+  stats: {fileID: 1760918583}
 --- !u!1 &1780143413
 GameObject:
   m_ObjectHideFlags: 0

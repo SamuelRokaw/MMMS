@@ -24,9 +24,13 @@ public class DashSkill : Skill
         }
     }
     
-    public override void skillActivate()
+    public override void skillActivate(int currentSP)
     {
-        StartCoroutine(DashCoroutine());
+        if (currentSP >= spCost)
+        {
+            StartCoroutine(DashCoroutine());
+            PlayerStatEvents.DecreaseSP(spCost);
+        }
     }
     
     private IEnumerator DashCoroutine()
