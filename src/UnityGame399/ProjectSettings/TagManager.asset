@@ -19,6 +19,9 @@ TagManager:
   - BottomWall
   - LeftWall
   - RightWall
+  - Tree
+  - ControlTree
+  - NPC
   layers:
   - Default
   - TransparentFX

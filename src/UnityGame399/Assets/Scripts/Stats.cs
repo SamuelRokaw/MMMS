@@ -17,12 +17,37 @@ public class Stats : MonoBehaviour
     public int MaxOxygen => stats.MaxOxygen;
     public int CurrentOxygen => stats.CurrentOxygen;
     public int AttackPower => stats.AttackPower;
-    public bool HasDashSkill => stats.HasDashSkill;
-    public bool HasSpearSkill => stats.HasSpearSkill;
-    public bool HasThreeSkill => stats.hasThreeSkill;
-    public bool HasFourSkill => stats.hasFourSkill;
-    public bool HasFiveSkill => stats.hasFiveSkill;
-    public bool HasSixSkill => stats.hasSixSkill;
+    public bool HasDashSkill
+    {
+        get => stats.HasDashSkill;
+        set => stats.HasDashSkill = value;
+    }
+    public bool HasSpearSkill
+    {
+        get => stats.HasSpearSkill;
+        set => stats.HasSpearSkill = value;
+    }
+    public bool HasThreeSkill
+    {
+        get => stats.hasThreeSkill;
+        set => stats.hasThreeSkill = value;
+    }
+    public bool HasFourSkill
+    {
+        get => stats.hasFourSkill;
+        set => stats.hasFourSkill = value;
+    }
+    public bool HasFiveSkill
+    {
+        get => stats.hasFiveSkill;
+        set => stats.hasFiveSkill = value;
+    }
+    public bool HasSixSkill
+    {
+        get => stats.hasSixSkill;
+        set => stats.hasSixSkill = value;
+    }
+
     public SkillTypes SkillOne
     {
         get => stats.SkillOne;

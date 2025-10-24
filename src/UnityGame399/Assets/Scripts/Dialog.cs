@@ -26,9 +26,9 @@ public class Dialog : MonoBehaviour
         Debug.Log(_index);
         if (_index >= dialog.Length)
         {
-            
             _index = 0;
             gameObject.SetActive(false);
+            DoDialog(false);
             iH.inDialogue = false;
             return;
         }
@@ -64,6 +64,7 @@ public class Dialog : MonoBehaviour
 
     private void Start()
     {
+        _index = 0;
         DoDialog(false);
         _index++;
         iH.inDialogue = true;

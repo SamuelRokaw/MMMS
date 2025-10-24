@@ -60,6 +60,11 @@ public class PlayerStatEvents :MonoBehaviour
             Debug.Log("Player health increases");
             stats.IncreaseMaxHealth(1);
         }
+        else if (upgradeName.ToLower() == "spear")
+        {
+            Logger.Instance.Info("Player unlocked spear skill");
+            stats.HasSpearSkill = true;
+        }
     }
 
     private void DamageTaken(int damage)

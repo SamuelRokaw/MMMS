@@ -32,6 +32,18 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<InfoSign>().Interact();
             }
+            else if (interactTarget.tag == "Tree")
+            {
+                interactTarget.GetComponent<Tree>().Interact();
+            }
+            else if (interactTarget.tag == "ControlTree")
+            {
+                interactTarget.GetComponent<ControlTree>().Interact();
+            }
+            else if (interactTarget.tag == "NPC")
+            {
+                interactTarget.GetComponent<NPC>().Interact();
+            }
             CloseInteractableIcon();
         }
     }

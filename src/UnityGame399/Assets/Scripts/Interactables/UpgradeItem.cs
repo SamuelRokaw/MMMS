@@ -7,7 +7,7 @@ public class UpgradeItem : Interactable
     public string upgradeName;
     public static Action<string> upgradeStat;
 
-    private void Awake()
+    private void Start()
     {
         if (used)
         {
