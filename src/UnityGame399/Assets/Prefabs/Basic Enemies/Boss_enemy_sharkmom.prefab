@@ -114,6 +114,7 @@ MonoBehaviour:
   atkCooldown: 6
   attacking: 0
   ap: {fileID: -520315275715037438}
+  isBoss: 0
   deathSound: {fileID: 8300000, guid: 2468cdbce079f4769b3ebe457855d988, type: 3}
   bloodSplatterPrefab: {fileID: 0}
   player: {fileID: 0}
@@ -188,7 +189,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.31287602, y: 0.12521109}
+  m_Size: {x: 0.7, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &2601431314632238875
 MonoBehaviour:
