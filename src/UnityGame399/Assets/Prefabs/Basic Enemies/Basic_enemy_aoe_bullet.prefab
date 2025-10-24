@@ -369,6 +369,8 @@ MonoBehaviour:
   atkCooldown: 4
   attacking: 0
   ap: {fileID: 415381545849945556}
+  deathSound: {fileID: 8300000, guid: 2468cdbce079f4769b3ebe457855d988, type: 3}
+  bloodSplatterPrefab: {fileID: 0}
   player: {fileID: 0}
 --- !u!114 &5528323018610345265
 MonoBehaviour:
@@ -498,3 +500,5 @@ MonoBehaviour:
   attackCoolDown: 2
   takeDamageOnCooldown: 0
   damageCoolDown: 0.51
+  flashDuration: 0.1
+  damageColor: {r: 1, g: 0, b: 0, a: 1}

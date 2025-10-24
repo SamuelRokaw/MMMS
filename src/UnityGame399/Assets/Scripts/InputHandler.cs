@@ -87,11 +87,13 @@ public class InputHandler : MonoBehaviour
         
         if (isStatsOpen)
         {
+            Logger.Instance.Info("Close Stats");
             isStatsOpen = false;
             statsUI.closeMenu();
         }
         else
         {
+            Logger.Instance.Info("Open Stats");
             statsUI.openMenu();
             isStatsOpen = true;
         }
@@ -110,6 +112,7 @@ public class InputHandler : MonoBehaviour
             pauseMenu.alpha = 0;
             pauseMenu.blocksRaycasts = false;
             pauseMenu.interactable = false;
+            Logger.Instance.Info("Close Pause Menu");
         }
         else
         {
@@ -117,6 +120,7 @@ public class InputHandler : MonoBehaviour
             pauseMenu.alpha = 1;
             pauseMenu.blocksRaycasts = true;
             pauseMenu.interactable = true;
+            Logger.Instance.Info("Opened Pause Menu");
         }
     }
     
@@ -130,9 +134,11 @@ public class InputHandler : MonoBehaviour
         if(inCombat)
         {
             cC.moveup();
+            Logger.Instance.Info("Moved Up");
         }
         else
         {
+            Logger.Instance.Info("Moved Up");
             owM.moveup();
         }
     }
@@ -144,10 +150,12 @@ public class InputHandler : MonoBehaviour
         }
         if(inCombat)
         {
+            Logger.Instance.Info("Moved Down");
             cC.movedown();
         }
         else
         {
+            Logger.Instance.Info("Moved Down");
             owM.movedown();
         }
     }
@@ -159,10 +167,12 @@ public class InputHandler : MonoBehaviour
         }
         if(inCombat)
         {
+            Logger.Instance.Info("Moved Left");
             cC.moveleft();
         }
         else
         {
+            Logger.Instance.Info("Moved Right");
             owM.moveleft();
         }
     }
@@ -174,10 +184,12 @@ public class InputHandler : MonoBehaviour
         }
         if(inCombat)
         {
+            Logger.Instance.Info("Moved Right");
             cC.moveright();
         }
         else
         {
+            Logger.Instance.Info("Moved Right");
             owM.moveright();
         }
     }
@@ -189,7 +201,7 @@ public class InputHandler : MonoBehaviour
         }
         if(inCombat)
         {
-            Debug.Log("trying to use skill1");
+            Logger.Instance.Info("trying to use skill1");
             cC.skill1();
         }
     }
@@ -202,7 +214,7 @@ public class InputHandler : MonoBehaviour
         }
         if(inCombat)
         {
-            Debug.Log("trying to use skill2");
+            Logger.Instance.Info("trying to use skill2");
             cC.skill2();
         }
     }
@@ -215,12 +227,12 @@ public class InputHandler : MonoBehaviour
         }
         if(inCombat)
         {
-            Debug.Log("trying to attack");
+            Logger.Instance.Info("trying to attack");
             cC.punch();
         }
         else
         {
-            Debug.Log("trying to interact");
+            Logger.Instance.Info("trying to interact");
             owI.Interact();
         }
     }

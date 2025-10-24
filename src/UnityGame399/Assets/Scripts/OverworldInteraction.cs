@@ -44,6 +44,10 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<NPC>().Interact();
             }
+            else if (interactTarget.tag == "BA")
+            {
+                interactTarget.GetComponent<BossAquarium>().Interact();
+            }
             CloseInteractableIcon();
         }
     }

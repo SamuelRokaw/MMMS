@@ -39,6 +39,7 @@ public class SPRegen : MonoBehaviour
         {
             yield return new WaitForSeconds(15f);
             PlayerStatEvents.IncreaseSP(1);
+            Logger.Instance.Info("User regained 1sp");
         }
         currentlyRegen = false;
     }

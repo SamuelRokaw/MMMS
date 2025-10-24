@@ -6,7 +6,7 @@ public class Skill : MonoBehaviour
     
     public virtual void skillActivate(int currentSP)
     {
-        Debug.Log("skill used");
+        Logger.Instance.Info("skill used");
         
     }
 }

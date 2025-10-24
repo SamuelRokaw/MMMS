@@ -22,7 +22,7 @@ public class BasicProjectileAttack : AttackPattern
     {
         foreach (Transform spawnPoint in spawnPoints)
         {
-            sM.playFSE();
+            //sM.playFSE(); //sound is delayed for some reason
             Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
             
         }

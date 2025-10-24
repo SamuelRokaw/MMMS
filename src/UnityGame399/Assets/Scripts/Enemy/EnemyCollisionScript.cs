@@ -26,7 +26,7 @@ public class EnemyCollisionScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Punch") && !takeDamageOnCooldown)
         {
-            Debug.Log("Fish Takes Damage");
+            Logger.Instance.Info("Fish Takes Damage");
             int amount = collision.gameObject.GetComponent<PunchLogic>().aP;
             be.changeHealth(amount);
             StartCoroutine(TakeDamageCoolDown());
@@ -44,7 +44,7 @@ public class EnemyCollisionScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Punch") && !takeDamageOnCooldown)
         {
-            Debug.Log("Fish Takes Damage");
+            Logger.Instance.Info("Fish Takes Damage");
             int amount = other.gameObject.GetComponent<PlayerBullet>().aP;
             be.changeHealth(amount);
             StartCoroutine(TakeDamageCoolDown());

@@ -40,7 +40,7 @@ public class SkillView : MonoBehaviour
             int containerIndex = i / 5;
             if (containerIndex >= skillContainers.Count)
             {
-                Debug.LogWarning($"Not enough skill containers for skill index {i}");
+                Logger.Instance.Warn($"Not enough skill containers for skill index {i}");
                 break;
             }
 

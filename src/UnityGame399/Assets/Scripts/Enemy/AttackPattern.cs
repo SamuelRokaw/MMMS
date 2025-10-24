@@ -4,6 +4,6 @@ public class AttackPattern : MonoBehaviour
 {
     public virtual void attack()
     {
-        Debug.Log("Attack");
+        Logger.Instance.Info("Enemy used attack pattern");
     }
 }

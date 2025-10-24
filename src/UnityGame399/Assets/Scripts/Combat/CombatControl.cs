@@ -86,12 +86,12 @@ public class CombatControl : MonoBehaviour
     {
         if(firstSkill != null)
         {
-            Debug.Log("a skill would go here");
+            Logger.Instance.Info($"{stats.SkillOne} used");
             firstSkill.skillActivate(stats.CurrentSP);
         }
         else
         {
-            Debug.Log("no skill to use");
+            Logger.Instance.Info("no skill to use");
         }
 
     }
@@ -100,12 +100,12 @@ public class CombatControl : MonoBehaviour
     {
         if(secondSkill != null)
         {
-            Debug.Log("a skill would go here");
+            Logger.Instance.Info($"{stats.SkillTwo} used");
             secondSkill.skillActivate(stats.CurrentSP);
         }
         else
         {
-            Debug.Log("no skill to use");
+            Logger.Instance.Info("no skill to use");
         }
     }
 

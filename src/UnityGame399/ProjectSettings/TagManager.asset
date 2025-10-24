@@ -22,6 +22,7 @@ TagManager:
   - Tree
   - ControlTree
   - NPC
+  - BA
   layers:
   - Default
   - TransparentFX
