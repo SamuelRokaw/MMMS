@@ -114,6 +114,8 @@ MonoBehaviour:
   atkCooldown: 4
   attacking: 0
   ap: {fileID: 5209672942785427931}
+  deathSound: {fileID: 8300000, guid: 2468cdbce079f4769b3ebe457855d988, type: 3}
+  bloodSplatterPrefab: {fileID: 0}
   player: {fileID: 0}
 --- !u!114 &8756861131333946337
 MonoBehaviour:
@@ -187,6 +189,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCollisionScript
   be: {fileID: 7823218036011632294}
   onCooldown: 0
+  attackCoolDown: 2
+  takeDamageOnCooldown: 0
+  damageCoolDown: 0.1
+  flashDuration: 0.1
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!61 &2326339950075172275
 BoxCollider2D:
   m_ObjectHideFlags: 0

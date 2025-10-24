@@ -143,7 +143,7 @@ public class BossEnemyAttack : AttackPattern
     
     private void PerformFinalNodeAction()
     {
-        Debug.Log("boss reached final node");
+        Logger.Instance.Info("boss reached final node");
     }
     
     private void spawnBullets()

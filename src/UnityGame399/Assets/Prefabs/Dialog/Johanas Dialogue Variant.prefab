@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2754140700984928374
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338321936242725609, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991116710536349184, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7290869224501896338, guid: a374350dd83895c4682ea5bf558a96c0, type: 3}
+    - target: {fileID: 6760587449957227619, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: 'dialog.Array.data[0]'
+      value: Hello I'm Johanas Bamas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760587449957227619, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: 'dialog.Array.data[1]'
+      value: Did you get locked In too?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760587449957227619, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: 'dialog.Array.data[3]'
+      value: Do you hear the trees.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760587449957227619, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: 'dialog.Array.data[5]'
+      value: May George Washington save our souls.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760587449957227619, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: 'dialogChoices.Array.data[0]'
+      value: The AI Lies to Us. I know it can open the doors
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760587449957227619, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: 'dialogChoices.Array.data[1]'
+      value: Ill kill you if you lie to me again!!!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760587449957227619, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: 'dialogChoices.Array.data[2]'
+      value: They are laughing at us. I got so mad i lost my spear somewhere.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760587449957227619, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: 'dialogChoices.Array.data[3]'
+      value: You will soon. I lost my spear after i started hearing them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795149208768043475, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}
+      propertyPath: m_Name
+      value: Johanas Dialogue Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22de47006e2ce594db1c3c4b7225a83b, type: 3}

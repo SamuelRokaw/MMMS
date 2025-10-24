@@ -7,6 +7,7 @@ public class EndScreenController : MonoBehaviour
     
     [SerializeField] private GameObject endScreenPanel;
     [SerializeField] private Text endText;
+    [SerializeField] private CanvasGroup bTO;
     
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class EndScreenController : MonoBehaviour
     
     public void ShowWin()
     {
+        Logger.Instance.Info("Player Wins combat");
         endText.text = "VICTORY!";
         endText.color = Color.green;
         endScreenPanel.SetActive(true);
@@ -31,6 +33,7 @@ public class EndScreenController : MonoBehaviour
     
     public void ShowLose()
     {
+        Logger.Instance.Info("Player Loses combat");
         endText.text = "DEFEAT";
         endText.color = Color.red;
         endScreenPanel.SetActive(true);
@@ -39,5 +42,8 @@ public class EndScreenController : MonoBehaviour
     public void Hide()
     {
         endScreenPanel.SetActive(false);
+        bTO.alpha = 0;
+        bTO.interactable = false;
+        bTO.blocksRaycasts = false;
     }
 }

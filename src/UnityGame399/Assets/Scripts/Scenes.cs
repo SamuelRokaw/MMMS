@@ -29,6 +29,7 @@ public class Scenes : MonoBehaviour
     }
     private void LoadScene(string sceneName)
     {
+        Logger.Instance.Info("Loading World Scene");
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 }

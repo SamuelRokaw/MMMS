@@ -12,14 +12,11 @@ public class InputHandler : MonoBehaviour
     public OverworldInteraction owI; //overworld
     public CombatControl cC;  //combat
     public CanvasGroup pauseMenu; //pause menu
-    public CanvasGroup statsMenu;
-    public TextMeshProUGUI statsText;
-    public Button[] skillButton;
-    public Stats playerStats;
-    public SkillButtons skillButtons;
+    public StatsUI statsUI;
     public bool inCombat = false;
     public bool isPaused = false;
     public bool isStatsOpen = false;
+    public bool inDialogue = false;
     
     //action dictionary
     public KeyCode upKey;
@@ -83,56 +80,28 @@ public class InputHandler : MonoBehaviour
 
     public void stats()
     {
-        if (inCombat || isPaused)
+        if (inCombat || isPaused || inDialogue)
         {
             return;
         }
         
         if (isStatsOpen)
         {
+            Logger.Instance.Info("Close Stats");
             isStatsOpen = false;
-            statsMenu.alpha = 0;
-            statsMenu.blocksRaycasts = false;
-            statsMenu.interactable = false;
+            statsUI.closeMenu();
         }
         else
         {
-            statsText.text = $"Level: {playerStats.Level}\nXP: {playerStats.Experience}\nXP needed:  {playerStats.ExperienceToNextLevel}\nHealth: {playerStats.MaxHealth}\nSP: {playerStats.CurrentSP}\nOxygen: {playerStats.MaxOxygen}\nAttack: {playerStats.AttackPower}";
-            if (playerStats.HasDashSkill)
-            {
-                skillButton[0].interactable = true;
-            }
-            if (playerStats.HasSpearSkill)
-            {
-                skillButton[1].interactable = true;
-            }
-            if (playerStats.HasThreeSkill)
-            {
-                skillButton[2].interactable = true;
-            }
-            if (playerStats.HasFourSkill)
-            {
-                skillButton[3].interactable = true;
-            }
-            if (playerStats.HasFiveSkill)
-            {
-                skillButton[4].interactable = true;
-            }
-            if (playerStats.HasSixSkill)
-            {
-                skillButton[5].interactable = true;
-            }
-            skillButtons.OnOpen();
+            Logger.Instance.Info("Open Stats");
+            statsUI.openMenu();
             isStatsOpen = true;
-            statsMenu.alpha = 1;
-            statsMenu.blocksRaycasts = true;
-            statsMenu.interactable = true;
         }
     }
     
     public void pause()
     {
-        if (inCombat || isStatsOpen)
+        if (inCombat || isStatsOpen || inDialogue)
         {
             return;
         }
@@ -143,6 +112,7 @@ public class InputHandler : MonoBehaviour
             pauseMenu.alpha = 0;
             pauseMenu.blocksRaycasts = false;
             pauseMenu.interactable = false;
+            Logger.Instance.Info("Close Pause Menu");
         }
         else
         {
@@ -150,110 +120,119 @@ public class InputHandler : MonoBehaviour
             pauseMenu.alpha = 1;
             pauseMenu.blocksRaycasts = true;
             pauseMenu.interactable = true;
+            Logger.Instance.Info("Opened Pause Menu");
         }
     }
     
     
     private void moveup()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
         if(inCombat)
         {
             cC.moveup();
+            Logger.Instance.Info("Moved Up");
         }
         else
         {
+            Logger.Instance.Info("Moved Up");
             owM.moveup();
         }
     }
     private void movedown()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
         if(inCombat)
         {
+            Logger.Instance.Info("Moved Down");
             cC.movedown();
         }
         else
         {
+            Logger.Instance.Info("Moved Down");
             owM.movedown();
         }
     }
     private void moveleft()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
         if(inCombat)
         {
+            Logger.Instance.Info("Moved Left");
             cC.moveleft();
         }
         else
         {
+            Logger.Instance.Info("Moved Right");
             owM.moveleft();
         }
     }
     private void moveright()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
         if(inCombat)
         {
+            Logger.Instance.Info("Moved Right");
             cC.moveright();
         }
         else
         {
+            Logger.Instance.Info("Moved Right");
             owM.moveright();
         }
     }
     private void skill1()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
         if(inCombat)
         {
-            Debug.Log("trying to use skill1");
+            Logger.Instance.Info("trying to use skill1");
             cC.skill1();
         }
     }
 
     private void skill2()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
         if(inCombat)
         {
-            Debug.Log("trying to use skill2");
+            Logger.Instance.Info("trying to use skill2");
             cC.skill2();
         }
     }
 
     private void attack()
     {
-        if (isPaused || isStatsOpen)
+        if (isPaused || isStatsOpen || inDialogue)
         {
             return;
         }
         if(inCombat)
         {
-            Debug.Log("trying to attack");
+            Logger.Instance.Info("trying to attack");
             cC.punch();
         }
         else
         {
-            Debug.Log("trying to interact");
+            Logger.Instance.Info("trying to interact");
             owI.Interact();
         }
     }

@@ -113,6 +113,8 @@ MonoBehaviour:
   atkCooldown: 9
   attacking: 0
   ap: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 2468cdbce079f4769b3ebe457855d988, type: 3}
+  bloodSplatterPrefab: {fileID: 0}
   player: {fileID: 0}
 --- !u!114 &6898516718993469014
 MonoBehaviour:
@@ -220,6 +222,8 @@ MonoBehaviour:
   attackCoolDown: 2
   takeDamageOnCooldown: 0
   damageCoolDown: 0.51
+  flashDuration: 0.1
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &-1088792321787683678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,3 +237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnEnemyOnDeath
   enemyToSpawn: {fileID: 0}
+  warningSymbol: {fileID: 0}
+  blinkCount: 3
+  blinkSpeed: 0.2

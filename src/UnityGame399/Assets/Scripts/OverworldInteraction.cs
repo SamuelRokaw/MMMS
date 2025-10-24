@@ -28,6 +28,26 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<LevelGate>().Interact();
             }
+            else if (interactTarget.tag == "infostand")
+            {
+                interactTarget.GetComponent<InfoSign>().Interact();
+            }
+            else if (interactTarget.tag == "Tree")
+            {
+                interactTarget.GetComponent<Tree>().Interact();
+            }
+            else if (interactTarget.tag == "ControlTree")
+            {
+                interactTarget.GetComponent<ControlTree>().Interact();
+            }
+            else if (interactTarget.tag == "NPC")
+            {
+                interactTarget.GetComponent<NPC>().Interact();
+            }
+            else if (interactTarget.tag == "BA")
+            {
+                interactTarget.GetComponent<BossAquarium>().Interact();
+            }
             CloseInteractableIcon();
         }
     }

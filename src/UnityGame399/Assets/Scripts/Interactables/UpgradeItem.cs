@@ -7,14 +7,17 @@ public class UpgradeItem : Interactable
     public string upgradeName;
     public static Action<string> upgradeStat;
 
-    private void Awake()
+    private void Start()
     {
-        used = false;
+        if (used)
+        {
+            gameObject.SetActive(false);
+        }
     }
     public override void Interact()
     {
         used = true;
-        Debug.Log($"{upgradeName} interact");
+        Logger.Instance.Info($"{upgradeName} interact");
         upgradeStat.Invoke(upgradeName);
         gameObject.SetActive(false);
     }

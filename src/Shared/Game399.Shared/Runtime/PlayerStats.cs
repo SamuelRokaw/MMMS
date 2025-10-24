@@ -16,18 +16,18 @@ namespace PlayerStuff
         public int CurrentOxygen { get; set; }
         public int AttackPower { get; set; } = 1;
         public int MaxLevel { get; set; } = 60;
-        public bool HasDashSkill { get; set; } = true;
-        public bool HasSpearSkill { get; set; } = true;
-        public bool hasThreeSkill { get; set; } = true;
-        public bool hasFourSkill { get; set; } = true;
-        public bool hasFiveSkill { get; set; } = true;
-        public bool hasSixSkill { get; set; } = true;
+        public bool HasDashSkill { get; set; } = false;
+        public bool HasSpearSkill { get; set; } = false;
+        public bool hasThreeSkill { get; set; } = false;
+        public bool hasFourSkill { get; set; } = false;
+        public bool hasFiveSkill { get; set; } = false;
+        public bool hasSixSkill { get; set; } = false;
         public SkillTypes SkillOne { get; set; } = SkillTypes.None;
         public SkillTypes SkillTwo { get; set; } = SkillTypes.None;
 
         // C# events instead of Unity events
-        public event Action OnDie;
-        public event Action<int> OnTakeDamage;
+        public static event Action OnDie;
+        public static event Action<int> OnTakeDamage;
 
         public PlayerStats()
         {

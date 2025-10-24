@@ -17,12 +17,37 @@ public class Stats : MonoBehaviour
     public int MaxOxygen => stats.MaxOxygen;
     public int CurrentOxygen => stats.CurrentOxygen;
     public int AttackPower => stats.AttackPower;
-    public bool HasDashSkill => stats.HasDashSkill;
-    public bool HasSpearSkill => stats.HasSpearSkill;
-    public bool HasThreeSkill => stats.hasThreeSkill;
-    public bool HasFourSkill => stats.hasFourSkill;
-    public bool HasFiveSkill => stats.hasFiveSkill;
-    public bool HasSixSkill => stats.hasSixSkill;
+    public bool HasDashSkill
+    {
+        get => stats.HasDashSkill;
+        set => stats.HasDashSkill = value;
+    }
+    public bool HasSpearSkill
+    {
+        get => stats.HasSpearSkill;
+        set => stats.HasSpearSkill = value;
+    }
+    public bool HasThreeSkill
+    {
+        get => stats.hasThreeSkill;
+        set => stats.hasThreeSkill = value;
+    }
+    public bool HasFourSkill
+    {
+        get => stats.hasFourSkill;
+        set => stats.hasFourSkill = value;
+    }
+    public bool HasFiveSkill
+    {
+        get => stats.hasFiveSkill;
+        set => stats.hasFiveSkill = value;
+    }
+    public bool HasSixSkill
+    {
+        get => stats.hasSixSkill;
+        set => stats.hasSixSkill = value;
+    }
+
     public SkillTypes SkillOne
     {
         get => stats.SkillOne;
@@ -42,10 +67,14 @@ public class Stats : MonoBehaviour
     public void DecreaseOxygen(int amount) => stats.DecreaseOxygen(amount);
     public void Reset() => stats.Reset();
 
+    [SerializeField] private bool loadDataOnAwake; //set to false in start screen to allow deleting of old save, set true in world scene to allow loading of save
     void Awake()
     {
         stats = new PlayerStats();
-        LoadFromPlayerPrefs();
+        if (loadDataOnAwake)
+        {
+            LoadFromPlayerPrefs();
+        }
     }
 
     // Save the current stats to a serializable object
@@ -93,8 +122,7 @@ public class Stats : MonoBehaviour
     [ContextMenu("Reset Stats")]
     public void ResetPlayerPrefs()
     {
-        PlayerPrefs.DeleteKey("PlayerStats");
-        PlayerPrefs.Save();
+        newSave();
     }
 
     // Load stats from a StatsData object
@@ -121,5 +149,28 @@ public class Stats : MonoBehaviour
         stats.hasSixSkill = data.hasSixSkill;
         stats.SkillOne = data.skillOne;
         stats.SkillTwo = data.skillTwo;
+    }
+
+    public void newSave()
+    {
+        stats.Level = 0;
+        stats.Experience = 0;
+        stats.ExperienceToNextLevel = 5;
+        stats.MaxHealth = 3;
+        stats.CurrentHealth = 3;
+        stats.MaxSP = 5;
+        stats.CurrentSP = 5;
+        stats.MaxOxygen = 120;
+        stats.CurrentOxygen = 120;
+        stats.AttackPower = 1;
+        stats.HasDashSkill = false;
+        stats.HasSpearSkill = false;
+        stats.hasThreeSkill = false;
+        stats.hasFourSkill = false;
+        stats.hasFiveSkill = false;
+        stats.hasSixSkill = false;
+        stats.SkillOne = SkillTypes.None;
+        stats.SkillTwo = SkillTypes.None;
+        SaveToPlayerPrefs();
     }
 }

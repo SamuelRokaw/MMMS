@@ -13,10 +13,16 @@ TagManager:
   - LG
   - CombatBarrier
   - Punch
+  - infostand
+  - Sounds
   - TopWall
   - BottomWall
   - LeftWall
   - RightWall
+  - Tree
+  - ControlTree
+  - NPC
+  - BA
   layers:
   - Default
   - TransparentFX

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Xml.Schema;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class Dialog : MonoBehaviour
     [SerializeField] private TMP_Text choice1Text;
     [SerializeField] private TMP_Text dialogText;
     [SerializeField] private string[] dialogChoices;
+    [SerializeField] private InputHandler iH;
     private int _index = 0;
     private int _choiceIndex = 0;
     private bool _previousChoiceState = false;
@@ -24,10 +26,10 @@ public class Dialog : MonoBehaviour
         Debug.Log(_index);
         if (_index >= dialog.Length)
         {
-            dialogCanvasGroup.alpha = 0;
-            dialogCanvasGroup.interactable = false;
-            dialogCanvasGroup.blocksRaycasts = false;
             _index = 0;
+            gameObject.SetActive(false);
+            DoDialog(false);
+            iH.inDialogue = false;
             return;
         }
         dialogText.text = dialog[_index];
@@ -59,7 +61,15 @@ public class Dialog : MonoBehaviour
         }
 
     }
-    
+
+    private void Start()
+    {
+        _index = 0;
+        DoDialog(false);
+        _index++;
+        iH.inDialogue = true;
+    }
+
     public void OnChoice1()
     {
         DoDialog(true);

@@ -13,10 +13,10 @@ public class SkillButtons : MonoBehaviour
 
     public void OnOpen()
     {
-        Debug.Log("ONOPEN " + Stats.SkillOne + " " + newLoad + " QUEUE COUNT " + skillQueue.Count);
+        Logger.Instance.Info("ONOPEN " + Stats.SkillOne + " " + newLoad + " QUEUE COUNT " + skillQueue.Count);
         if (newLoad)
         {
-            Debug.Log("TRIGGERED");
+            Logger.Instance.Info("TRIGGERED");
             
             if (Stats.SkillOne != SkillTypes.None)
                 skillQueue.Enqueue(Stats.SkillOne);
@@ -44,7 +44,7 @@ public class SkillButtons : MonoBehaviour
     public void OnButtonClick()
     {
         ColorBlock buttonColors;
-        Debug.Log("QUEUE " + skillQueue.Count);
+        Logger.Instance.Info("QUEUE " + skillQueue.Count);
         
         SkillTypes pressedButton;
         pressedButton = (SkillTypes)System.Enum.Parse(typeof(SkillTypes), UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
@@ -62,7 +62,7 @@ public class SkillButtons : MonoBehaviour
             skillButton[(int)popped].interactable = true;
         }
         handleSkillUpdates();
-        Debug.Log(Stats.SkillOne + " and " + Stats.SkillTwo);
+        Logger.Instance.Info(Stats.SkillOne + " and " + Stats.SkillTwo);
     }
 
     private void handleSkillUpdates()

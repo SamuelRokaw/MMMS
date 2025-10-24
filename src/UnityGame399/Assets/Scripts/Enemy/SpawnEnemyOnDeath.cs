@@ -23,7 +23,7 @@ public class SpawnEnemyOnDeath : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("This mob is meant to spawn an enemy, but nothing to spawn.");
+            Logger.Instance.Warn("This mob is meant to spawn an enemy, but nothing to spawn.");
         }
     }
 }

@@ -10,7 +10,7 @@ public class BasicEnemy : MonoBehaviour
     public float atkCooldown = 9f; //9 for charge, 4 for projectile based attacks
     public bool attacking = false;
     public AttackPattern ap;
-
+    [SerializeField] private bool isBoss = false;
     public static Action benemyDied;
     
     // death effects
@@ -42,6 +42,10 @@ public class BasicEnemy : MonoBehaviour
         playDeathEffects();
         enemySpawnsEnemy();
         Destroy(gameObject);
+        if (isBoss)
+        {
+            BossAquarium.bossDead.Invoke();
+        }
     }
 
     private void enemySpawnsEnemy()

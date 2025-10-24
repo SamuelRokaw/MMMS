@@ -22,6 +22,7 @@ public class PlayerStatViewModel : MonoBehaviour
         PlayerStatEvents.PlayerTakesDamage += HandleHealthChanged;
         PlayerStatEvents.DecreaseOxygen += HandleAirChanged;
         PlayerStatEvents.DecreaseSP += HandleSkillChanged;
+        PlayerStatEvents.IncreaseSP += HandleSkillChanged;
     }
 
     private void OnDisable()
@@ -29,6 +30,7 @@ public class PlayerStatViewModel : MonoBehaviour
         PlayerStatEvents.PlayerTakesDamage -= HandleHealthChanged;
         PlayerStatEvents.DecreaseOxygen -= HandleAirChanged;
         PlayerStatEvents.DecreaseSP -= HandleSkillChanged;
+        PlayerStatEvents.IncreaseSP -= HandleSkillChanged;
     }
 
     

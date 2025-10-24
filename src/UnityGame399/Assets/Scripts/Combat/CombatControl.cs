@@ -1,12 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
+using PlayerStuff;
 
 public class CombatControl : MonoBehaviour
 {
     // movement objects idk
     private Rigidbody2D cPlayerRB;
     private Transform cPlayerTran;
+    private Stats stats;
     
     //punching
     [SerializeField] private Transform punchSpawn;
@@ -14,8 +17,14 @@ public class CombatControl : MonoBehaviour
     private bool onCooldown;
     
     //skills
-    public Skill firstSkill;
-    public Skill secondSkill;
+    public Dictionary<SkillTypes, Skill> skills =  new Dictionary<SkillTypes, Skill>();
+    public Skill dash;
+    public Skill spear;
+    
+    
+    //skills to be called
+    private Skill firstSkill = null;
+    private Skill secondSkill = null;
     
     //movement stats
     public float speed = 1f;
@@ -24,33 +33,43 @@ public class CombatControl : MonoBehaviour
     {
         cPlayerRB = GetComponent<Rigidbody2D>();
         cPlayerTran = cPlayerRB.transform;
+        stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
+        fillSkillDict();
+        if (stats.SkillOne != SkillTypes.None)
+        {
+            firstSkill = skills[stats.SkillOne];
+        }
+        if (stats.SkillTwo != SkillTypes.None)
+        {
+            secondSkill = skills[stats.SkillTwo];
+        }
     }
 
     public void moveup()
     {
         zerovelocity();
-        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.up * speed * Time.deltaTime);
+        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.up * spdMod * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void movedown()
     {
         zerovelocity();
-        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.down * speed * Time.deltaTime);
+        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.down * spdMod * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 180);
     }
 
     public void moveleft()
     {
         zerovelocity();
-        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.left * speed * Time.deltaTime);
+        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.left * spdMod * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 90);
     }
 
     public void moveright()
     {
         zerovelocity();
-        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.right * speed * Time.deltaTime);
+        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.right * spdMod * speed * Time.deltaTime);
         cPlayerTran.rotation = Quaternion.Euler(0, 0, 270);
     }
 
@@ -67,12 +86,12 @@ public class CombatControl : MonoBehaviour
     {
         if(firstSkill != null)
         {
-            Debug.Log("a skill would go here");
-            firstSkill.skillActivate();
+            Logger.Instance.Info($"{stats.SkillOne} used");
+            firstSkill.skillActivate(stats.CurrentSP);
         }
         else
         {
-            Debug.Log("no skill to use");
+            Logger.Instance.Info("no skill to use");
         }
 
     }
@@ -81,12 +100,12 @@ public class CombatControl : MonoBehaviour
     {
         if(secondSkill != null)
         {
-            Debug.Log("a skill would go here");
-            secondSkill.skillActivate();
+            Logger.Instance.Info($"{stats.SkillTwo} used");
+            secondSkill.skillActivate(stats.CurrentSP);
         }
         else
         {
-            Debug.Log("no skill to use");
+            Logger.Instance.Info("no skill to use");
         }
     }
 
@@ -105,5 +124,18 @@ public class CombatControl : MonoBehaviour
     private void zerovelocity()
     {
         cPlayerRB.linearVelocity = Vector2.zero;
+    }
+
+    private void fillSkillDict()
+    {
+        if (dash != null)
+        {
+            skills.Add(SkillTypes.Dash, dash);
+        }
+        if (spear != null)
+        {
+            skills.Add(SkillTypes.Spear, spear);
+        }
+        
     }
 }
