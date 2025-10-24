@@ -10,6 +10,18 @@ public class EnemyCollisionScript : MonoBehaviour
     [SerializeField] private float attackCoolDown = 2f;
     [SerializeField] private bool takeDamageOnCooldown = false;
     [SerializeField] private float damageCoolDown = 0.1f;
+    [SerializeField] private float flashDuration = 0.1f;
+    [SerializeField] private Color damageColor = Color.red;
+    
+    private SpriteRenderer spriteRenderer;
+    
+    private void Start()
+    {
+        if (be != null)
+        {
+            spriteRenderer = be.GetComponent<SpriteRenderer>();
+        }
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Punch") && !takeDamageOnCooldown)
@@ -18,6 +30,7 @@ public class EnemyCollisionScript : MonoBehaviour
             int amount = collision.gameObject.GetComponent<PunchLogic>().aP;
             be.changeHealth(amount);
             StartCoroutine(TakeDamageCoolDown());
+            StartCoroutine(FlashDamage());
         }
         if (collision.gameObject.CompareTag("CombatPlayer") && !onCooldown)
         {
@@ -50,5 +63,15 @@ public class EnemyCollisionScript : MonoBehaviour
         takeDamageOnCooldown = true;
         yield return new WaitForSeconds(damageCoolDown);
         takeDamageOnCooldown = false;
+    }
+    
+    IEnumerator FlashDamage()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = damageColor;
+            yield return new WaitForSeconds(flashDuration);
+            spriteRenderer.color = Color.white;
+        }
     }
 }

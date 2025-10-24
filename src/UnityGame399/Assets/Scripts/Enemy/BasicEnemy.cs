@@ -12,6 +12,10 @@ public class BasicEnemy : MonoBehaviour
     public AttackPattern ap;
 
     public static Action benemyDied;
+    
+    // death effects
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private ParticleSystem bloodSplatterPrefab;
     //player location
     public Transform player;
 
@@ -35,12 +39,34 @@ public class BasicEnemy : MonoBehaviour
     private void die()
     {
         benemyDied.Invoke();
+        playDeathEffects();
+        enemySpawnsEnemy();
+        Destroy(gameObject);
+    }
+
+    private void enemySpawnsEnemy()
+    {
         SpawnEnemyOnDeath spawner = GetComponent<SpawnEnemyOnDeath>();
         if (spawner != null)
         {
             spawner.SpawnEnemy();
         }
-        Destroy(gameObject);
+    }
+
+    private void playDeathEffects()
+    {
+        AudioClip soundToPlay = deathSound != null ? deathSound : EnemyDeathEffectsManager.Instance?.defaultDeathSound;
+        if (soundToPlay != null)
+        {
+            AudioSource.PlayClipAtPoint(soundToPlay, transform.position, 0.3f);
+        }
+        
+        ParticleSystem particleToSpawn = bloodSplatterPrefab != null ? bloodSplatterPrefab : EnemyDeathEffectsManager.Instance?.defaultBloodSplatter;
+        if (particleToSpawn != null)
+        {
+            ParticleSystem splatter = Instantiate(particleToSpawn, transform.position, Quaternion.identity);
+            Destroy(splatter.gameObject, 0.2f);
+        }
     }
 
     public void changeHealth(int amount)
