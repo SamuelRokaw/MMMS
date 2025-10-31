@@ -26,8 +26,8 @@ namespace PlayerStuff
         public SkillTypes SkillTwo { get; set; } = SkillTypes.None;
 
         // C# events instead of Unity events
-        public static event Action OnDie;
-        public static event Action<int> OnTakeDamage;
+        public event Action OnDie;
+        public event Action<int> OnTakeDamage;
 
         public PlayerStats()
         {

@@ -30,8 +30,8 @@ public class PlayerStatEvents :MonoBehaviour
     {
         UpgradeItem.upgradeStat += OnItemInteracted;
         PlayerTakesDamage += DamageTaken;
-        PlayerStats.OnDie += dies;
-        PlayerStats.OnTakeDamage += DamageTaken2;
+        stats.OnDie += dies; //these events are in the base PlayerStats so they have to be subscribed like this
+        stats.OnTakeDamage += DamageTaken2; //these events are in the base PlayerStats so they have to be subscribed like this
         DecreaseOxygen += Drowning;
         DecreaseSP += useSP;
         IncreaseSP += gainSP;
@@ -41,8 +41,8 @@ public class PlayerStatEvents :MonoBehaviour
     {
         UpgradeItem.upgradeStat -= OnItemInteracted;
         PlayerTakesDamage -= DamageTaken;
-        PlayerStats.OnTakeDamage -= DamageTaken2;
-        PlayerStats.OnDie -= dies;
+        stats.OnTakeDamage -= DamageTaken2; //these events are in the base PlayerStats so they have to be unsubscribed like this
+        stats.OnDie -= dies;//these events are in the base PlayerStats so they have to be unsubscribed like this
         DecreaseOxygen -= Drowning;
         DecreaseSP -= useSP;
         IncreaseSP -= gainSP;
