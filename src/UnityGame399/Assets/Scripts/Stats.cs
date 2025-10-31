@@ -66,11 +66,17 @@ public class Stats : MonoBehaviour
     public void IncreaseAttack(int amount) => stats.IncreaseAttack(amount);
     public void DecreaseOxygen(int amount) => stats.DecreaseOxygen(amount);
     public void Reset() => stats.Reset();
+    
+    public event Action OnDie;
+    public event Action<int> OnTakeDamage;
 
     [SerializeField] private bool loadDataOnAwake; //set to false in start screen to allow deleting of old save, set true in world scene to allow loading of save
     void Awake()
     {
         stats = new PlayerStats();
+        // Forward PlayerStats events to Stats events
+        stats.OnDie += () => OnDie?.Invoke();
+        stats.OnTakeDamage += damage => OnTakeDamage?.Invoke(damage);
         if (loadDataOnAwake)
         {
             LoadFromPlayerPrefs();
