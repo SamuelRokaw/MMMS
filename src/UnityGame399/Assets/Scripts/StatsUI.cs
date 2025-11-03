@@ -22,7 +22,7 @@ public class StatsUI : MonoBehaviour
 
     public void openMenu()
     {
-        statsText.text = $"Level: {playerStats.Level}\nXP: {playerStats.Experience}\nXP needed:  {playerStats.ExperienceToNextLevel}\nHealth: {playerStats.MaxHealth}\nSP: {playerStats.CurrentSP}\nOxygen: {playerStats.MaxOxygen}\nAttack: {playerStats.AttackPower}";
+        statsText.text = $"Level: {playerStats.Level}\nXP: {playerStats.Experience}\nXP needed:  {playerStats.ExperienceToNextLevel}\nHealth: {playerStats.MaxHealth}\nSP: {playerStats.CurrentSP}\nLuck: {playerStats.Luck}\nAttack: {playerStats.AttackPower}";
         if (playerStats.HasDashSkill)
         {
             skillButton[0].interactable = true;

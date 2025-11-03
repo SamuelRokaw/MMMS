@@ -32,7 +32,6 @@ public class PlayerStatEvents :MonoBehaviour
         PlayerTakesDamage += DamageTaken;
         stats.OnDie += dies; //these events are in the base PlayerStats so they have to be subscribed like this
         stats.OnTakeDamage += DamageTaken2; //these events are in the base PlayerStats so they have to be subscribed like this
-        DecreaseOxygen += Drowning;
         DecreaseSP += useSP;
         IncreaseSP += gainSP;
     }
@@ -43,7 +42,6 @@ public class PlayerStatEvents :MonoBehaviour
         PlayerTakesDamage -= DamageTaken;
         stats.OnTakeDamage -= DamageTaken2; //these events are in the base PlayerStats so they have to be unsubscribed like this
         stats.OnDie -= dies;//these events are in the base PlayerStats so they have to be unsubscribed like this
-        DecreaseOxygen -= Drowning;
         DecreaseSP -= useSP;
         IncreaseSP -= gainSP;
     }
@@ -72,12 +70,7 @@ public class PlayerStatEvents :MonoBehaviour
         Logger.Instance.Info($"Player Takes {damage} Damage");
         stats.TakeDamage(damage);
     }
-
-    private void Drowning(int amount)
-    {
-        Logger.Instance.Info($"Player loses {amount} oxygen");
-        stats.DecreaseOxygen(amount);
-    }
+    
 
     private void dies()
     {

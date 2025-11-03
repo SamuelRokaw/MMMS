@@ -37,12 +37,7 @@ public class PlayerStatsTests
 
         [Test]
         public void CurrentSP_EqualsMaxSPOnStart() => Assert.AreEqual(stats.MaxSP, stats.CurrentSP);
-
-        [Test]
-        public void MaxOxygen_Is120OnStart() => Assert.AreEqual(120, stats.MaxOxygen);
-
-        [Test]
-        public void CurrentOxygen_EqualsMaxOxygenOnStart() => Assert.AreEqual(stats.MaxOxygen, stats.CurrentOxygen);
+        
 
         [Test]
         public void AttackPower_IsOneOnStart() => Assert.AreEqual(1, stats.AttackPower);
@@ -116,32 +111,7 @@ public class PlayerStatsTests
             Assert.AreEqual(stats.MaxSP, stats.CurrentSP);
         }
 
-        // -----------------------
-        // OXYGEN
-        // -----------------------
-        [Test]
-        public void DecreaseOxygen_ReducesCurrentOxygen()
-        {
-            stats.DecreaseOxygen(50);
-            Assert.AreEqual(70, stats.CurrentOxygen);
-        }
-
-        [Test]
-        public void DecreaseOxygen_TriggersTakeDamageWhenZero()
-        {
-            bool damaged = false;
-            stats.OnTakeDamage += (amt) => damaged = true;
-            stats.DecreaseOxygen(150);
-            Assert.IsTrue(damaged);
-        }
-
-        [Test]
-        public void DecreaseOxygen_DoesNotGoBelowZero()
-        {
-            stats.DecreaseOxygen(150);
-            Assert.AreEqual(0, stats.CurrentOxygen);
-        }
-
+    
         // -----------------------
         // EXPERIENCE & LEVELING
         // -----------------------
@@ -202,12 +172,10 @@ public class PlayerStatsTests
         {
             stats.TakeDamage(2);
             stats.UseSP(3);
-            stats.DecreaseOxygen(50);
 
             stats.Reset();
 
             Assert.AreEqual(stats.MaxHealth, stats.CurrentHealth);
             Assert.AreEqual(stats.MaxSP, stats.CurrentSP);
-            Assert.AreEqual(stats.MaxOxygen, stats.CurrentOxygen);
         }
     }

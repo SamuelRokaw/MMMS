@@ -8,12 +8,12 @@ public class AirView : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerStatViewModel.OnAirChanged += UpdateAir;
+        //PlayerStatViewModel.OnAirChanged += UpdateAir;
     }
 
     private void OnDisable()
     {
-        PlayerStatViewModel.OnAirChanged -= UpdateAir;
+        //PlayerStatViewModel.OnAirChanged -= UpdateAir;
     }
 
     private void Start()

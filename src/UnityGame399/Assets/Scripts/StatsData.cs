@@ -10,8 +10,7 @@ namespace PlayerStuff
         public int currentHealth;
         public int maxSP;
         public int currentSP;
-        public int maxOxygen;
-        public int currentOxygen;
+        public int luck;
         public int attackPower;
         public bool hasDashSkill;
         public bool hasSpearSkill;
@@ -21,5 +20,10 @@ namespace PlayerStuff
         public bool hasSixSkill;
         public SkillTypes skillOne;
         public SkillTypes skillTwo;
+        public int currentGold;
+        public int currentCafBean;
+        public int currentDecafBean;
+        public int currentCarCreamer;
+        public int currentMilkCreamer;
     }
 }
