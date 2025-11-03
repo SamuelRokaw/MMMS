@@ -12,8 +12,12 @@ namespace PlayerStuff
         public int CurrentHealth { get; set; }
         public int MaxSP { get; set; } = 5;
         public int CurrentSP { get; set; }
-        public int MaxOxygen { get; set; } = 120;
-        public int CurrentOxygen { get; set; }
+        public int CurrentGold { get; set; } = 0;
+        public int CurrentCafBean { get; set; } = 0;
+        public int CurrentDecafBean{ get; set; } = 0;
+        public int CurrentCarCreamer { get; set; } = 0;
+        public int CurrentMilkCreamer { get; set; } = 0;
+        public int Luck { get; set; } = 0;
         public int AttackPower { get; set; } = 1;
         public int MaxLevel { get; set; } = 60;
         public bool HasDashSkill { get; set; } = false;
@@ -28,6 +32,8 @@ namespace PlayerStuff
         // C# events instead of Unity events
         public event Action OnDie;
         public event Action<int> OnTakeDamage;
+
+        public event Action OnLevelUp;
 
         public PlayerStats()
         {
@@ -74,8 +80,8 @@ namespace PlayerStuff
             Experience = 0;
             Level++;
             ExperienceToNextLevel += 1;
-            MaxOxygen += 2;
-
+            OnLevelUp?.Invoke();
+            
             if (Level % 4 == 0)
                 MaxSP += 1;
         }
@@ -89,22 +95,42 @@ namespace PlayerStuff
         {
             AttackPower += amount;
         }
-
-        public void DecreaseOxygen(int amount)
+        public void IncreaseLuck(int amount)
         {
-            CurrentOxygen -= amount;
-            if (CurrentOxygen <= 0)
-            {
-                CurrentOxygen = 0;
-                OnTakeDamage?.Invoke(1);
-            }
+            Luck += amount;
         }
+
+        public void IncreaseMaxSP(int amount)
+        {
+            MaxSP += amount;
+        }
+        public void ChangeGold(int amount)
+        {
+            CurrentGold += amount;
+        }
+        public void ChangeCafBean(int amount)
+        {
+            CurrentCafBean += amount;
+        }
+        public void ChangeDecafBean(int amount)
+        {
+            CurrentDecafBean += amount;
+        }
+        public void ChangeCarCreamer(int amount)
+        {
+            CurrentCarCreamer += amount;
+        }
+        public void ChangeMilkCreamer(int amount)
+        {
+            CurrentMilkCreamer += amount;
+        }
+        
+        
 
         public void Reset()
         {
             CurrentHealth = MaxHealth;
             CurrentSP = MaxSP;
-            CurrentOxygen = MaxOxygen;
         }
     }
 }

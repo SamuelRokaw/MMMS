@@ -14,8 +14,12 @@ public class Stats : MonoBehaviour
     public int CurrentHealth => stats.CurrentHealth;
     public int MaxSP => stats.MaxSP;
     public int CurrentSP => stats.CurrentSP;
-    public int MaxOxygen => stats.MaxOxygen;
-    public int CurrentOxygen => stats.CurrentOxygen;
+    public int Luck => stats.Luck;
+    public int currentGold => stats.CurrentGold;
+    public int currentCafBean => stats.CurrentCafBean;
+    public int currentDecafBean => stats.CurrentDecafBean;
+    public int currentCarCreamer => stats.CurrentCarCreamer;
+    public int currentMilkCreamer => stats.CurrentMilkCreamer;
     public int AttackPower => stats.AttackPower;
     public bool HasDashSkill
     {
@@ -64,11 +68,18 @@ public class Stats : MonoBehaviour
     public void GainExperience(int amount) => stats.GainExperience(amount);
     public void IncreaseMaxHealth(int amount) => stats.IncreaseMaxHealth(amount);
     public void IncreaseAttack(int amount) => stats.IncreaseAttack(amount);
-    public void DecreaseOxygen(int amount) => stats.DecreaseOxygen(amount);
+    public void IncreaseMaxSP(int amount) => stats.IncreaseMaxSP(amount);
+    public void IncreaseLuck(int amount) => stats.IncreaseLuck(amount);
+    public void ChangeGold(int amount) => stats.ChangeGold(amount);
+    public void ChangeCafBean(int amount) => stats.ChangeCafBean(amount);
+    public void ChangeDecafBean(int amount) => stats.ChangeDecafBean(amount);
+    public void ChangeCarCreamer(int amount) => stats.ChangeCarCreamer(amount);
+    public void ChangeMilkCreamer(int amount) => stats.ChangeMilkCreamer(amount);
     public void Reset() => stats.Reset();
     
     public event Action OnDie;
     public event Action<int> OnTakeDamage;
+    public event Action OnLevelUp;
 
     [SerializeField] private bool loadDataOnAwake; //set to false in start screen to allow deleting of old save, set true in world scene to allow loading of save
     void Awake()
@@ -77,6 +88,7 @@ public class Stats : MonoBehaviour
         // Forward PlayerStats events to Stats events
         stats.OnDie += () => OnDie?.Invoke();
         stats.OnTakeDamage += damage => OnTakeDamage?.Invoke(damage);
+        stats.OnLevelUp += () => OnLevelUp?.Invoke();
         if (loadDataOnAwake)
         {
             LoadFromPlayerPrefs();
@@ -95,8 +107,12 @@ public class Stats : MonoBehaviour
             currentHealth = stats.CurrentHealth,
             maxSP = stats.MaxSP,
             currentSP = stats.CurrentSP,
-            maxOxygen = stats.MaxOxygen,
-            currentOxygen = stats.CurrentOxygen,
+            luck = stats.Luck,
+            currentGold = stats.CurrentGold,
+            currentCafBean = stats.CurrentCafBean,
+            currentDecafBean = stats.CurrentDecafBean,
+            currentCarCreamer = stats.CurrentCarCreamer,
+            currentMilkCreamer = stats.CurrentMilkCreamer,
             attackPower = stats.AttackPower,
             hasDashSkill = stats.HasDashSkill,
             hasSpearSkill = stats.HasSpearSkill,
@@ -144,8 +160,12 @@ public class Stats : MonoBehaviour
         stats.CurrentHealth = data.currentHealth;
         stats.MaxSP = data.maxSP;
         stats.CurrentSP = data.currentSP;
-        stats.MaxOxygen = data.maxOxygen;
-        stats.CurrentOxygen = data.currentOxygen;
+        stats.Luck = data.luck;
+        stats.CurrentGold = data.currentGold;
+        stats.CurrentCafBean = data.currentCafBean;
+        stats.CurrentDecafBean = data.currentDecafBean;
+        stats.CurrentCarCreamer = data.currentCarCreamer;
+        stats.CurrentMilkCreamer = data.currentMilkCreamer;
         stats.AttackPower = data.attackPower;
         stats.HasDashSkill = data.hasDashSkill;
         stats.HasSpearSkill = data.hasSpearSkill;
@@ -166,8 +186,12 @@ public class Stats : MonoBehaviour
         stats.CurrentHealth = 3;
         stats.MaxSP = 5;
         stats.CurrentSP = 5;
-        stats.MaxOxygen = 120;
-        stats.CurrentOxygen = 120;
+        stats.Luck = 0;
+        stats.CurrentGold = 0;
+        stats.CurrentCafBean = 0;
+        stats.CurrentDecafBean = 0;
+        stats.CurrentCarCreamer = 0;
+        stats.CurrentMilkCreamer = 0;
         stats.AttackPower = 1;
         stats.HasDashSkill = false;
         stats.HasSpearSkill = false;
