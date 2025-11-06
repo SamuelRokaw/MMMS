@@ -441,6 +441,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8196b08ba2d481b9fb8d9c650c94a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoffeeShopManager
+  decafCoffeeGrounds: 0
+  caffeinatedCoffeeGrounds: 0
+  decafBrews: 0
+  caffeinatedBrews: 0
 --- !u!1 &139551074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,7 +1379,7 @@ GameObject:
   - component: {fileID: 455407058}
   - component: {fileID: 455407057}
   m_Layer: 0
-  m_Name: CaffeinatedButton
+  m_Name: Caffeinated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2040,6 +2044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 777919629}
+  - component: {fileID: 777919630}
   m_Layer: 0
   m_Name: CoffeeGrindingGame
   m_TagString: Untagged
@@ -2063,6 +2068,21 @@ Transform:
   - {fileID: 1540642657}
   m_Father: {fileID: 2045569505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &777919630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777919628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f89f4d030690419fb8e91aa3072a9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoffeeGrinderManager
+  coffeeTypeSelector: {fileID: 970768267}
+  grindButton: {fileID: 1445380390}
+  clicksRequired: 15
 --- !u!1 &805885286
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,6 +2506,7 @@ GameObject:
   - component: {fileID: 970768265}
   - component: {fileID: 970768264}
   - component: {fileID: 970768266}
+  - component: {fileID: 970768267}
   m_Layer: 0
   m_Name: CoffeeTypePanel
   m_TagString: Untagged
@@ -2579,6 +2600,27 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!114 &970768267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970768262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3962d27b7c96045bfb0315a34b045d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoffeeTypeListManager
+  coffeeButtons:
+  - button: {fileID: 1865611561}
+    normalSprite: {fileID: -4043916269642661748, guid: 6c6b3c5fc699246b98a81017b2ba3e57, type: 3}
+    pressedSprite: {fileID: -9223337516230059566, guid: edefd5e1018a44e41877d6b53cfd270d, type: 3}
+    image: {fileID: 0}
+  - button: {fileID: 455407057}
+    normalSprite: {fileID: -4043916269642661748, guid: 6c6b3c5fc699246b98a81017b2ba3e57, type: 3}
+    pressedSprite: {fileID: -9223337516230059566, guid: edefd5e1018a44e41877d6b53cfd270d, type: 3}
+    image: {fileID: 0}
 --- !u!1 &1016256875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,6 +3528,8 @@ GameObject:
   - component: {fileID: 1445380386}
   - component: {fileID: 1445380388}
   - component: {fileID: 1445380387}
+  - component: {fileID: 1445380389}
+  - component: {fileID: 1445380390}
   m_Layer: 0
   m_Name: CoffeeGrinder
   m_TagString: Untagged
@@ -3550,6 +3594,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445380385}
   m_CullTransparentMesh: 1
+--- !u!114 &1445380389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445380385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef7a0e4f11f94e078264c14f23c834a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoffeeGrinderClicker
+  pulseScaleMultiplier: 1.2
+  pulseDuration: 0.2
+--- !u!114 &1445380390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445380385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1445380387}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1446474044
 GameObject:
   m_ObjectHideFlags: 0
@@ -3828,7 +3930,7 @@ GameObject:
   - component: {fileID: 1540642659}
   - component: {fileID: 1540642658}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: GrindingMinigameCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4705,7 +4807,7 @@ GameObject:
   - component: {fileID: 1865611562}
   - component: {fileID: 1865611561}
   m_Layer: 0
-  m_Name: DecafButton
+  m_Name: Decaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4774,7 +4876,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1865611562}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 970768262}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1865611562
 MonoBehaviour:
   m_ObjectHideFlags: 0

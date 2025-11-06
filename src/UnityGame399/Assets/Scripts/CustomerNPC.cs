@@ -54,6 +54,6 @@ public class CustomerNPC : MonoBehaviour
     public string Order()
     {
         Logger.Instance.Info($"Customer {Customer.Name} has ordered their coffee.");
-        return $"Name: {Customer.Name}\nCaffeinated: {Coffee.IsCaffeinated}\nCreamer: {Coffee.CreamPercent * 100}% {Coffee.CreamerType}";
+        return $"Name: {Customer.Name}\nCaffeinated: {Coffee.BeanType}\nCreamer: {Coffee.CreamPercent * 100}% {Coffee.CreamerType}";
     }
 }
