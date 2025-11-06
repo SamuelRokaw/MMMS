@@ -1,26 +1,22 @@
-using UnityEngine;
-
-public class Coffee : MonoBehaviour
+using System;
+public class Coffee
 {
-    private bool isCaffeinated;
-    private double creamPercent;
-    private CreamerType creamerType;
-    
-    void awake()
-    {
-        generateOrder();
-    }
+    public bool IsCaffeinated { get; private set; }
+    public double CreamPercent { get; private set; }
+    public CreamerType CreamerType { get; private set; }
 
-    private void generateOrder()
+    public Coffee()
     {
-        isCaffeinated = Random.value > 0.5f;
+        System.Random rng = new System.Random();
         
+        IsCaffeinated = rng.Next(0, 2) == 1;
+
         double[] possiblePercentages = { 0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1 };
-        creamPercent = possiblePercentages[Random.Range(0, possiblePercentages.Length)];
+        CreamPercent = possiblePercentages[rng.Next(0, possiblePercentages.Length)];
         
-        int creamerCount = System.Enum.GetValues(typeof(CreamerType)).Length;
-        creamerType = (CreamerType)Random.Range(0, creamerCount);
+        Array values = Enum.GetValues(typeof(CreamerType));
+        CreamerType = (CreamerType)values.GetValue(rng.Next(values.Length));
         
-        Debug.Log($"Coffee Generated → Caffeinated: {isCaffeinated}, Creamer: {creamPercent}%, Type: {creamerType}");
+        Logger.Instance.Info($"Coffee Generated → Caffeinated: {IsCaffeinated}, Creamer: {CreamPercent}%, Type: {CreamerType}");
     }
 }
