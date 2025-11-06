@@ -32,7 +32,6 @@ public class CoffeeBrewerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // Update UI state when minigame becomes active
         UpdateUI();
     }
 
@@ -115,6 +114,7 @@ public class CoffeeBrewerManager : MonoBehaviour
         {
             Logger.Instance.Info($"Started brewing {selectedType} coffee!");
             groundsDisplay.DeselectAll();
+            groundsDisplay.UpdateGroundsDisplay();
         }
         else
         {

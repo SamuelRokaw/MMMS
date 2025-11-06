@@ -40,7 +40,7 @@ public class CoffeeBrewerListManager : MonoBehaviour
         UpdateGroundsDisplay();
     }
 
-    private void UpdateGroundsDisplay()
+    public void UpdateGroundsDisplay()
     {
         if (CoffeeShopManager.Instance == null) return;
 

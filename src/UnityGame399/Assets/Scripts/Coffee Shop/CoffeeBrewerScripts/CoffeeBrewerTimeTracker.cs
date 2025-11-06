@@ -45,13 +45,8 @@ public class CoffeeBrewerTimeTracker : MonoBehaviour
         }
     }
 
-    public bool StartBrewing(int brewerID, BeanType type)
+    private bool checkIfCanBrew(BeanType type)
     {
-        if (GetBrewerStatus(brewerID) == BrewerStatus.Brewing)
-        {
-            return false;
-        }
-        
         if (type == BeanType.Caffeinated && CoffeeShopManager.Instance.caffeinatedCoffeeGrounds <= 0)
         {
             return false;
@@ -61,6 +56,11 @@ public class CoffeeBrewerTimeTracker : MonoBehaviour
             return false;
         }
 
+        return true;
+    }
+    
+    private void decrementBean(BeanType type) 
+    {
         if (type == BeanType.Caffeinated)
         {
             CoffeeShopManager.Instance.caffeinatedCoffeeGrounds--;
@@ -69,6 +69,22 @@ public class CoffeeBrewerTimeTracker : MonoBehaviour
         {
             CoffeeShopManager.Instance.decafCoffeeGrounds--;
         }
+    }
+
+    public bool StartBrewing(int brewerID, BeanType type)
+    {
+        if (GetBrewerStatus(brewerID) == BrewerStatus.Brewing)
+        {
+            return false;
+        }
+
+        if (!checkIfCanBrew(type))
+        {
+            return false;
+        }
+        
+        decrementBean(type);
+        
         
         if (!brewerStates.ContainsKey(brewerID))
         {
