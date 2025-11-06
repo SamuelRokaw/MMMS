@@ -8,7 +8,7 @@ public abstract class Interactable : MonoBehaviour
     public abstract void Interact();
 
     
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)//changed from enter to stay to fix interactable issues
     {
         if (collision.gameObject.CompareTag("OverWorldPlayer") && !used)
         {

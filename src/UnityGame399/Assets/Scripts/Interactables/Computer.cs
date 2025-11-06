@@ -10,9 +10,13 @@ public class Computer : Interactable
     public CanvasGroup shopGroup;
     public List<bool> upgrades;
     public bool currentTab = false; //false for missions, true for shop
+    public Button missionButton;
+    public Button shopButton;
 
     private void Awake()
     {
+        missionButton.interactable = false;
+        shopButton.interactable = true;
     }
 
     public override void Interact()
@@ -24,21 +28,25 @@ public class Computer : Interactable
 
     public void OpenUI()
     {
+        Logger.Instance.Info("Computer UI opened");
         computerUI.SetActive(true);
     }
 
     public void CloseUI()
     {
+        Logger.Instance.Info("Computer UI closed");
         computerUI.SetActive(false);
     }
 
     public void ChooseMission(int missionIndex)
     {
+        Logger.Instance.Info("Mission chosen");
         Instantiate(missions[missionIndex]);
     }
 
     public void ChooseUpgrade(int shopIndex) //currently not used but is for future
     {
+        Logger.Instance.Info("Upgrade chosen");
         //other stuff like decreasing money also goes here
         upgrades[shopIndex] = true;
     }
@@ -65,6 +73,8 @@ public class Computer : Interactable
             DeactivateCG(shopGroup);
             ActivateCG(missionGroup);
             currentTab = false;
+            missionButton.interactable = false;
+            shopButton.interactable = true;
         }
         else
         {
@@ -72,6 +82,8 @@ public class Computer : Interactable
             DeactivateCG(missionGroup);
             ActivateCG(shopGroup);
             currentTab = true;
+            shopButton.interactable = false;
+            missionButton.interactable = true;
         }
     }
 }

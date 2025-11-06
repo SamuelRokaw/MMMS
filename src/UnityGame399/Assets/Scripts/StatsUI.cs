@@ -9,9 +9,9 @@ public class StatsUI : MonoBehaviour
 {
     public CanvasGroup statsMenu;
     public TextMeshProUGUI statsText;
-    public Button[] skillButton;
+    //public Button[] skillButton;
     public Stats playerStats;
-    public SkillButtons skillButtons;
+    //public SkillButtons skillButtons;
 
     public void closeMenu()
     {
@@ -23,7 +23,10 @@ public class StatsUI : MonoBehaviour
     public void openMenu()
     {
         statsText.text = $"Level: {playerStats.Level}\nXP: {playerStats.Experience}\nXP needed:  {playerStats.ExperienceToNextLevel}\nHealth: {playerStats.MaxHealth}\nSP: {playerStats.CurrentSP}\nLuck: {playerStats.Luck}\nAttack: {playerStats.AttackPower}";
-        if (playerStats.HasDashSkill)
+        
+        /*
+         if (playerStats.HasDashSkill)
+         
         {
             skillButton[0].interactable = true;
         }
@@ -48,6 +51,7 @@ public class StatsUI : MonoBehaviour
             skillButton[5].interactable = true;
         }
         skillButtons.OnOpen();
+        */
         statsMenu.alpha = 1;
         statsMenu.blocksRaycasts = true;
         statsMenu.interactable = true;

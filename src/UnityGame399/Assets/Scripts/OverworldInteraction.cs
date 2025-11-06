@@ -48,6 +48,10 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<BossAquarium>().Interact();
             }
+            else if (interactTarget.tag == "Computer")
+            {
+                interactTarget.GetComponent<Computer>().Interact();
+            }
             CloseInteractableIcon();
         }
     }
