@@ -10,6 +10,7 @@ public class Stats : MonoBehaviour
     public int Level => stats.Level;
     public int Experience => stats.Experience;
     public int ExperienceToNextLevel => stats.ExperienceToNextLevel;
+    public int StatPoints => stats.StatPoints;
     public int MaxHealth => stats.MaxHealth;
     public int CurrentHealth => stats.CurrentHealth;
     public int MaxSP => stats.MaxSP;

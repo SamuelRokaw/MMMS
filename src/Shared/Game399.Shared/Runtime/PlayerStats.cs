@@ -8,6 +8,8 @@ namespace PlayerStuff
         public int Level { get; set; } = 0;
         public int Experience { get; set; } = 0;
         public int ExperienceToNextLevel { get; set; } = 5;
+        
+        public int StatPoints { get; set; }
         public int MaxHealth { get; set; } = 3;
         public int CurrentHealth { get; set; }
         public int MaxSP { get; set; } = 5;
@@ -80,6 +82,7 @@ namespace PlayerStuff
             Experience = 0;
             Level++;
             ExperienceToNextLevel += 1;
+            StatPoints += 1;
             OnLevelUp?.Invoke();
         }
 
