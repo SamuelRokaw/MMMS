@@ -44,6 +44,16 @@ public class CustomerManager : MonoBehaviour
     public void FinishOrder()
     {
         GameObject submittedCustomer = customersToOrder.Dequeue();
+        
+        foreach (GameObject customer in customersToOrder)
+        {
+            customer.GetComponent<CustomerNPC>().ResumeMove();
+        }
+        foreach (GameObject customer in customerQueue)
+        {
+            customer.GetComponent<CustomerNPC>().ResumeMove();
+        }
+        
         Destroy(submittedCustomer);
         if (customersToOrder.Count() == 0)
         {

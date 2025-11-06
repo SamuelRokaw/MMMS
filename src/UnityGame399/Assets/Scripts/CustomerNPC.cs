@@ -10,11 +10,40 @@ public class CustomerNPC : MonoBehaviour
     public Customer Customer { get; private set; }
     public Coffee Coffee { get; private set; }
     public int orderIndex;
+    
+    [SerializeField] public float moveSpeed = 5f;
+    private bool hasCollided = false;
+    private Rigidbody2D rb;
     void Start()
     {
         CustomerSpriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
         Customer = new Customer();
         Coffee = new Coffee();
+        rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
+    }
+    
+    void FixedUpdate()
+    {
+        if (!hasCollided)
+        {
+            rb.linearVelocity = Vector2.up * moveSpeed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        hasCollided = true;
+    }
+
+    public void ResumeMove()
+    {
+        Logger.Instance.Info($"Customer {Customer.Name} is resuming movement.");
+        hasCollided = false;
     }
 
     public void OnDestroy()
