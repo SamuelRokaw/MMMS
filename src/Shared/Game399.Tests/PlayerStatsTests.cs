@@ -144,6 +144,14 @@ public class PlayerStatsTests
             stats.GainExperience(stats.ExperienceToNextLevel);
             Assert.Greater(stats.ExperienceToNextLevel, oldThreshold);
         }
+        
+        [Test]
+        public void LevelUp_DoesNotExceedMaxLevel()
+        {
+            stats.Level = stats.MaxLevel;
+            stats.GainExperience(stats.ExperienceToNextLevel);
+            Assert.AreEqual(stats.MaxLevel, stats.Level);
+        }
 
         // -----------------------
         // INCREASING STATS
@@ -163,7 +171,118 @@ public class PlayerStatsTests
             stats.IncreaseAttack(2);
             Assert.AreEqual(oldAttack + 2, stats.AttackPower);
         }
+        
+        [Test]
+        public void IncreaseLuck_WorksCorrectly()
+        {
+            int oldLuck = stats.Luck;
+            stats.IncreaseLuck(3);
+            Assert.AreEqual(oldLuck + 3, stats.Luck);
+        }
 
+        [Test]
+        public void IncreaseMaxSP_WorksCorrectly()
+        {
+            int oldMaxSP = stats.MaxSP;
+            stats.IncreaseMaxSP(2);
+            Assert.AreEqual(oldMaxSP + 2, stats.MaxSP);
+        }
+        // -----------------------
+        // Resources
+        // -----------------------
+        [Test]
+        public void ChangeGold_IncreaseGoldCount()
+        {
+            stats.ChangeGold(10);
+            Assert.AreEqual(10, stats.CurrentGold);
+        }
+        [Test]
+        public void ChangeGold_DecreaseGoldCount()
+        {
+            stats.ChangeGold(10);
+            Assert.AreEqual(10, stats.CurrentGold);
+        }
+
+        [Test]
+        public void ChangeCafBean_IncreasesCafBeanCount()
+        {
+            stats.ChangeCafBean(3);
+            Assert.AreEqual(3, stats.CurrentCafBean);
+        }
+
+        [Test]
+        public void ChangeCafBean_DecreasesCafBeanCount()
+        {
+            stats.ChangeCafBean(5);
+            stats.ChangeCafBean(-2);
+            Assert.AreEqual(3, stats.CurrentCafBean);
+        }
+
+        [Test]
+        public void ChangeDecafBean_IncreasesDecafBeanCount()
+        {
+            stats.ChangeDecafBean(4);
+            Assert.AreEqual(4, stats.CurrentDecafBean);
+        }
+
+        [Test]
+        public void ChangeDecafBean_DecreasesDecafBeanCount()
+        {
+            stats.ChangeDecafBean(6);
+            stats.ChangeDecafBean(-1);
+            Assert.AreEqual(5, stats.CurrentDecafBean);
+        }
+        [Test]
+        public void ChangeCarCreamer_IncreasesCarCreamerCount()
+        {
+            stats.ChangeCarCreamer(2);
+            Assert.AreEqual(2, stats.CurrentCarCreamer);
+        }
+
+        [Test]
+        public void ChangeCarCreamer_DecreasesCarCreamerCount()
+        {
+            stats.ChangeCarCreamer(4);
+            stats.ChangeCarCreamer(-1);
+            Assert.AreEqual(3, stats.CurrentCarCreamer);
+        }
+
+        [Test]
+        public void ChangeMilkCreamer_IncreasesMilkCreamerCount()
+        {
+            stats.ChangeMilkCreamer(5);
+            Assert.AreEqual(5, stats.CurrentMilkCreamer);
+        }
+
+        [Test]
+        public void ChangeMilkCreamer_DecreasesMilkCreamerCount()
+        {
+            stats.ChangeMilkCreamer(3);
+            stats.ChangeMilkCreamer(-2);
+            Assert.AreEqual(1, stats.CurrentMilkCreamer);
+        }
+        // -----------------------
+        // Skills
+        // -----------------------
+        [Test]
+        public void SkillFlags_DefaultToFalse()
+        {
+            Assert.IsFalse(stats.HasDashSkill);
+            Assert.IsFalse(stats.HasSpearSkill);
+            Assert.IsFalse(stats.hasThreeSkill);
+            Assert.IsFalse(stats.hasFourSkill);
+            Assert.IsFalse(stats.hasFiveSkill);
+            Assert.IsFalse(stats.hasSixSkill);
+        }
+
+        [Test]
+        public void SkillTypes_DefaultToNone()
+        {
+            Assert.AreEqual(SkillTypes.None, stats.SkillOne);
+            Assert.AreEqual(SkillTypes.None, stats.SkillTwo);
+        }
+        
+        
         // -----------------------
         // RESET
         // -----------------------

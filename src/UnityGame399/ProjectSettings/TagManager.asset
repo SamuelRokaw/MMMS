@@ -23,6 +23,7 @@ TagManager:
   - ControlTree
   - NPC
   - BA
+  - Computer
   layers:
   - Default
   - TransparentFX

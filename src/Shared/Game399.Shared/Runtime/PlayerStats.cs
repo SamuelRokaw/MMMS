@@ -81,9 +81,6 @@ namespace PlayerStuff
             Level++;
             ExperienceToNextLevel += 1;
             OnLevelUp?.Invoke();
-            
-            if (Level % 4 == 0)
-                MaxSP += 1;
         }
 
         public void IncreaseMaxHealth(int amount)
