@@ -44,51 +44,48 @@ public class CoffeeBrewerManager : MonoBehaviour
     {
         if (CoffeeBrewerTimeTracker.Instance == null) return;
 
-        bool isBrewing = CoffeeBrewerTimeTracker.Instance.IsBrewerActive(brewerID);
-        bool isComplete = CoffeeBrewerTimeTracker.Instance.IsBrewerComplete(brewerID);
+        var status = CoffeeBrewerTimeTracker.Instance.GetBrewerStatus(brewerID);
         float timeRemaining = CoffeeBrewerTimeTracker.Instance.GetBrewerTimeRemaining(brewerID);
         
         if (brewerImage != null)
         {
-            if (isComplete)
+            switch (status)
             {
-                brewerImage.sprite = completeSprite;
-            }
-            else if (isBrewing)
-            {
-                brewerImage.sprite = brewingSprite;
-            }
-            else
-            {
-                brewerImage.sprite = idleSprite;
+                case BrewerStatus.Idle:
+                    brewerImage.sprite = idleSprite;
+                    break;
+                case BrewerStatus.Brewing:
+                    brewerImage.sprite = brewingSprite;
+                    break;
+                case BrewerStatus.Complete:
+                    brewerImage.sprite = completeSprite;
+                    break;
             }
         }
-        
         if (brewButton != null)
         {
-            brewButton.interactable = !isBrewing && !isComplete;
+            brewButton.interactable = (status == BrewerStatus.Idle);
         }
-        
         
         if (timerText != null)
         {
-            if (isBrewing)
+            switch (status)
             {
-                timerText.text = $"Brewing: {Mathf.CeilToInt(timeRemaining)}s";
-            }
-            else if (isComplete)
-            {
-                timerText.text = "Ready!";
-            }
-            else
-            {
-                timerText.text = "";
+                case BrewerStatus.Brewing:
+                    timerText.text = $"Brewing: {Mathf.CeilToInt(timeRemaining)}s";
+                    break;
+                case BrewerStatus.Complete:
+                    timerText.text = "Ready!";
+                    break;
+                default:
+                    timerText.text = "";
+                    break;
             }
         }
         
         if (collectButton != null)
         {
-            collectButton.gameObject.SetActive(isComplete);
+            collectButton.gameObject.SetActive(status == BrewerStatus.Complete);
         }
     }
 
@@ -100,14 +97,14 @@ public class CoffeeBrewerManager : MonoBehaviour
             return;
         }
 
-        if (CoffeeBrewerTimeTracker.Instance.IsBrewerActive(brewerID))
+        var status = CoffeeBrewerTimeTracker.Instance.GetBrewerStatus(brewerID);
+        if (status == BrewerStatus.Brewing)
         {
             Logger.Instance.Info("This brewer is already brewing!");
             return;
         }
 
         BeanType selectedType = groundsDisplay.GetSelectedBeanType();
-        
         bool success = CoffeeBrewerTimeTracker.Instance.StartBrewing(brewerID, selectedType);
         
         if (success)
@@ -124,7 +121,8 @@ public class CoffeeBrewerManager : MonoBehaviour
 
     private void OnCollectClicked()
     {
-        if (!CoffeeBrewerTimeTracker.Instance.IsBrewerComplete(brewerID))
+        var status = CoffeeBrewerTimeTracker.Instance.GetBrewerStatus(brewerID);
+        if (status != BrewerStatus.Complete)
         {
             return;
         }
