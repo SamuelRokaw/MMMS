@@ -65823,6 +65823,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8852337323811217387, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1760918581}
+    - targetCorrespondingSourceObject: {fileID: 8852337323811217387, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1760918588}
     - targetCorrespondingSourceObject: {fileID: 8871142954881407074, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1624961227}
@@ -71562,6 +71565,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SPRegen
   stats: {fileID: 1760918583}
+--- !u!114 &1760918588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320727465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19f0bcadf6098d47b98551090f529a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Logger
 --- !u!1001 &1761286522
 PrefabInstance:
   m_ObjectHideFlags: 0

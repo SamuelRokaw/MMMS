@@ -48,6 +48,10 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<BossAquarium>().Interact();
             }
+            else if (interactTarget.tag == "CoffeeGrinder")
+            {
+                interactTarget.GetComponent<CoffeeGame>().Interact();
+            }
             CloseInteractableIcon();
         }
     }

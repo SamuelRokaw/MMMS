@@ -23,6 +23,7 @@ TagManager:
   - ControlTree
   - NPC
   - BA
+  - CoffeeGrinder
   layers:
   - Default
   - TransparentFX
