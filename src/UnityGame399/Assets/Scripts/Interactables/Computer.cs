@@ -41,7 +41,8 @@ public class Computer : Interactable
     public void ChooseMission(int missionIndex)
     {
         Logger.Instance.Info("Mission chosen");
-        Instantiate(missions[missionIndex]);
+        CloseUI();
+        CombatLoader.Instance.LoadCombat(missions[missionIndex]);
     }
 
     public void ChooseUpgrade(int shopIndex) //currently not used but is for future

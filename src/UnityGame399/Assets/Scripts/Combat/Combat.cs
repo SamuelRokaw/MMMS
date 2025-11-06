@@ -19,11 +19,15 @@ public class Combat : MonoBehaviour
     private int xpCollected = 0;
 
     [SerializeField] 
-    private int numFish = 0;
+    private int numEnemies = 0;
     [SerializeField] 
-    private int numFishKilled = 0;
+    private int numEnemiesKilled = 0;
     [SerializeField]
-    private List<GameObject> fish;
+    private List<GameObject> enemies;
+
+    [SerializeField] private int resourceType = 0; //0-bean, other
+    [SerializeField] private int resource1 = 0;
+    [SerializeField] private int resource2 = 0;
     
     private void Awake()
     {
@@ -37,8 +41,7 @@ public class Combat : MonoBehaviour
     
     void Start()
     {
-        numFish = fish.Count;
-        StartCoroutine(DepleteAir());
+        numEnemies = enemies.Count;
     }
     
     public void OnEnable()
@@ -116,6 +119,11 @@ public class Combat : MonoBehaviour
     private void win()
     {
         stats.GainExperience(xpCollected);
+        if (resourceType == 0)
+        {
+            stats.ChangeCafBean(resource1);
+            stats.ChangeDecafBean(resource2);
+        }
         StartCoroutine(ExitCombatWithFade(true));
     }
 
@@ -127,21 +135,13 @@ public class Combat : MonoBehaviour
             Destroy(bullet);
         }
     }
-    
-    IEnumerator DepleteAir()
-    {
-        while(true)
-        {
-            PlayerStatEvents.DecreaseOxygen.Invoke(1);
-            yield return new WaitForSeconds(1);
-        }
-    }
 
     private void gainXP()
     {
-        numFishKilled++;
+        numEnemiesKilled++;
         xpCollected++;
-        if (numFishKilled == numFish)
+        DropResources();
+        if (numEnemiesKilled == numEnemies)
         {
             win();
         }
@@ -150,6 +150,41 @@ public class Combat : MonoBehaviour
     private void Reset()
     {
         xpCollected = 0;
-        numFishKilled = 0;
+        numEnemiesKilled = 0;
+    }
+
+    private void DropResources()
+    {
+        if (resourceType == 0)//beandrop
+        {
+            int amountToDrop = Random.Range(1, 51);
+            amountToDrop += stats.Luck;
+            if (amountToDrop < 11)
+            {
+                resource1 += 1;
+                resource2 += 1;
+            }
+            else if (amountToDrop > 10 && amountToDrop < 21)
+            {
+                resource1 += 2;
+                resource2 += 2;
+            }
+            else if (amountToDrop > 20 && amountToDrop < 31)
+            {
+                resource1 += 3;
+                resource2 += 3;
+            }
+            else if (amountToDrop > 30 && amountToDrop < 41)
+            {
+                resource1 += 4;
+                resource2 += 4;
+            }
+            else if (amountToDrop > 40)
+            {
+                resource1 += 5;
+                resource2 += 5;
+            }
+
+        }
     }
 }

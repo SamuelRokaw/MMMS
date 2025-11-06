@@ -124,9 +124,6 @@ namespace PlayerStuff
         {
             CurrentMilkCreamer += amount;
         }
-        
-        
-
         public void Reset()
         {
             CurrentHealth = MaxHealth;

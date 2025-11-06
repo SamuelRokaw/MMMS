@@ -1434,8 +1434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3692bf42849234cf681e02f478f5e701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scenes
-  startScene: Test_Tom_Start
-  gameScene: World
+  startScene: StartScreen
+  gameScene: Test_Sammy
 --- !u!4 &1756906384
 Transform:
   m_ObjectHideFlags: 0
