@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class CoffeeTypeListManager : MonoBehaviour
+public class CoffeeGrinderTypeListManager : MonoBehaviour
 {
     [System.Serializable]
     public class CoffeeButton

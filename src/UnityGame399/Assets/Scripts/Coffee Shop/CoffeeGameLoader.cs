@@ -53,7 +53,7 @@ public class CoffeeGameLoader : MonoBehaviour
 
         yield return StartCoroutine(FadeController.Instance.FadeFromBlack());
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         
         bTO.alpha = 0;
         bTO.interactable = false;
@@ -90,7 +90,7 @@ public class CoffeeGameLoader : MonoBehaviour
 
         yield return StartCoroutine(FadeController.Instance.FadeFromBlack());
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         
         bTO.alpha = 0;
         bTO.interactable = false;

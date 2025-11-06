@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CoffeeGrinderManager : MonoBehaviour
 {
-    public CoffeeTypeListManager coffeeTypeSelector;
+    public CoffeeGrinderTypeListManager coffeeTypeSelector;
     public Button grindButton;
 
     public int clicksRequired = 15;
