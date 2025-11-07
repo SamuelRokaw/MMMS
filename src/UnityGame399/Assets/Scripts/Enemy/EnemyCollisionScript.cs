@@ -37,6 +37,11 @@ public class EnemyCollisionScript : MonoBehaviour
             PlayerStatEvents.PlayerTakesDamage(1);
             StartCoroutine(Cooldown());
         }
+        if (collision.gameObject.CompareTag("Target") && !onCooldown)
+        {
+            WaveDefense.Takedamage(-1);
+            StartCoroutine(Cooldown());
+        }
         
     }
 

@@ -20377,6 +20377,8 @@ MonoBehaviour:
   missionGroup: {fileID: 501538809}
   missions:
   - {fileID: 2401718156648614664, guid: 965e58a3321e5014ea843344ee9fe1f5, type: 3}
+  - {fileID: 2401718156648614664, guid: 8baaa5b2ab70e724fbac94c65e55e706, type: 3}
+  - {fileID: 2401718156648614664, guid: 839ef800119bd8c4198fdd17c678ac3e, type: 3}
   shopGroup: {fileID: 1086288315}
   upgrades: 
   currentTab: 0

@@ -15,9 +15,18 @@ public class EnemyMovement : MonoBehaviour
     private Transform _player;
     private Vector2 DirectionToPlayer;
     
+    //wave defense tracking
+    [SerializeField] private bool isWaveDefense = false;
+    private Transform _target;
+    private Vector2 DirectionToTarget;
+    private bool trackingPlayer = true;
+    
     private void Awake()
     {
-        
+        if (isWaveDefense)
+        {
+            _target = GameObject.FindGameObjectWithTag("Target").transform;
+        }
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,34 +37,64 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        DistanceToPlayer();
+        DistanceToTarget();
     }
 
     void FixedUpdate()
     {
-        moveToPlayer();
-        RotateToPlayer();
+        moveToTarget();
+        RotateToTarget();
     }
 
-    private void DistanceToPlayer()
+    private void DistanceToTarget()
     {
         // Calculate distance to the player
         float distanceToPlayer = Vector2.Distance(transform.position, _player.position);
-        // Determine direction towards the player
-        Vector2 direction = (_player.position - transform.position).normalized;
-        movement = direction;
+        if (isWaveDefense)
+        {
+            if (distanceToPlayer <= 10)
+            {
+                // Determine direction towards the player
+                Vector2 direction = (_player.position - transform.position).normalized;
+                movement = direction;
+                trackingPlayer = true;
+            }
+            else
+            {
+                // Determine direction towards the wave defense structure
+                Vector2 direction = (_target.position - transform.position).normalized;
+                movement = direction;
+                trackingPlayer = false;
+            }
+        }
+        else
+        {
+            // Determine direction towards the player
+            Vector2 direction = (_player.position - transform.position).normalized;
+            movement = direction;
+        }
     }
 
-    private void moveToPlayer()
+    private void moveToTarget()
     {
         _rb.MovePosition(_rb.position + movement * speed * spdMod * Time.fixedDeltaTime);
     }
 
-    private void RotateToPlayer()
+    private void RotateToTarget()
     {
-        Vector2 dir = (Vector2)(_player.position - transform.position);
-        float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        float smoothedAngle = Mathf.LerpAngle(_rb.rotation, targetAngle, rotspdMod * rotationSpeed * Time.fixedDeltaTime);
-        _rb.MoveRotation(smoothedAngle);
+        if(trackingPlayer)
+        {
+            Vector2 dir = (Vector2)(_player.position - transform.position);
+            float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float smoothedAngle = Mathf.LerpAngle(_rb.rotation, targetAngle, rotspdMod * rotationSpeed * Time.fixedDeltaTime);
+            _rb.MoveRotation(smoothedAngle);
+        }
+        else
+        {
+            Vector2 dir = (Vector2)(_target.position - transform.position);
+            float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float smoothedAngle = Mathf.LerpAngle(_rb.rotation, targetAngle, rotspdMod * rotationSpeed * Time.fixedDeltaTime);
+            _rb.MoveRotation(smoothedAngle);
+        }
     }
 }

@@ -24,6 +24,7 @@ TagManager:
   - NPC
   - BA
   - Computer
+  - Target
   layers:
   - Default
   - TransparentFX

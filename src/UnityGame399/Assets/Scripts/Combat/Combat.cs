@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class Combat : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Combat : MonoBehaviour
     [SerializeField]
     private List<GameObject> enemies;
 
-    [SerializeField] private int resourceType = 0; //0-bean, other
+    [SerializeField] private int resourceType = 0; //0-bean, 1 - milk, 2-caramel
     [SerializeField] private int resource1 = 0;
     [SerializeField] private int resource2 = 0;
     
@@ -65,12 +66,14 @@ public class Combat : MonoBehaviour
     {
         PlayerStatEvents.Die += lose;
         BasicEnemy.benemyDied += gainXP;
+        WaveDefense.Destroyed += lose;
     }
 
     private void Unsubscribe()
     {
         PlayerStatEvents.Die -= lose;
         BasicEnemy.benemyDied -= gainXP;
+        WaveDefense.Destroyed -= lose;
     }
 
 
@@ -131,6 +134,14 @@ public class Combat : MonoBehaviour
         {
             stats.ChangeCafBean(resource1);
             stats.ChangeDecafBean(resource2);
+        }
+        else if (resourceType == 1)
+        {
+            stats.ChangeMilkCreamer(waves.Count * 10);
+        }
+        else if (resourceType == 2)
+        {
+            stats.ChangeCarCreamer(waves.Count * 10);
         }
         StartCoroutine(ExitCombatWithFade(true));
     }
