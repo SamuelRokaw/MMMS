@@ -1,5 +1,5 @@
 public enum CreamerType
 {
-    Normal,
+    Milk,
     Caramel
 }

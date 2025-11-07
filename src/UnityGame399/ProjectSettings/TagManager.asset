@@ -25,6 +25,7 @@ TagManager:
   - BA
   - Computer
   - Target
+  - CoffeeGrinder
   layers:
   - Default
   - TransparentFX
