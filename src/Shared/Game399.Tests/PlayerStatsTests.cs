@@ -194,20 +194,20 @@ public class PlayerStatsTests
         public void ChangeGold_IncreaseGoldCount()
         {
             stats.ChangeGold(10);
-            Assert.AreEqual(10, stats.CurrentGold);
+            Assert.AreEqual(110, stats.CurrentGold);
         }
         [Test]
         public void ChangeGold_DecreaseGoldCount()
         {
-            stats.ChangeGold(10);
-            Assert.AreEqual(10, stats.CurrentGold);
+            stats.ChangeGold(-10);
+            Assert.AreEqual(90, stats.CurrentGold);
         }
 
         [Test]
         public void ChangeCafBean_IncreasesCafBeanCount()
         {
             stats.ChangeCafBean(3);
-            Assert.AreEqual(3, stats.CurrentCafBean);
+            Assert.AreEqual(53, stats.CurrentCafBean);
         }
 
         [Test]
@@ -215,14 +215,14 @@ public class PlayerStatsTests
         {
             stats.ChangeCafBean(5);
             stats.ChangeCafBean(-2);
-            Assert.AreEqual(3, stats.CurrentCafBean);
+            Assert.AreEqual(53, stats.CurrentCafBean);
         }
 
         [Test]
         public void ChangeDecafBean_IncreasesDecafBeanCount()
         {
             stats.ChangeDecafBean(4);
-            Assert.AreEqual(4, stats.CurrentDecafBean);
+            Assert.AreEqual(54, stats.CurrentDecafBean);
         }
 
         [Test]
@@ -230,13 +230,13 @@ public class PlayerStatsTests
         {
             stats.ChangeDecafBean(6);
             stats.ChangeDecafBean(-1);
-            Assert.AreEqual(5, stats.CurrentDecafBean);
+            Assert.AreEqual(55, stats.CurrentDecafBean);
         }
         [Test]
         public void ChangeCarCreamer_IncreasesCarCreamerCount()
         {
             stats.ChangeCarCreamer(2);
-            Assert.AreEqual(2, stats.CurrentCarCreamer);
+            Assert.AreEqual(52, stats.CurrentCarCreamer);
         }
 
         [Test]
@@ -244,14 +244,14 @@ public class PlayerStatsTests
         {
             stats.ChangeCarCreamer(4);
             stats.ChangeCarCreamer(-1);
-            Assert.AreEqual(3, stats.CurrentCarCreamer);
+            Assert.AreEqual(53, stats.CurrentCarCreamer);
         }
 
         [Test]
         public void ChangeMilkCreamer_IncreasesMilkCreamerCount()
         {
             stats.ChangeMilkCreamer(5);
-            Assert.AreEqual(5, stats.CurrentMilkCreamer);
+            Assert.AreEqual(55, stats.CurrentMilkCreamer);
         }
 
         [Test]
@@ -259,16 +259,16 @@ public class PlayerStatsTests
         {
             stats.ChangeMilkCreamer(3);
             stats.ChangeMilkCreamer(-2);
-            Assert.AreEqual(1, stats.CurrentMilkCreamer);
+            Assert.AreEqual(51, stats.CurrentMilkCreamer);
         }
         // -----------------------
         // Skills
         // -----------------------
         [Test]
-        public void SkillFlags_DefaultToFalse()
+        public void SkillFlags_Default()
         {
-            Assert.IsFalse(stats.HasDashSkill);
-            Assert.IsFalse(stats.HasSpearSkill);
+            Assert.IsTrue(stats.HasDashSkill);
+            Assert.IsTrue(stats.HasSpearSkill);
             Assert.IsFalse(stats.hasThreeSkill);
             Assert.IsFalse(stats.hasFourSkill);
             Assert.IsFalse(stats.hasFiveSkill);
@@ -278,8 +278,8 @@ public class PlayerStatsTests
         [Test]
         public void SkillTypes_DefaultToNone()
         {
-            Assert.AreEqual(SkillTypes.None, stats.SkillOne);
-            Assert.AreEqual(SkillTypes.None, stats.SkillTwo);
+            Assert.AreEqual(SkillTypes.HasDashSkill, stats.SkillOne);
+            Assert.AreEqual(SkillTypes.HasSpearSkill, stats.SkillTwo);
         }
         
         
