@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class Combat : MonoBehaviour
 {
@@ -15,30 +16,48 @@ public class Combat : MonoBehaviour
     [SerializeField] 
     private Stats stats;
 
+    [SerializeField] private GameObject csUI;
+
     [SerializeField] 
     private int xpCollected = 0;
 
     [SerializeField] 
-    private int numFish = 0;
+    private int numEnemies = 0;
     [SerializeField] 
-    private int numFishKilled = 0;
+    private int numEnemiesKilled = 0;
     [SerializeField]
-    private List<GameObject> fish;
+    private List<GameObject> enemies;
+
+    [SerializeField] private int resourceType = 0; //0-bean, 1 - milk, 2-caramel
+    [SerializeField] private int resource1 = 0;
+    [SerializeField] private int resource2 = 0;
+    
+    //enemy spawning
+    [SerializeField] private List<int> waves;
+    [SerializeField] private List<GameObject> enemyVariants;
+    [SerializeField] private List<Transform> enemiesSpawnPoints;
+    [SerializeField] private int currentWave = 0;
     
     private void Awake()
     {
         stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
+        csUI = GameObject.FindGameObjectWithTag("CSUI");
         iH = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputHandler>();
         camController = GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraController>();
         iH.cC = cC;
         camController.cCam = comCam;
+        if (csUI != null)
+        {
+            csUI.SetActive(false);
+        }
         enterCombat();
     }
     
     void Start()
     {
-        numFish = fish.Count;
-        StartCoroutine(DepleteAir());
+        spawnWave(waves[0]);
+        numEnemies = waves[0];
+        currentWave = 0;
     }
     
     public void OnEnable()
@@ -54,12 +73,14 @@ public class Combat : MonoBehaviour
     {
         PlayerStatEvents.Die += lose;
         BasicEnemy.benemyDied += gainXP;
+        WaveDefense.Destroyed += lose;
     }
 
     private void Unsubscribe()
     {
         PlayerStatEvents.Die -= lose;
         BasicEnemy.benemyDied -= gainXP;
+        WaveDefense.Destroyed -= lose;
     }
 
 
@@ -79,8 +100,11 @@ public class Combat : MonoBehaviour
         StopAllCoroutines();
         Unsubscribe();
         stats.Reset();
+        if (csUI != null)
+        {
+            csUI.SetActive(true);
+        }
         Destroy(this.gameObject);
-        
     }
 
     private IEnumerator ExitCombatWithFade(bool playerWon)
@@ -116,6 +140,19 @@ public class Combat : MonoBehaviour
     private void win()
     {
         stats.GainExperience(xpCollected);
+        if (resourceType == 0)
+        {
+            stats.ChangeCafBean(resource1);
+            stats.ChangeDecafBean(resource2);
+        }
+        else if (resourceType == 1)
+        {
+            stats.ChangeMilkCreamer(waves.Count * 10);
+        }
+        else if (resourceType == 2)
+        {
+            stats.ChangeCarCreamer(waves.Count * 10);
+        }
         StartCoroutine(ExitCombatWithFade(true));
     }
 
@@ -127,29 +164,80 @@ public class Combat : MonoBehaviour
             Destroy(bullet);
         }
     }
-    
-    IEnumerator DepleteAir()
-    {
-        while(true)
-        {
-            PlayerStatEvents.DecreaseOxygen.Invoke(1);
-            yield return new WaitForSeconds(1);
-        }
-    }
 
     private void gainXP()
     {
-        numFishKilled++;
+        numEnemiesKilled++;
         xpCollected++;
-        if (numFishKilled == numFish)
+        DropResources();
+        if (numEnemiesKilled == numEnemies)
         {
-            win();
+            nextWave();
         }
     }
 
     private void Reset()
     {
         xpCollected = 0;
-        numFishKilled = 0;
+        numEnemiesKilled = 0;
+    }
+
+    private void DropResources()
+    {
+        if (resourceType == 0)//beandrop
+        {
+            int amountToDrop = Random.Range(1, 51);
+            amountToDrop += stats.Luck;
+            if (amountToDrop < 11)
+            {
+                resource1 += 1;
+                resource2 += 1;
+            }
+            else if (amountToDrop > 10 && amountToDrop < 21)
+            {
+                resource1 += 2;
+                resource2 += 2;
+            }
+            else if (amountToDrop > 20 && amountToDrop < 31)
+            {
+                resource1 += 3;
+                resource2 += 3;
+            }
+            else if (amountToDrop > 30 && amountToDrop < 41)
+            {
+                resource1 += 4;
+                resource2 += 4;
+            }
+            else if (amountToDrop > 40)
+            {
+                resource1 += 5;
+                resource2 += 5;
+            }
+
+        }
+    }
+
+    private void nextWave()
+    {
+        currentWave++;
+        if (currentWave >= waves.Count)
+        {
+            win();
+        }
+        else
+        {
+            spawnWave(waves[currentWave]);
+            numEnemies = waves[currentWave];
+            numEnemiesKilled = 0;
+        }
+    }
+    private void spawnWave(int enemyCount)
+    {
+        for (int i = 0; i < enemyCount; i++)
+        {
+            int x = Random.Range(0, 3);
+            int y = Random.Range(0, enemiesSpawnPoints.Count);
+            Instantiate(enemyVariants[x], enemiesSpawnPoints[y]);
+        }
     }
 }

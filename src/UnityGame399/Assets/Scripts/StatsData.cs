@@ -25,5 +25,6 @@ namespace PlayerStuff
         public int currentDecafBean;
         public int currentCarCreamer;
         public int currentMilkCreamer;
+        public int statPoints;
     }
 }

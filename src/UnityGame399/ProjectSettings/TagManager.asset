@@ -23,7 +23,10 @@ TagManager:
   - ControlTree
   - NPC
   - BA
+  - Computer
+  - Target
   - CoffeeGrinder
+  - CSUI
   layers:
   - Default
   - TransparentFX

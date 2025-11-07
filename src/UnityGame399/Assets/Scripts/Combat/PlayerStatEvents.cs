@@ -14,6 +14,7 @@ public class PlayerStatEvents :MonoBehaviour
     public static Action<int> DecreaseOxygen;
     public static Action<int> DecreaseSP;
     public static Action<int> IncreaseSP;
+    public static Action<int> PlayerUpgradesStat;
     
     
     
@@ -28,7 +29,7 @@ public class PlayerStatEvents :MonoBehaviour
     }
     private void Subscribe()
     {
-        UpgradeItem.upgradeStat += OnItemInteracted;
+        PlayerUpgradesStat += UpgradeStat;
         PlayerTakesDamage += DamageTaken;
         stats.OnDie += dies; //these events are in the base PlayerStats so they have to be subscribed like this
         stats.OnTakeDamage += DamageTaken2; //these events are in the base PlayerStats so they have to be subscribed like this
@@ -38,7 +39,7 @@ public class PlayerStatEvents :MonoBehaviour
 
     private void Unsubscribe()
     {
-        UpgradeItem.upgradeStat -= OnItemInteracted;
+        PlayerUpgradesStat -= UpgradeStat;
         PlayerTakesDamage -= DamageTaken;
         stats.OnTakeDamage -= DamageTaken2; //these events are in the base PlayerStats so they have to be unsubscribed like this
         stats.OnDie -= dies;//these events are in the base PlayerStats so they have to be unsubscribed like this
@@ -94,5 +95,29 @@ public class PlayerStatEvents :MonoBehaviour
     {
         Logger.Instance.Info($"Player gains {amount} SP");
         stats.GainSP(amount);
+    }
+
+    private void UpgradeStat(int statNum)
+    {
+        stats.ChangeStatPoints(-1);
+        switch (statNum)
+        {
+            case 1:
+                stats.IncreaseMaxHealth(1);
+                Logger.Instance.Info("Player Max HP increases");
+                break;
+            case 2:
+                stats.IncreaseMaxSP(1);
+                Logger.Instance.Info("Player Max SP increases");
+                break;
+            case 3:
+                stats.IncreaseLuck(1);
+                Logger.Instance.Info("Player Luck increases");
+                break;
+            case 4:
+                stats.IncreaseAttack(1);
+                Logger.Instance.Info("Player Attack increases");
+                break;
+        }
     }
 }

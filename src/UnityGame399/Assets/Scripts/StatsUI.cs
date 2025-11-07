@@ -9,9 +9,11 @@ public class StatsUI : MonoBehaviour
 {
     public CanvasGroup statsMenu;
     public TextMeshProUGUI statsText;
-    public Button[] skillButton;
+    public TextMeshProUGUI coffeeText;
+    //public Button[] skillButton;
     public Stats playerStats;
-    public SkillButtons skillButtons;
+    //public SkillButtons skillButtons;
+    public GameObject statsButtons;
 
     public void closeMenu()
     {
@@ -22,8 +24,12 @@ public class StatsUI : MonoBehaviour
 
     public void openMenu()
     {
-        statsText.text = $"Level: {playerStats.Level}\nXP: {playerStats.Experience}\nXP needed:  {playerStats.ExperienceToNextLevel}\nHealth: {playerStats.MaxHealth}\nSP: {playerStats.CurrentSP}\nLuck: {playerStats.Luck}\nAttack: {playerStats.AttackPower}";
-        if (playerStats.HasDashSkill)
+        displayStatsText();
+        displayCoffeeText();
+        
+        /*
+         if (playerStats.HasDashSkill)
+         
         {
             skillButton[0].interactable = true;
         }
@@ -48,8 +54,40 @@ public class StatsUI : MonoBehaviour
             skillButton[5].interactable = true;
         }
         skillButtons.OnOpen();
+        */
         statsMenu.alpha = 1;
         statsMenu.blocksRaycasts = true;
         statsMenu.interactable = true;
+
+        checkIfHasPoints();
+    }
+
+    public void increaseStat(int statToIncrease) // 1:hp, 2:sp, 3:luck, 4:attack
+    {
+        PlayerStatEvents.PlayerUpgradesStat.Invoke(statToIncrease);
+        checkIfHasPoints();
+        displayStatsText();
+    }
+
+    private void checkIfHasPoints()
+    {
+        if (playerStats.StatPoints > 0)
+        {
+            statsButtons.SetActive(true);
+        }
+        else
+        {
+            statsButtons.SetActive(false);
+        }
+    }
+
+    private void displayStatsText()
+    {
+        statsText.text = $"Level: {playerStats.Level}\nXP: {playerStats.Experience}\nXP needed:  {playerStats.ExperienceToNextLevel}\nHealth: {playerStats.MaxHealth}\nSP: {playerStats.MaxSP}\nLuck: {playerStats.Luck}\nAttack: {playerStats.AttackPower}";
+    }
+
+    private void displayCoffeeText()
+    {
+        coffeeText.text = $"Money:  {playerStats.currentGold}\nCaf Beans: {playerStats.currentCafBean}\nDeCaf Beans: {playerStats.currentDecafBean}\nMilk Creamer: {playerStats.currentMilkCreamer}\nCaramel Creamer: {playerStats.currentCarCreamer}";
     }
 }
