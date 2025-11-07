@@ -38,8 +38,13 @@ public class BasicBullet : MonoBehaviour
             PlayerStatEvents.PlayerTakesDamage(1);
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("CombatBarrier"))
+        if (collision.gameObject.CompareTag("CombatBarrier"))
         {
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("Target"))
+        {
+            WaveDefense.Takedamage(-1);
             Destroy(gameObject);
         }
     }
