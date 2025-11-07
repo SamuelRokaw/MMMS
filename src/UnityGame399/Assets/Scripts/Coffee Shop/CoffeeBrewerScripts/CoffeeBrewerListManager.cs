@@ -77,7 +77,7 @@ public class CoffeeBrewerListManager : MonoBehaviour
         {
             groundsButtons[index].image.sprite = groundsButtons[index].normalSprite;
             selectedIndex = -1;
-            Debug.Log("Deselected grounds");
+            Logger.Instance.Info("Deselected grounds");
             return;
         }
         

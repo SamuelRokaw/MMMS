@@ -59,7 +59,7 @@ public class CoffeeBrewerTimeTracker : MonoBehaviour
         return true;
     }
     
-    private void decrementBean(BeanType type) 
+    private void DecrementBean(BeanType type) 
     {
         if (type == BeanType.Caffeinated)
         {
@@ -83,7 +83,7 @@ public class CoffeeBrewerTimeTracker : MonoBehaviour
             return false;
         }
         
-        decrementBean(type);
+        DecrementBean(type);
         
         
         if (!brewerStates.ContainsKey(brewerID))
@@ -107,13 +107,9 @@ public class CoffeeBrewerTimeTracker : MonoBehaviour
 
         BeanType type = brewerStates[brewerID].beanType;
         
-        if (type == BeanType.Caffeinated)
+        if (CoffeeShopManager.Instance != null)
         {
-            CoffeeShopManager.Instance.caffeinatedBrews++;
-        }
-        else if (type == BeanType.Decaf)
-        {
-            CoffeeShopManager.Instance.decafBrews++;
+            CoffeeShopManager.Instance.CompleteBrewing(type);
         }
         
         brewerStates[brewerID].status = BrewerStatus.Idle;

@@ -30,14 +30,14 @@ public class CoffeeGrinderManager : MonoBehaviour
         
         if (lastSelectedIndex != -1 && lastSelectedIndex != currentSelectedIndex)
         {
-            Debug.Log("Coffee type changed. Resetting clicks.");
+            Logger.Instance.Info("Coffee type changed. Resetting clicks.");
             currentClicks = 0;
         }
         
         lastSelectedIndex = currentSelectedIndex;
         
         currentClicks++;
-        Debug.Log($"Grinding beans: {currentClicks}/{clicksRequired}");
+        Logger.Instance.Info($"Grinding beans: {currentClicks}/{clicksRequired}");
         
         if (currentClicks >= clicksRequired)
         {
@@ -48,7 +48,7 @@ public class CoffeeGrinderManager : MonoBehaviour
     private void CompleteGrinding()
     {
         string coffeeName = coffeeTypeSelector.GetSelectedName();
-        Debug.Log($"Grinding complete! {coffeeName} grounds are ready.");
+        Logger.Instance.Info($"Grinding complete! {coffeeName} grounds are ready.");
         
         if (CoffeeShopManager.Instance != null)
         {

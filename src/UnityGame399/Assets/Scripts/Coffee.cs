@@ -4,6 +4,15 @@ public class Coffee
     public BeanType BeanType { get; private set; }
     public double CreamPercent { get; private set; }
     public CreamerType CreamerType { get; private set; }
+    
+    public Coffee(BeanType beanType, double creamPercent, CreamerType creamerType)
+    {
+        BeanType = beanType;
+        CreamPercent = creamPercent;
+        CreamerType = creamerType;
+    
+        Logger.Instance.Info($"Coffee Created → Bean Type: {BeanType}, Creamer: {(CreamPercent * 100):F0}%, Type: {CreamerType}");
+    }
 
     public Coffee()
     {
