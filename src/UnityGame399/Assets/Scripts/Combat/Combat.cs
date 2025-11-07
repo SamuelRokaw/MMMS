@@ -29,6 +29,12 @@ public class Combat : MonoBehaviour
     [SerializeField] private int resource1 = 0;
     [SerializeField] private int resource2 = 0;
     
+    //enemy spawning
+    [SerializeField] private List<int> waves;
+    [SerializeField] private List<GameObject> enemyVariants;
+    [SerializeField] private List<Transform> enemiesSpawnPoints;
+    [SerializeField] private int currentWave = 0;
+    
     private void Awake()
     {
         stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
@@ -41,7 +47,9 @@ public class Combat : MonoBehaviour
     
     void Start()
     {
-        numEnemies = enemies.Count;
+        spawnWave(waves[0]);
+        numEnemies = waves[0];
+        currentWave = 0;
     }
     
     public void OnEnable()
@@ -143,7 +151,7 @@ public class Combat : MonoBehaviour
         DropResources();
         if (numEnemiesKilled == numEnemies)
         {
-            win();
+            nextWave();
         }
     }
 
@@ -185,6 +193,30 @@ public class Combat : MonoBehaviour
                 resource2 += 5;
             }
 
+        }
+    }
+
+    private void nextWave()
+    {
+        currentWave++;
+        if (currentWave >= waves.Count)
+        {
+            win();
+        }
+        else
+        {
+            spawnWave(waves[currentWave]);
+            numEnemies = waves[currentWave];
+            numEnemiesKilled = 0;
+        }
+    }
+    private void spawnWave(int enemyCount)
+    {
+        for (int i = 0; i < enemyCount; i++)
+        {
+            int x = Random.Range(0, 3);
+            int y = Random.Range(0, enemiesSpawnPoints.Count);
+            Instantiate(enemyVariants[x], enemiesSpawnPoints[y]);
         }
     }
 }

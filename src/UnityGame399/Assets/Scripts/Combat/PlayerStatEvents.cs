@@ -99,6 +99,7 @@ public class PlayerStatEvents :MonoBehaviour
 
     private void UpgradeStat(int statNum)
     {
+        stats.ChangeStatPoints(-1);
         switch (statNum)
         {
             case 1:

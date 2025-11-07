@@ -76,6 +76,7 @@ public class Stats : MonoBehaviour
     public void ChangeDecafBean(int amount) => stats.ChangeDecafBean(amount);
     public void ChangeCarCreamer(int amount) => stats.ChangeCarCreamer(amount);
     public void ChangeMilkCreamer(int amount) => stats.ChangeMilkCreamer(amount);
+    public void ChangeStatPoints(int amount) => stats.ChangeStatPoints(amount);
     public void Reset() => stats.Reset();
     
     public event Action OnDie;
@@ -123,6 +124,7 @@ public class Stats : MonoBehaviour
             hasSixSkill = stats.hasSixSkill,
             skillOne = stats.SkillOne,
             skillTwo = stats.SkillTwo,
+            statPoints = stats.StatPoints,
         };
     }
     
@@ -176,6 +178,7 @@ public class Stats : MonoBehaviour
         stats.hasSixSkill = data.hasSixSkill;
         stats.SkillOne = data.skillOne;
         stats.SkillTwo = data.skillTwo;
+        stats.StatPoints = data.statPoints;
     }
 
     public void newSave()
@@ -188,20 +191,21 @@ public class Stats : MonoBehaviour
         stats.MaxSP = 5;
         stats.CurrentSP = 5;
         stats.Luck = 0;
-        stats.CurrentGold = 0;
-        stats.CurrentCafBean = 0;
-        stats.CurrentDecafBean = 0;
-        stats.CurrentCarCreamer = 0;
-        stats.CurrentMilkCreamer = 0;
+        stats.StatPoints = 0;
+        stats.CurrentGold = 100;
+        stats.CurrentCafBean = 50;
+        stats.CurrentDecafBean = 50;
+        stats.CurrentCarCreamer = 50;
+        stats.CurrentMilkCreamer = 50;
         stats.AttackPower = 1;
-        stats.HasDashSkill = false;
-        stats.HasSpearSkill = false;
+        stats.HasDashSkill = true;
+        stats.HasSpearSkill = true;
         stats.hasThreeSkill = false;
         stats.hasFourSkill = false;
         stats.hasFiveSkill = false;
         stats.hasSixSkill = false;
-        stats.SkillOne = SkillTypes.None;
-        stats.SkillTwo = SkillTypes.None;
+        stats.SkillOne = SkillTypes.Dash;
+        stats.SkillTwo = SkillTypes.Spear;
         SaveToPlayerPrefs();
     }
 }

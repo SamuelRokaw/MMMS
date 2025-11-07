@@ -17538,6 +17538,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386761088}
   m_CullTransparentMesh: 1
+--- !u!20 &401382578 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7716253360704306920, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
+  m_PrefabInstance: {fileID: 777904950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &408213407
 GameObject:
   m_ObjectHideFlags: 0
@@ -18813,6 +18818,10 @@ PrefabInstance:
     - target: {fileID: 1420764138145773932, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
       propertyPath: m_Name
       value: overworldPlayer_ex
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487398042489065032, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2563648042927650303, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
       propertyPath: m_Enabled
@@ -21209,6 +21218,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 5018245360316724722, guid: afccec15a1a22c74fb25211a16f42e92, type: 3}
+    - target: {fileID: 1692594235780934961, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: oWCam
+      value: 
+      objectReference: {fileID: 401382578}
     - target: {fileID: 2728928685005089940, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

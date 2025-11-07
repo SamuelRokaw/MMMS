@@ -14,16 +14,16 @@ namespace PlayerStuff
         public int CurrentHealth { get; set; }
         public int MaxSP { get; set; } = 5;
         public int CurrentSP { get; set; }
-        public int CurrentGold { get; set; } = 0;
-        public int CurrentCafBean { get; set; } = 0;
-        public int CurrentDecafBean{ get; set; } = 0;
-        public int CurrentCarCreamer { get; set; } = 0;
-        public int CurrentMilkCreamer { get; set; } = 0;
+        public int CurrentGold { get; set; } = 100;
+        public int CurrentCafBean { get; set; } = 50;
+        public int CurrentDecafBean{ get; set; } = 50;
+        public int CurrentCarCreamer { get; set; } = 50;
+        public int CurrentMilkCreamer { get; set; } = 50;
         public int Luck { get; set; } = 0;
         public int AttackPower { get; set; } = 1;
         public int MaxLevel { get; set; } = 60;
-        public bool HasDashSkill { get; set; } = false;
-        public bool HasSpearSkill { get; set; } = false;
+        public bool HasDashSkill { get; set; } = true;
+        public bool HasSpearSkill { get; set; } = true;
         public bool hasThreeSkill { get; set; } = false;
         public bool hasFourSkill { get; set; } = false;
         public bool hasFiveSkill { get; set; } = false;
@@ -128,6 +128,11 @@ namespace PlayerStuff
         {
             CurrentHealth = MaxHealth;
             CurrentSP = MaxSP;
+        }
+
+        public void ChangeStatPoints(int amount)
+        {
+            StatPoints += amount;
         }
     }
 }
