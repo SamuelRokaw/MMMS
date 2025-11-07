@@ -278,8 +278,8 @@ public class PlayerStatsTests
         [Test]
         public void SkillTypes_DefaultToNone()
         {
-            Assert.AreEqual(SkillTypes.HasDashSkill, stats.SkillOne);
-            Assert.AreEqual(SkillTypes.HasSpearSkill, stats.SkillTwo);
+            Assert.AreEqual(SkillTypes.None, stats.SkillOne);
+            Assert.AreEqual(SkillTypes.None, stats.SkillTwo);
         }
         
         
