@@ -16,6 +16,8 @@ public class Combat : MonoBehaviour
     [SerializeField] 
     private Stats stats;
 
+    [SerializeField] private GameObject csUI;
+
     [SerializeField] 
     private int xpCollected = 0;
 
@@ -39,10 +41,15 @@ public class Combat : MonoBehaviour
     private void Awake()
     {
         stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
+        csUI = GameObject.FindGameObjectWithTag("CSUI");
         iH = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputHandler>();
         camController = GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraController>();
         iH.cC = cC;
         camController.cCam = comCam;
+        if (csUI != null)
+        {
+            csUI.SetActive(false);
+        }
         enterCombat();
     }
     
@@ -93,8 +100,11 @@ public class Combat : MonoBehaviour
         StopAllCoroutines();
         Unsubscribe();
         stats.Reset();
+        if (csUI != null)
+        {
+            csUI.SetActive(true);
+        }
         Destroy(this.gameObject);
-        
     }
 
     private IEnumerator ExitCombatWithFade(bool playerWon)

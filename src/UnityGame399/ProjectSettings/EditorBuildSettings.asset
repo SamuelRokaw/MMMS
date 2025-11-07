@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test_Sammy.unity
     guid: 291ea1697cccf63439228460b5568647
+  - enabled: 1
+    path: Assets/Scenes/DaytimeWorld.unity
+    guid: b7b452bfbd45d4fcf8e6fe5f4fef20cc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

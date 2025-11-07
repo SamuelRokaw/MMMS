@@ -51,6 +51,7 @@ public class OverworldInteraction : MonoBehaviour
             else if (interactTarget.tag == "Computer")
             {
                 interactTarget.GetComponent<Computer>().Interact();
+            }
             else if (interactTarget.tag == "CoffeeGrinder")
             {
                 interactTarget.GetComponent<CoffeeGame>().Interact();
