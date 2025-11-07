@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CoffeeShopManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class CoffeeShopManager : MonoBehaviour
     public int caffeinatedBrews = 0;
     public List<Coffee> coffees = new List<Coffee>();
     
+    public UnityEvent OnCoffeeAdded;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -20,6 +23,11 @@ public class CoffeeShopManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+        
+        if (OnCoffeeAdded == null)
+        {
+            OnCoffeeAdded = new UnityEvent();
         }
     }
 
@@ -59,5 +67,7 @@ public class CoffeeShopManager : MonoBehaviour
         }
         
         coffees.Add(coffee);
+
+        OnCoffeeAdded?.Invoke();
     }
 }
