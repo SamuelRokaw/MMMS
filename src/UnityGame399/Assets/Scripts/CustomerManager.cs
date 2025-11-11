@@ -10,6 +10,7 @@ public class CustomerManager : MonoBehaviour
     [SerializeField] public GameObject customerPrefab;
     [SerializeField] public TextMeshProUGUI orderTicketText;
     [SerializeField] public Trash trashCan;
+    [SerializeField] public Stats playerStats;
     private Queue<GameObject> customerQueue = new Queue<GameObject>();
     private Queue<GameObject> customersToOrder = new Queue<GameObject>();
     private Vector3 spawnPosition = new Vector3(-6, -3, 0);
@@ -45,7 +46,7 @@ public class CustomerManager : MonoBehaviour
     public void FinishOrder()
     {
         GameObject submittedCustomer = customersToOrder.Dequeue();
-        trashCan.TryTrash(submittedCustomer.GetComponent<CustomerNPC>().Customer.TrashChance);
+        trashCan.TryTrash(submittedCustomer.GetComponent<CustomerNPC>().Customer.TrashChance + playerStats.Luck);
         
         foreach (GameObject customer in customersToOrder)
         {

@@ -41,7 +41,7 @@ public class Trash : MonoBehaviour
     {
         currentTrash++;
         Logger.Instance.Info($"Trash Added. Current Trash: {currentTrash}/{maxTrash}");
-        if (currentTrash >= maxTrash)
+        if (currentTrash == maxTrash)
         {
             IsFull = true;
             sr.sprite = fullSprite;
