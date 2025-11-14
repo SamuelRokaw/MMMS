@@ -30,20 +30,30 @@ public class StateManager : MonoBehaviour
         {
             case GameStates.MainMenu:
                 SoundManager.Instance.switchBackGroundTrackWithFade(startScreenTrack);
+                currentGameState = state;
                 break;
             case GameStates.CoffeeShop:
                 SoundManager.Instance.switchBackGroundTrackWithFade(coffeeShopTrack);
+                currentGameState = state;
                 break;
             case GameStates.Combat:
                 SoundManager.Instance.switchBackGroundTrackWithFade(combatTrack);
+                currentGameState = state;
                 break;
             case GameStates.Dialogue:
+                currentGameState = state;
                 break;
             case GameStates.PauseMenu:
+                currentGameState = state;
                 break;
             case GameStates.StatsMenu:
+                currentGameState = state;
                 break;
             case GameStates.InventoryMenu:
+                currentGameState = state;
+                break;
+            case GameStates.MakingCoffee:
+                currentGameState = state;
                 break;
         }
     }
@@ -75,5 +85,9 @@ public class StateManager : MonoBehaviour
     public void SwitchToInventory()
     {
         SwitchState(GameStates.InventoryMenu);
+    }
+    public void SwitchToMakingCofee()
+    {
+        SwitchState(GameStates.MakingCoffee);
     }
 }

@@ -337,7 +337,7 @@ MonoBehaviour:
   playerSFXSource: {fileID: 1959047074}
   enemySFXSource: {fileID: 487489777}
   otherSFXSource: {fileID: 1642718893}
-  fadeDuration: 3
+  fadeDuration: 1.5
 --- !u!4 &214943985
 Transform:
   m_ObjectHideFlags: 0

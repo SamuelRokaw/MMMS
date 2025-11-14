@@ -9,5 +9,6 @@ namespace PlayerStuff
         StatsMenu,
         InventoryMenu,
         Dialogue,
+        MakingCoffee,
     }
 }

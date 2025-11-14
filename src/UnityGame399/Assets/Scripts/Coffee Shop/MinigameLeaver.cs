@@ -13,6 +13,7 @@ public class MinigameLeaver : MonoBehaviour
         Logger.Instance.Info("Exiting minigame");
         currentGame.resetUseState();
         CoffeeGameLoader.Instance.UnloadMinigame(currentMinigame);
+        StateManager.Instance.SwitchToCoffeeShop();
     }
     void Start()
     {

@@ -11,6 +11,7 @@ public class CoffeeGame : Interactable
             used = true;
             Logger.Instance.Info("Coffee Grinder interact");
             CoffeeGameLoader.Instance.LoadMinigame(coffeeMinigame);
+            StateManager.Instance.SwitchToMakingCofee();
         }
     }
 

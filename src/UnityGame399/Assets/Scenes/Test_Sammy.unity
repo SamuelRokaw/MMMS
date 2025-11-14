@@ -5901,6 +5901,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3328536631033781085, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328536631033781085, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328536631033781085, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 8265333006708780974, guid: 1b54508f3370c35438bdb915f8c4312e, type: 3}
@@ -5908,6 +5916,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4193331559917682430, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
+      propertyPath: playerRB
+      value: 
+      objectReference: {fileID: 693152846}
     - target: {fileID: 5514399291736237968, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
       propertyPath: m_Size.x
       value: 0.8091717
@@ -6016,6 +6028,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18365b45382627e428cda2aa90398ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OverworldMovement
+--- !u!50 &693152846 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1008466907253642060, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
+  m_PrefabInstance: {fileID: 693152843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &693152847 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3328536631033781085, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
+  m_PrefabInstance: {fileID: 693152843}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &699131119
 GameObject:
   m_ObjectHideFlags: 0
@@ -9037,6 +9059,34 @@ PrefabInstance:
       propertyPath: statsUI
       value: 
       objectReference: {fileID: 1035627036}
+    - target: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: inventoryKey
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: owSpriteRenderer
+      value: 
+      objectReference: {fileID: 693152847}
+    - target: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: inventorySlidePanel
+      value: 
+      objectReference: {fileID: 1206767882}
+    - target: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: playerSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: 'playerSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8265333006708780974, guid: 1b54508f3370c35438bdb915f8c4312e, type: 3}
+    - target: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: 'playerSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: -8894531281158279759, guid: 86824f770e3d36145a3020b0655d65b2, type: 3}
+    - target: {fileID: 7722602599857861871, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: 'playerSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2966388318634517685, guid: 5666cd9e44d6b7445b0bc0c358e88b12, type: 3}
     - target: {fileID: 8852337323811217387, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       propertyPath: m_Name
       value: OverWorld_Controller 1

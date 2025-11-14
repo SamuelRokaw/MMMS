@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using PlayerStuff;
 using TMPro;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
@@ -13,10 +14,11 @@ public class InputHandler : MonoBehaviour
     public CombatControl cC;  //combat
     public CanvasGroup pauseMenu; //pause menu
     public StatsUI statsUI;
-    public bool inCombat = false;
-    public bool isPaused = false;
-    public bool isStatsOpen = false;
-    public bool inDialogue = false;
+    public InventorySlidePanel inventorySlidePanel;
+    
+    //sprites
+    [SerializeField] private List<Sprite> playerSprites;
+    [SerializeField] private SpriteRenderer owSpriteRenderer;
     
     //action dictionary
     public KeyCode upKey;
@@ -28,6 +30,7 @@ public class InputHandler : MonoBehaviour
     public KeyCode attackKey;
     public KeyCode pauseKey;
     public KeyCode statsKey;
+    public KeyCode inventoryKey;
     private Dictionary<KeyCode, Action> inputDictionary;
     private Dictionary<KeyCode, Action> inputMoveDictionary;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,7 +42,8 @@ public class InputHandler : MonoBehaviour
             {skill1Key, skill1},
             {skill2Key, skill2},
             {pauseKey, pause},
-            {statsKey, stats}
+            {statsKey, stats},
+            {inventoryKey, inventory}
         };
         inputMoveDictionary = new Dictionary<KeyCode, Action>
         {
@@ -80,43 +84,49 @@ public class InputHandler : MonoBehaviour
 
     public void stats()
     {
-        if (inCombat || isPaused || inDialogue)
-        {
-            return;
-        }
-        
-        if (isStatsOpen)
+        if (StateManager.Instance.currentGameState == GameStates.StatsMenu)
         {
             Logger.Instance.Info("Close Stats");
-            isStatsOpen = false;
+            StateManager.Instance.SwitchToCoffeeShop();
             statsUI.closeMenu();
         }
-        else
+        else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop)
         {
             Logger.Instance.Info("Open Stats");
             statsUI.openMenu();
-            isStatsOpen = true;
+            StateManager.Instance.SwitchToStats();
+        }
+    }
+    
+    public void inventory()
+    {
+        if (StateManager.Instance.currentGameState == GameStates.InventoryMenu)
+        {
+            StateManager.Instance.SwitchToCoffeeShop();
+            inventorySlidePanel.TogglePanel();
+            Logger.Instance.Info("Close Coffee Inventory");
+        }
+        else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        {
+            StateManager.Instance.SwitchToInventory();
+            inventorySlidePanel.TogglePanel();
+            Logger.Instance.Info("Opened Coffee Inventory");
         }
     }
     
     public void pause()
     {
-        if (inCombat || isStatsOpen || inDialogue)
+        if (StateManager.Instance.currentGameState == GameStates.PauseMenu)
         {
-            return;
-        }
-        
-        if (isPaused)
-        {
-            isPaused = false;
+            StateManager.Instance.SwitchToCoffeeShop();
             pauseMenu.alpha = 0;
             pauseMenu.blocksRaycasts = false;
             pauseMenu.interactable = false;
             Logger.Instance.Info("Close Pause Menu");
         }
-        else
+        else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop)
         {
-            isPaused = true;
+            StateManager.Instance.SwitchToPause();
             pauseMenu.alpha = 1;
             pauseMenu.blocksRaycasts = true;
             pauseMenu.interactable = true;
@@ -127,79 +137,78 @@ public class InputHandler : MonoBehaviour
     
     private void moveup()
     {
-        if (isPaused || isStatsOpen || inDialogue)
-        {
-            return;
-        }
-        if(inCombat)
+        
+        if(StateManager.Instance.currentGameState == GameStates.Combat)
         {
             cC.moveup();
+            cC.changeSprite(playerSprites[1], 1);
             Logger.Instance.Info("Moved Up");
         }
-        else
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
         {
             Logger.Instance.Info("Moved Up");
+            owSpriteRenderer.sprite = playerSprites[1];
+            owSpriteRenderer.flipX = false;
             owM.moveup();
         }
     }
     private void movedown()
     {
-        if (isPaused || isStatsOpen || inDialogue)
-        {
-            return;
-        }
-        if(inCombat)
+        
+        if(StateManager.Instance.currentGameState == GameStates.Combat)
         {
             Logger.Instance.Info("Moved Down");
+            cC.changeSprite(playerSprites[0], 4);
+            
             cC.movedown();
         }
-        else
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
         {
             Logger.Instance.Info("Moved Down");
+            owSpriteRenderer.sprite = playerSprites[0];
+            owSpriteRenderer.flipX = false;
             owM.movedown();
         }
     }
     private void moveleft()
     {
-        if (isPaused || isStatsOpen || inDialogue)
-        {
-            return;
-        }
-        if(inCombat)
+        
+        if(StateManager.Instance.currentGameState == GameStates.Combat)
         {
             Logger.Instance.Info("Moved Left");
+            cC.changeSprite(playerSprites[2], 3);
+            
             cC.moveleft();
         }
-        else
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
         {
-            Logger.Instance.Info("Moved Right");
+            Logger.Instance.Info("Moved Left");
+            owSpriteRenderer.sprite = playerSprites[2];
+            owSpriteRenderer.flipX = true;
             owM.moveleft();
         }
     }
     private void moveright()
     {
-        if (isPaused || isStatsOpen || inDialogue)
-        {
-            return;
-        }
-        if(inCombat)
+        
+        if(StateManager.Instance.currentGameState == GameStates.Combat)
         {
             Logger.Instance.Info("Moved Right");
+            cC.changeSprite(playerSprites[2], 2);
             cC.moveright();
         }
-        else
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
         {
             Logger.Instance.Info("Moved Right");
+            owSpriteRenderer.sprite = playerSprites[2];
+            owSpriteRenderer.flipX = false;
             owM.moveright();
         }
     }
     private void skill1()
     {
-        if (isPaused || isStatsOpen || inDialogue)
-        {
-            return;
-        }
-        if(inCombat)
+        
+        if(StateManager.Instance.currentGameState == GameStates.Combat)
         {
             Logger.Instance.Info("trying to use skill1");
             cC.skill1();
@@ -208,11 +217,7 @@ public class InputHandler : MonoBehaviour
 
     private void skill2()
     {
-        if (isPaused || isStatsOpen || inDialogue)
-        {
-            return;
-        }
-        if(inCombat)
+        if(StateManager.Instance.currentGameState == GameStates.Combat)
         {
             Logger.Instance.Info("trying to use skill2");
             cC.skill2();
@@ -221,16 +226,13 @@ public class InputHandler : MonoBehaviour
 
     private void attack()
     {
-        if (isPaused || isStatsOpen || inDialogue)
-        {
-            return;
-        }
-        if(inCombat)
+        
+        if(StateManager.Instance.currentGameState == GameStates.Combat)
         {
             Logger.Instance.Info("trying to attack");
             cC.punch();
         }
-        else
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
         {
             Logger.Instance.Info("trying to interact");
             owI.Interact();

@@ -29,7 +29,7 @@ public class Dialog : MonoBehaviour
             _index = 0;
             gameObject.SetActive(false);
             DoDialog(false);
-            iH.inDialogue = false;
+            StateManager.Instance.SwitchToCoffeeShop();
             return;
         }
         dialogText.text = dialog[_index];
@@ -67,7 +67,7 @@ public class Dialog : MonoBehaviour
         _index = 0;
         DoDialog(false);
         _index++;
-        iH.inDialogue = true;
+        StateManager.Instance.SwitchToDialogue();
     }
 
     public void OnChoice1()

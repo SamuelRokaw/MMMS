@@ -86,7 +86,7 @@ public class Combat : MonoBehaviour
 
     private void enterCombat()
     {
-        iH.inCombat = true;
+        StateManager.Instance.SwitchToCombat();
         stats.Reset();
         camController.cCamActive();
         Reset();
@@ -94,7 +94,7 @@ public class Combat : MonoBehaviour
 
     private void exitCombat()
     {
-        iH.inCombat = false;
+        StateManager.Instance.SwitchToCoffeeShop();
         camController.owCamActive();
         clearCombat();
         StopAllCoroutines();
