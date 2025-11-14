@@ -56,6 +56,18 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<CoffeeGame>().Interact();
             }
+            else if (interactTarget.tag == "Trash")
+            {
+                interactTarget.GetComponent<Trash>().Interact();
+            }
+            else if (interactTarget.tag == "TrashCan")
+            {
+                interactTarget.GetComponent<TrashCan>().Interact();
+            }
+            else if (interactTarget.tag == "Dumpster")
+            {
+                interactTarget.GetComponent<Dumpster>().Interact();
+            }
             CloseInteractableIcon();
         }
     }

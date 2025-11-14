@@ -27,6 +27,9 @@ TagManager:
   - Target
   - CoffeeGrinder
   - CSUI
+  - Trash
+  - TrashCan
+  - Dumpster
   layers:
   - Default
   - TransparentFX

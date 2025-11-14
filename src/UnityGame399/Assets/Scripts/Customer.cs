@@ -17,7 +17,7 @@ public class Customer
         double scaledDouble = rawDouble * 5.0;
         TipAmount = Math.Round(scaledDouble, 2);
         
-        TrashChance = rng.Next(0, 10);
+        TrashChance = rng.Next(0, 3);
         TipChance = rng.Next(0, 10);
         
         Name = Names[rng.Next(Names.Length)];
