@@ -5,6 +5,8 @@ public class Customer
     public string Name { get; private set; }
     private string[] Names = { "Tom", "Sammy", "Ivan", "Jenn", "Pete", "Daniel" };
     public double TipAmount { get; private set; }
+    public int TrashChance { get; private set;  }
+    public int TipChance { get; private set;  }
     public CustomerPersonality Personality { get; private set; }
     
     public Customer()
@@ -14,6 +16,9 @@ public class Customer
         double rawDouble = rng.NextDouble();
         double scaledDouble = rawDouble * 5.0;
         TipAmount = Math.Round(scaledDouble, 2);
+        
+        TrashChance = rng.Next(0, 3);
+        TipChance = rng.Next(0, 10);
         
         Name = Names[rng.Next(Names.Length)];
         
