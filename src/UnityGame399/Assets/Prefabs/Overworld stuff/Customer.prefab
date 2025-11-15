@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3289338646877383781}
   m_Layer: 0
   m_Name: Customer
-  m_TagString: Untagged
+  m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb587a405dac249039339763ea771cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerNPC
+  used: 0
   sprites:
   - {fileID: 21300000, guid: 6f9d8741c5f9445beac2d587679c4047, type: 3}
   - {fileID: 21300000, guid: bd6bc448343f54b3da6d031e2cc45291, type: 3}
@@ -116,7 +117,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 57634c4d5cea5455d89ba206252e9a20, type: 3}
   - {fileID: 21300000, guid: 08f0d31c853cb43e0ba2245e90c987ae, type: 3}
   - {fileID: 21300000, guid: d86be9e705dd4418694e4643a1a378e5, type: 3}
+  dialoguePrefabs:
+  - {fileID: 5512439061304884739, guid: 34897641c35a4415087c805c9576e1be, type: 3}
   CustomerSpriteRenderer: {fileID: 5095292424124844607}
+  Canvas: {fileID: 0}
   orderIndex: 0
   moveSpeed: 5
 --- !u!61 &5287347946353189436
@@ -191,4 +195,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
