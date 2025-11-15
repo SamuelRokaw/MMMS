@@ -30,6 +30,8 @@ TagManager:
   - Trash
   - TrashCan
   - Dumpster
+  - Customer
+  - CustomerManager
   layers:
   - Default
   - TransparentFX
