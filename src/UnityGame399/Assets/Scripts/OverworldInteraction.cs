@@ -68,6 +68,14 @@ public class OverworldInteraction : MonoBehaviour
             {
                 interactTarget.GetComponent<Dumpster>().Interact();
             }
+            else if (interactTarget.tag == "Customer")
+            {
+                //interactTarget.GetComponent<CustomerNPC>().Interact();
+            }
+            else if (interactTarget.tag == "CustomerManager")
+            {
+                interactTarget.GetComponent<CustomerManager>().Interact();
+            }
             CloseInteractableIcon();
         }
     }

@@ -9,7 +9,7 @@ using TMPro;
 public class Dialog : MonoBehaviour
 {
     [SerializeField] private CanvasGroup dialogCanvasGroup;
-    [SerializeField] private string[] dialog;
+    public string[] dialog;
     [SerializeField] private bool[] hasDialogChoice;
     [SerializeField] private Button choice1Button;
     [SerializeField] private Button choice2Button;
@@ -62,8 +62,9 @@ public class Dialog : MonoBehaviour
 
     }
 
-    private void Start()
+    void Start()
     {
+        iH = GameObject.Find("OverWorld_Controller 1").GetComponent<InputHandler>();
         _index = 0;
         DoDialog(false);
         _index++;
