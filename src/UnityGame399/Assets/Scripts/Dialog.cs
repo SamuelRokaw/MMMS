@@ -30,6 +30,7 @@ public class Dialog : MonoBehaviour
             gameObject.SetActive(false);
             DoDialog(false);
             iH.inDialogue = false;
+            Destroy(this.gameObject);
             return;
         }
         dialogText.text = dialog[_index];
