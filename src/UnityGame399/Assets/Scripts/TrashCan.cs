@@ -70,19 +70,25 @@ public class TrashCan : Interactable
         trashSpawnState[spawnIndex] = true;
         GameObject tempTrash = Instantiate(TrashPrefab, spawnPoint.position, Quaternion.identity);
         tempTrash.GetComponent<Trash>().trashCan = this;
+
     }
 
     public override void Interact()
     {
-        trashBag.SetActive(true);
-        for(int i = 0; i < trashSpawnPoints.Count; ++i)
+        if(currentTrashInCan > 0)
         {
-            trashSpawnState[i] = false;
+            trashBag.SetActive(true);
+            StateManager.Instance.SwitchToTakingOutTrash();
+            for (int i = 0; i < trashSpawnPoints.Count; ++i)
+            {
+                trashSpawnState[i] = false;
+            }
+
+            currentTrashInCan = 0;
+            sr.sprite = emptySprite;
+            IsFull = false;
+            Logger.Instance.Info("Trash Emptied");
         }
-        currentTrashInCan = 0;
-        sr.sprite = emptySprite;
-        IsFull = false;
-        Logger.Instance.Info("Trash Emptied");
     }
     
     public void AddTrashToCan()

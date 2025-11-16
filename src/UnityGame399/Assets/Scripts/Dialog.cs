@@ -29,7 +29,7 @@ public class Dialog : MonoBehaviour
             _index = 0;
             gameObject.SetActive(false);
             DoDialog(false);
-            iH.inDialogue = false;
+            StateManager.Instance.SwitchToCoffeeShop();
             Destroy(this.gameObject);
             return;
         }
@@ -65,11 +65,11 @@ public class Dialog : MonoBehaviour
 
     void Start()
     {
-        iH = GameObject.Find("OverWorld_Controller 1").GetComponent<InputHandler>();
+        iH = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputHandler>();
         _index = 0;
         DoDialog(false);
         _index++;
-        iH.inDialogue = true;
+        StateManager.Instance.SwitchToDialogue();
     }
 
     public void OnChoice1()

@@ -7,11 +7,12 @@ using PlayerStuff;
 public class CombatControl : MonoBehaviour
 {
     // movement objects idk
-    private Rigidbody2D cPlayerRB;
-    private Transform cPlayerTran;
+    [SerializeField] private Rigidbody2D playerRB;
+    [SerializeField]private Transform cPlayerTran;
     private Stats stats;
-    
+    [SerializeField] private SpriteRenderer playerSprite;
     //punching
+    [SerializeField] private List<Transform> punchSpawns;
     [SerializeField] private Transform punchSpawn;
     [SerializeField] private GameObject punchPrefab;
     private bool onCooldown;
@@ -31,8 +32,11 @@ public class CombatControl : MonoBehaviour
     public float spdMod = 1f; //for dash and similar abilities
     private void Awake()
     {
-        cPlayerRB = GetComponent<Rigidbody2D>();
-        cPlayerTran = cPlayerRB.transform;
+        if (playerRB == null)
+        {
+            playerRB = GetComponent<Rigidbody2D>(); 
+        }
+        cPlayerTran = playerRB.transform;
         stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
         fillSkillDict();
         if (stats.SkillOne != SkillTypes.None)
@@ -48,29 +52,29 @@ public class CombatControl : MonoBehaviour
     public void moveup()
     {
         zerovelocity();
-        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.up * spdMod * speed * Time.deltaTime);
-        cPlayerTran.rotation = Quaternion.Euler(0, 0, 0);
+        punchSpawn = punchSpawns[0];
+        playerRB.MovePosition(playerRB.position + Vector2.up * spdMod * speed * Time.deltaTime);
     }
 
     public void movedown()
     {
         zerovelocity();
-        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.down * spdMod * speed * Time.deltaTime);
-        cPlayerTran.rotation = Quaternion.Euler(0, 0, 180);
+        punchSpawn = punchSpawns[1];
+        playerRB.MovePosition(playerRB.position + Vector2.down * spdMod * speed * Time.deltaTime);
     }
 
     public void moveleft()
     {
         zerovelocity();
-        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.left * spdMod * speed * Time.deltaTime);
-        cPlayerTran.rotation = Quaternion.Euler(0, 0, 90);
+        punchSpawn = punchSpawns[2];
+        playerRB.MovePosition(playerRB.position + Vector2.left * spdMod * speed * Time.deltaTime);
     }
 
     public void moveright()
     {
         zerovelocity();
-        cPlayerRB.MovePosition(cPlayerRB.position + Vector2.right * spdMod * speed * Time.deltaTime);
-        cPlayerTran.rotation = Quaternion.Euler(0, 0, 270);
+        punchSpawn = punchSpawns[3];
+        playerRB.MovePosition(playerRB.position + Vector2.right * spdMod * speed * Time.deltaTime);
     }
 
     public void punch()
@@ -123,7 +127,7 @@ public class CombatControl : MonoBehaviour
 
     private void zerovelocity()
     {
-        cPlayerRB.linearVelocity = Vector2.zero;
+        playerRB.linearVelocity = Vector2.zero;
     }
 
     private void fillSkillDict()
@@ -137,5 +141,18 @@ public class CombatControl : MonoBehaviour
             skills.Add(SkillTypes.Spear, spear);
         }
         
+    }
+
+    public void changeSprite(Sprite sprite, int direction)
+    {
+        if (direction != 3)
+        {
+            playerSprite.flipX = false;
+        }
+        else
+        {
+            playerSprite.flipX = true;
+        }
+        playerSprite.sprite  = sprite;
     }
 }
