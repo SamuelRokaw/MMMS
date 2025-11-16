@@ -52,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, _player.position);
         if (isWaveDefense)
         {
-            if (distanceToPlayer <= 10)
+            if (distanceToPlayer <= 6)
             {
                 // Determine direction towards the player
                 Vector2 direction = (_player.position - transform.position).normalized;

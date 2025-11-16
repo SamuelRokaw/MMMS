@@ -73,7 +73,7 @@ public class CombatControl : MonoBehaviour
     public void moveright()
     {
         zerovelocity();
-        punchSpawn = punchSpawns[4];
+        punchSpawn = punchSpawns[3];
         playerRB.MovePosition(playerRB.position + Vector2.right * spdMod * speed * Time.deltaTime);
     }
 

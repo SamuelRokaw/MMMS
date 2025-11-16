@@ -33,7 +33,10 @@ public class StateManager : MonoBehaviour
                 currentGameState = state;
                 break;
             case GameStates.CoffeeShop:
-                SoundManager.Instance.switchBackGroundTrackWithFade(coffeeShopTrack);
+                if(currentGameState == GameStates.Combat || currentGameState == GameStates.MainMenu)
+                {
+                    SoundManager.Instance.switchBackGroundTrackWithFade(coffeeShopTrack);
+                }
                 currentGameState = state;
                 break;
             case GameStates.Combat:
