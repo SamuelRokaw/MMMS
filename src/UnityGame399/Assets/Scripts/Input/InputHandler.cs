@@ -144,7 +144,7 @@ public class InputHandler : MonoBehaviour
             cC.changeSprite(playerSprites[1], 1);
             Logger.Instance.Info("Moved Up");
         }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
         {
             Logger.Instance.Info("Moved Up");
             owSpriteRenderer.sprite = playerSprites[1];
@@ -162,7 +162,7 @@ public class InputHandler : MonoBehaviour
             
             cC.movedown();
         }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
         {
             Logger.Instance.Info("Moved Down");
             owSpriteRenderer.sprite = playerSprites[0];
@@ -180,7 +180,7 @@ public class InputHandler : MonoBehaviour
             
             cC.moveleft();
         }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
         {
             Logger.Instance.Info("Moved Left");
             owSpriteRenderer.sprite = playerSprites[2];
@@ -197,7 +197,7 @@ public class InputHandler : MonoBehaviour
             cC.changeSprite(playerSprites[2], 2);
             cC.moveright();
         }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
         {
             Logger.Instance.Info("Moved Right");
             owSpriteRenderer.sprite = playerSprites[2];
@@ -232,7 +232,7 @@ public class InputHandler : MonoBehaviour
             Logger.Instance.Info("trying to attack");
             cC.punch();
         }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
         {
             Logger.Instance.Info("trying to interact");
             owI.Interact();

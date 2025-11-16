@@ -78,6 +78,7 @@ public class TrashCan : Interactable
         if(currentTrashInCan > 0)
         {
             trashBag.SetActive(true);
+            StateManager.Instance.SwitchToTakingOutTrash();
             for (int i = 0; i < trashSpawnPoints.Count; ++i)
             {
                 trashSpawnState[i] = false;

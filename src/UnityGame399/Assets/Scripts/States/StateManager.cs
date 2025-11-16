@@ -58,6 +58,9 @@ public class StateManager : MonoBehaviour
             case GameStates.MakingCoffee:
                 currentGameState = state;
                 break;
+            case GameStates.TakingOutTrash:
+                currentGameState = state;
+                break;
         }
     }
 
@@ -92,5 +95,10 @@ public class StateManager : MonoBehaviour
     public void SwitchToMakingCofee()
     {
         SwitchState(GameStates.MakingCoffee);
+    }
+
+    public void SwitchToTakingOutTrash()
+    {
+        SwitchState(GameStates.TakingOutTrash);
     }
 }

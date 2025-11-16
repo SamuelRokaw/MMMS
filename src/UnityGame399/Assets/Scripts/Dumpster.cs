@@ -9,5 +9,6 @@ public class Dumpster : Interactable
     {
         Logger.Instance.Info("Interacted with Dumpster");
         trashBag.SetActive(false);
+        StateManager.Instance.SwitchToCoffeeShop();
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlayerStuff;
 using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
@@ -13,6 +14,10 @@ public abstract class Interactable : MonoBehaviour
         if (collision.gameObject.CompareTag("OverWorldPlayer") && !used)
         {
             collision.gameObject.GetComponent<OverworldInteraction>().OpenInteractableIcon();
+            if (StateManager.Instance.currentGameState == GameStates.TakingOutTrash && !(this.gameObject.CompareTag("Dumpster")))
+            {
+                return;
+            }
             collision.gameObject.GetComponent<OverworldInteraction>().setinteractTarget(this.gameObject);
         }
     }
@@ -29,6 +34,10 @@ public abstract class Interactable : MonoBehaviour
         if (collision.gameObject.CompareTag("OverWorldPlayer") && !used)
         {
             collision.gameObject.GetComponent<OverworldInteraction>().OpenInteractableIcon();
+            if (StateManager.Instance.currentGameState == GameStates.TakingOutTrash && !(this.gameObject.CompareTag("Dumpster")))
+            {
+                return;
+            }
             collision.gameObject.GetComponent<OverworldInteraction>().setinteractTarget(this.gameObject);
         }
     }
