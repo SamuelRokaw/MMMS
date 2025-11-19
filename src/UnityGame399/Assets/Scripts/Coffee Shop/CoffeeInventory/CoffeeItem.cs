@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -15,6 +14,7 @@ public class CoffeeItem : MonoBehaviour
     private Coffee coffee;
     private int index;
     private CoffeeInventoryManager inventoryUI;
+    private CoffeeDetailPopup detailPopup;
     private bool isSelected = false;
 
     public void Initialize(Coffee coffee, int index, CoffeeInventoryManager inventoryUI)
@@ -22,18 +22,21 @@ public class CoffeeItem : MonoBehaviour
         this.coffee = coffee;
         this.index = index;
         this.inventoryUI = inventoryUI;
-        
+
+        // Display simple coffee name
         if (coffeeNameText != null)
         {
             coffeeNameText.text = $"Coffee{index + 1}";
         }
-        
+
+        // Setup button
         if (selectButton != null)
         {
             selectButton.onClick.AddListener(OnClicked);
         }
         else
         {
+            // If no button assigned, add one to this object
             selectButton = gameObject.GetComponent<Button>();
             if (selectButton == null)
             {
@@ -50,6 +53,12 @@ public class CoffeeItem : MonoBehaviour
         if (inventoryUI != null)
         {
             inventoryUI.SelectCoffee(index);
+        }
+        
+        CoffeeDetailPopup popup = FindFirstObjectByType<CoffeeDetailPopup>();
+        if (popup != null)
+        {
+            popup.ShowPopup(index);
         }
     }
 

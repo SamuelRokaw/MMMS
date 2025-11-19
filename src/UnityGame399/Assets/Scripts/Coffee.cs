@@ -1,9 +1,9 @@
 using System;
 public class Coffee
 {
-    public BeanType BeanType { get; private set; }
-    public double CreamPercent { get; private set; }
-    public CreamerType CreamerType { get; private set; }
+    public BeanType BeanType { get; set; }
+    public double CreamPercent { get; set; }
+    public CreamerType CreamerType { get; set; }
     
     public Coffee(BeanType beanType, double creamPercent, CreamerType creamerType)
     {
@@ -20,12 +20,19 @@ public class Coffee
         
         Array beanValues = Enum.GetValues(typeof(BeanType));
         BeanType = (BeanType)beanValues.GetValue(rng.Next(beanValues.Length));
-
-        double[] possiblePercentages = { 0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1 };
-        CreamPercent = possiblePercentages[rng.Next(0, possiblePercentages.Length)];
         
         Array values = Enum.GetValues(typeof(CreamerType));
         CreamerType = (CreamerType)values.GetValue(rng.Next(values.Length));
+
+        if (CreamerType == CreamerType.None)
+        {
+            CreamPercent = 0.0;
+        }
+        else
+        {
+            double[] possiblePercentages = { 0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1 };
+            CreamPercent = possiblePercentages[rng.Next(0, possiblePercentages.Length)];
+        }
         
         Logger.Instance.Info($"Coffee Generated → Bean Type: {BeanType}, Creamer: {CreamPercent}%, Type: {CreamerType}");
     }

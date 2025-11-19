@@ -27,6 +27,10 @@ public class CoffeeToppingBrewListManager : MonoBehaviour
 
     private void Start()
     {
+        if (CoffeeShopManager.Instance != null)
+        {
+            CoffeeShopManager.Instance.OnCoffeeAdded.AddListener(UpdateBrewDisplay);
+        }
         for (int i = 0; i < brewsButtons.Count; i++)
         {
             BrewButton bb = brewsButtons[i];
@@ -49,16 +53,37 @@ public class CoffeeToppingBrewListManager : MonoBehaviour
         {
             int count = 0;
             
-            if (bb.beanType == BeanType.Decaf)
+            foreach (Coffee coffee in CoffeeShopManager.Instance.coffees)
             {
-                count = CoffeeShopManager.Instance.decafBrews;
+                if (coffee.BeanType == bb.beanType && coffee.CreamerType == CreamerType.None)
+                {
+                    count++;
+                }
             }
-            else if (bb.beanType == BeanType.Caffeinated)
-            {
-                count = CoffeeShopManager.Instance.caffeinatedBrews;
-            }
+        
             bb.countText.text = $"{bb.beanType.ToString()}: ({count})";
         }
+    }
+    
+    public int GetFirstPlainCoffeeIndex()
+    {
+        if (!HasSelection() || CoffeeShopManager.Instance == null)
+        {
+            return -1;
+        }
+
+        BeanType selectedBeanType = GetSelectedBeanType();
+        
+        for (int i = 0; i < CoffeeShopManager.Instance.coffees.Count; i++)
+        {
+            Coffee coffee = CoffeeShopManager.Instance.coffees[i];
+            if (coffee.BeanType == selectedBeanType && coffee.CreamerType == CreamerType.None)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     private void OnButtonClicked(int index)
@@ -69,16 +94,21 @@ public class CoffeeToppingBrewListManager : MonoBehaviour
             return;
         }
         BrewButton bb = brewsButtons[index];
-        int availableGrounds = bb.beanType == BeanType.Decaf 
-            ? CoffeeShopManager.Instance.decafBrews
-            : CoffeeShopManager.Instance.caffeinatedBrews;
-
-        if (availableGrounds <= 0)
+        int plainCoffeeCount = 0;
+        foreach (Coffee coffee in CoffeeShopManager.Instance.coffees)
         {
-            Logger.Instance.Info($"No {bb.beanType} brews available!");
+            if (coffee.BeanType == bb.beanType && coffee.CreamerType == CreamerType.None)
+            {
+                plainCoffeeCount++;
+            }
+        }
+
+        if (plainCoffeeCount <= 0)
+        {
+            Logger.Instance.Info($"No plain {bb.beanType} coffees available!");
             return;
         }
-        
+    
         if (selectedIndex == index)
         {
             brewsButtons[index].image.sprite = brewsButtons[index].normalSprite;
@@ -86,12 +116,12 @@ public class CoffeeToppingBrewListManager : MonoBehaviour
             Logger.Instance.Info("Deselected brew");
             return;
         }
-        
+    
         if (selectedIndex >= 0 && selectedIndex < brewsButtons.Count)
         {
             brewsButtons[selectedIndex].image.sprite = brewsButtons[selectedIndex].normalSprite;
         }
-        
+    
         selectedIndex = index;
         brewsButtons[index].image.sprite = brewsButtons[index].pressedSprite;
         Logger.Instance.Info($"Selected: {bb.beanType} brew");
@@ -128,6 +158,14 @@ public class CoffeeToppingBrewListManager : MonoBehaviour
     {
         isLocked = false;
         Debug.Log("Brew selection unlocked");
+    }
+    
+    private void OnDestroy()
+    {
+        if (CoffeeShopManager.Instance != null)
+        {
+            CoffeeShopManager.Instance.OnCoffeeAdded.RemoveListener(UpdateBrewDisplay);
+        }
     }
 
     public bool IsLocked() => isLocked;
