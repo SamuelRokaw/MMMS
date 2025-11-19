@@ -73,13 +73,13 @@ public class CoffeeInventoryManager : MonoBehaviour
         if (selectedCoffeeIndex == index)
         {
             selectedCoffeeIndex = -1;
-            Debug.Log("Coffee deselected");
+            Logger.Instance.Info("Coffee deselected");
         }
         else
         {
             selectedCoffeeIndex = index;
             coffeeGridItems[index].SetSelected(true);
-            Debug.Log($"Selected coffee #{index}: {CoffeeShopManager.Instance.coffees[index].BeanType}");
+            Logger.Instance.Info($"Selected coffee #{index}: {CoffeeShopManager.Instance.coffees[index].BeanType}");
         }
         
         OnCoffeeItemClicked?.Invoke(index);
