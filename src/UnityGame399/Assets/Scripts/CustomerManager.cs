@@ -12,22 +12,25 @@ public class CustomerManager : Interactable
     [SerializeField] public TrashCan trashCan;
     [SerializeField] public Stats playerStats;
     [SerializeField] public GameObject[] dialoguePrefabs;
-    private Queue<GameObject> customerQueue = new Queue<GameObject>();
-    private Queue<GameObject> customersToOrder = new Queue<GameObject>();
-    private Vector3 spawnPosition = new Vector3(-6, -3, 0);
-    private Quaternion spawnRotation = Quaternion.identity;
+    
+    [SerializeField] public Transform spawnPoint;
+
+    private List<GameObject> waitingCustomers = new List<GameObject>();
+    private List<GameObject> customersWithOrders = new List<GameObject>();
+    private int currentOrderIndex = 0; 
 
     public void SpawnCustomer()
     {
-        GameObject Customer = Instantiate(customerPrefab, spawnPosition, spawnRotation);
-
-        int dialogIndex = -1;
+        Vector3 spawnPos = spawnPoint != null ? spawnPoint.position : new Vector3(-6, -5, 0);
+        Quaternion spawnRot = spawnPoint != null ? spawnPoint.rotation : Quaternion.identity;
+        
+        GameObject Customer = Instantiate(customerPrefab, spawnPos, spawnRot);
+        
+        int dialogIndex = 0;
         Customer.GetComponent<CustomerNPC>();
-        Customer c = Customer.GetComponent<CustomerNPC>().Customer;
-        Logger.Instance.Info($"Tipchance: {c.TipChance}");
-        Logger.Instance.Info($"Personality: {c.Personality}");
         CustomerPersonality p = Customer.GetComponent<CustomerNPC>().Customer.Personality;
-        switch (Customer.GetComponent<CustomerNPC>().Customer.Personality)
+        
+        switch (p)
         {
             case CustomerPersonality.Neutral:
                 dialogIndex = 0;
@@ -42,7 +45,7 @@ public class CustomerManager : Interactable
                 dialogIndex = 3;
                 break;
             case CustomerPersonality.Timid:
-                dialogIndex = 04;
+                dialogIndex = 4;
                 break;
             default:
                 Logger.Instance.Warn("Customer Personality not recognized. Defaulting to Neutral dialogue.");
@@ -51,75 +54,208 @@ public class CustomerManager : Interactable
         }
         
         Customer.GetComponent<CustomerNPC>().dialoguePrefab = dialoguePrefabs[dialogIndex];
-        customerQueue.Enqueue(Customer);
-        Logger.Instance.Info($"Customer Spawned. Queue Length: {customerQueue.Count}");
+        waitingCustomers.Add(Customer);
+        Logger.Instance.Info($"Customer Spawned. Waiting customers: {waitingCustomers.Count}");
     }
     
     public override void Interact()
     {
         Logger.Instance.Info("Interacted with Customer Manager.");
-        if(customerQueue.Count > 0)
+        if (waitingCustomers.Count > 0)
         {
-            if (customerQueue.Peek().GetComponent<CustomerNPC>().isMoving == false)
+            if (waitingCustomers[0].GetComponent<CustomerNPC>().isMoving == false)
             {
-                Order();
+                ProcessNextOrder();
             }
             else
             {
-                Logger.Instance.Info("Cannot move customer to order. Current ordering customer is still moving.");
+                Logger.Instance.Info("Cannot move customer to order. Current customer is still moving.");
             }
         }
         else
         {
-            Logger.Instance.Info("Cannot move customer to order. No customers to order.");
+            Logger.Instance.Info("Cannot move customer to order. No customers waiting.");
         }
     }
 
-    public void Order()
+    public void ProcessNextOrder()
     {
-        GameObject orderingCustomer = customerQueue.Dequeue();
-        customersToOrder.Enqueue(orderingCustomer);
-        orderTicketText.text = orderingCustomer.GetComponent<CustomerNPC>().Order();
-        Logger.Instance.Info($"Customer Moved to Order. Customers to Order Length: {customersToOrder.Count}");
+        if (waitingCustomers.Count == 0)
+        {
+            Logger.Instance.Info("No customers waiting to order.");
+            return;
+        }
+
+        GameObject orderingCustomer = waitingCustomers[0];
+        waitingCustomers.RemoveAt(0);
+        customersWithOrders.Add(orderingCustomer);
+        
+        CustomerNPC npc = orderingCustomer.GetComponent<CustomerNPC>();
+        npc.CreateOrderDialogue();
+    
+        currentOrderIndex = customersWithOrders.Count - 1;
+        UpdateOrderDisplay();
     }
 
     public void Right()
     {
-        if (!customersToOrder.TryDequeue(out GameObject customer))
+        if (customersWithOrders.Count == 0)
         {
-            orderTicketText.text = "No Orders";
-            Logger.Instance.Info("No Customers to Move Right");
+            Logger.Instance.Info("No orders to view.");
             return;
         }
-        customersToOrder.Enqueue(customer);
-        orderTicketText.text = customersToOrder.Peek().GetComponent<CustomerNPC>().Order();
-        Logger.Instance.Info("Next Customer Displayed");
+
+        currentOrderIndex = (currentOrderIndex + 1) % customersWithOrders.Count;
+        UpdateOrderDisplay();
+        Logger.Instance.Info($"Viewing order {currentOrderIndex + 1}/{customersWithOrders.Count}");
+    }
+
+    public void Left()
+    {
+        if (customersWithOrders.Count == 0)
+        {
+            Logger.Instance.Info("No orders to view.");
+            return;
+        }
+
+        currentOrderIndex--;
+        if (currentOrderIndex < 0)
+        {
+            currentOrderIndex = customersWithOrders.Count - 1;
+        }
+        
+        UpdateOrderDisplay();
+        Logger.Instance.Info($"Viewing order {currentOrderIndex + 1}/{customersWithOrders.Count}");
+    }
+
+    private void UpdateOrderDisplay()
+    {
+        if (customersWithOrders.Count == 0)
+        {
+            orderTicketText.text = "No Orders";
+            return;
+        }
+
+        GameObject currentCustomer = customersWithOrders[currentOrderIndex];
+        CustomerNPC npc = currentCustomer.GetComponent<CustomerNPC>();
+    
+        if (npc != null)
+        {
+            orderTicketText.text = $"Order {currentOrderIndex + 1}/{customersWithOrders.Count}\n{npc.GetOrderString()}";
+        }
+    }
+
+    public void SubmitCoffee(Coffee submittedCoffee)
+    {
+        if (customersWithOrders.Count == 0)
+        {
+            Logger.Instance.Info("No orders to fulfill!");
+            return;
+        }
+
+        GameObject currentCustomer = customersWithOrders[currentOrderIndex];
+        CustomerNPC npc = currentCustomer.GetComponent<CustomerNPC>();
+        
+        if (npc == null || npc.Coffee == null)
+        {
+            Logger.Instance.Info("Customer has no order!");
+            return;
+        }
+        
+        int accuracy = CompareCoffees(npc.Coffee, submittedCoffee);
+        Logger.Instance.Info($"Coffee submitted! Accuracy: {accuracy}%");
+        
+        int tipAmount = npc.FinishOrder(playerStats.Luck);
+        playerStats.ChangeGold(tipAmount);
+        
+        trashCan.TryTrash(npc.Customer.TrashChance + playerStats.Luck);
+        
+        customersWithOrders.RemoveAt(currentOrderIndex);
+        Destroy(currentCustomer);
+        
+        if (currentOrderIndex >= customersWithOrders.Count && customersWithOrders.Count > 0)
+        {
+            currentOrderIndex = customersWithOrders.Count - 1;
+        }
+        else if (customersWithOrders.Count == 0)
+        {
+            currentOrderIndex = 0;
+        }
+        
+        foreach (GameObject customer in customersWithOrders)
+        {
+            customer.GetComponent<CustomerNPC>()?.ResumeMove();
+        }
+        foreach (GameObject customer in waitingCustomers)
+        {
+            customer.GetComponent<CustomerNPC>()?.ResumeMove();
+        }
+
+        UpdateOrderDisplay();
+    }
+
+    private int CompareCoffees(Coffee requested, Coffee submitted)
+    {
+        int accuracy = 0;
+        int totalChecks = 3;
+        
+        if (requested.BeanType == submitted.BeanType)
+        {
+            accuracy++;
+        }
+        
+        if (requested.CreamerType == submitted.CreamerType)
+        {
+            accuracy++;
+        }
+        
+        double difference = Math.Abs(requested.CreamPercent - submitted.CreamPercent);
+        if (difference <= 0.1)
+        {
+            accuracy++;
+        }
+
+        return (accuracy * 100) / totalChecks;
     }
 
     public void FinishOrder()
     {
-        GameObject submittedCustomer = customersToOrder.Dequeue();
+        if (customersWithOrders.Count == 0)
+        {
+            Logger.Instance.Info("No orders to finish!");
+            return;
+        }
+
+        GameObject submittedCustomer = customersWithOrders[currentOrderIndex];
         playerStats.ChangeGold(submittedCustomer.GetComponent<CustomerNPC>().FinishOrder(playerStats.Luck));
-        Logger.Instance.Info($"Trash Chance Calculation: Base {submittedCustomer.GetComponent<CustomerNPC>().Customer.TrashChance} + Luck {playerStats.Luck}");
         trashCan.TryTrash(submittedCustomer.GetComponent<CustomerNPC>().Customer.TrashChance + playerStats.Luck);
         
-        foreach (GameObject customer in customersToOrder)
+        customersWithOrders.RemoveAt(currentOrderIndex);
+        
+        foreach (GameObject customer in customersWithOrders)
         {
             customer.GetComponent<CustomerNPC>().ResumeMove();
         }
-        foreach (GameObject customer in customerQueue)
+        foreach (GameObject customer in waitingCustomers)
         {
             customer.GetComponent<CustomerNPC>().ResumeMove();
         }
         
         Destroy(submittedCustomer);
-        if (customersToOrder.Count() == 0)
+        
+        if (currentOrderIndex >= customersWithOrders.Count && customersWithOrders.Count > 0)
         {
-            orderTicketText.text = "No Orders";
-            Logger.Instance.Info("Finished last order. No more customers to order.");
-            return;
+            currentOrderIndex = customersWithOrders.Count - 1;
         }
-        orderTicketText.text = customersToOrder.Peek().GetComponent<CustomerNPC>().Order();
+        else if (customersWithOrders.Count == 0)
+        {
+            currentOrderIndex = 0;
+        }
+        
+        UpdateOrderDisplay();
         Logger.Instance.Info("Order Finished. Next Customer Displayed");
     }
+
+    public int GetWaitingCustomersCount() => waitingCustomers.Count;
+    public int GetOrdersCount() => customersWithOrders.Count;
 }

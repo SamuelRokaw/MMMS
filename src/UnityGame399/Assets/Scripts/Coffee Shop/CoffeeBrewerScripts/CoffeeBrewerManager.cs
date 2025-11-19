@@ -128,8 +128,17 @@ public class CoffeeBrewerManager : MonoBehaviour
         }
 
         BeanType brewedType = CoffeeBrewerTimeTracker.Instance.CollectBrew(brewerID);
-        Logger.Instance.Info($"Collected {brewedType} coffee!");
         
+        Coffee plainCoffee = new Coffee(brewedType, 0.0, CreamerType.None);
+    
+        if (CoffeeShopManager.Instance != null)
+        {
+            CoffeeShopManager.Instance.coffees.Add(plainCoffee);
+            CoffeeShopManager.Instance.OnCoffeeAdded?.Invoke();
+        }
+    
+        Logger.Instance.Info($"Plain {brewedType} coffee added to inventory!");
+    
         UpdateUI();
     }
 
