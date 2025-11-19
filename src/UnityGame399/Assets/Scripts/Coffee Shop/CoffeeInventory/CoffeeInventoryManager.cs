@@ -2,14 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class CoffeeInventoryManager : MonoBehaviour
 {
     public Transform coffeeGridContainer;
     public GameObject coffeePrefab;
     public InventorySlidePanel slidePanel;
+    
+    public static UnityEvent<int> OnCoffeeItemClicked = new UnityEvent<int>();
 
-    private int selectedCoffeeIndex = -1;
+    private int selectedCoffeeIndex = -1; 
     private List<CoffeeItem> coffeeGridItems = new List<CoffeeItem>();
 
     private void Start()
@@ -18,9 +21,10 @@ public class CoffeeInventoryManager : MonoBehaviour
         {
             CoffeeShopManager.Instance.OnCoffeeAdded.AddListener(RefreshInventory);
         }
+        
         RefreshInventory();
     }
-    
+
     private void OnDestroy()
     {
         if (CoffeeShopManager.Instance != null)
@@ -69,14 +73,16 @@ public class CoffeeInventoryManager : MonoBehaviour
         if (selectedCoffeeIndex == index)
         {
             selectedCoffeeIndex = -1;
-            Logger.Instance.Info("Coffee deselected");
+            Debug.Log("Coffee deselected");
         }
         else
         {
             selectedCoffeeIndex = index;
             coffeeGridItems[index].SetSelected(true);
-            Logger.Instance.Info($"Selected coffee #{index}: {CoffeeShopManager.Instance.coffees[index].BeanType}");
+            Debug.Log($"Selected coffee #{index}: {CoffeeShopManager.Instance.coffees[index].BeanType}");
         }
+        
+        OnCoffeeItemClicked?.Invoke(index);
     }
 
     public int GetSelectedCoffeeIndex() => selectedCoffeeIndex;

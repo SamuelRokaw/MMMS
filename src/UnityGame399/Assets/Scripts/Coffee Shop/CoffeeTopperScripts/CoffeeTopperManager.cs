@@ -3,11 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-/// <summary>
-/// Manages the coffee topping minigame where players pour creamers.
-/// Attach this to the CoffeeToppingGame object.
-/// </summary>
-public class CoffeeTopper : MonoBehaviour
+public class CoffeeTopperManager : MonoBehaviour
 {
     public CoffeeToppingBrewListManager brewSelector;
     public CoffeeCreamerListManager creamerSelector;
@@ -23,6 +19,7 @@ public class CoffeeTopper : MonoBehaviour
     private bool isPouring = false;
     private bool isLocked = false;
     private bool hasCreamAdded = false;
+    private int selectedCoffeeIndex = -1;
     
     private void Start()
     {
@@ -81,7 +78,7 @@ public class CoffeeTopper : MonoBehaviour
 
     private void OnCupPressed()
     {
-        if (CheckSelections() == false)
+        if (!CheckSelections())
         {
             return;
         }
@@ -89,6 +86,16 @@ public class CoffeeTopper : MonoBehaviour
         if (!isLocked)
         {
             isLocked = true;
+            
+            selectedCoffeeIndex = brewSelector.GetFirstPlainCoffeeIndex();
+            
+            if (selectedCoffeeIndex < 0)
+            {
+                Logger.Instance.Info("No plain coffee of this type available!");
+                isLocked = false;
+                return;
+            }
+            
             creamerSelector.LockSelection();
             brewSelector.LockSelection();
             Logger.Instance.Info("Pour has been started.");
@@ -104,16 +111,16 @@ public class CoffeeTopper : MonoBehaviour
             Logger.Instance.Info("Please select a brew first!");
             return false;
         }
-        
+    
         if (!creamerSelector.HasSelection())
         {
             Logger.Instance.Info("Please select a creamer first!");
             return false;
         }
-
+        
         return true;
     }
-
+    
     private void OnCupReleased()
     {
         isPouring = false;
@@ -121,7 +128,7 @@ public class CoffeeTopper : MonoBehaviour
 
     private void OnCollectClicked()
     {
-        if (currentPercentage <= 0)
+        if (currentPercentage <= 0 || selectedCoffeeIndex < 0)
         {
             return;
         }
@@ -131,18 +138,21 @@ public class CoffeeTopper : MonoBehaviour
 
     private void CollectCoffee()
     {
-        BeanType brewType = brewSelector.GetSelectedBeanType();
-        CreamerType creamerType = creamerSelector.GetSelectedCreamerType();
-        double creamPercent = currentPercentage / 100.0;
-
-        Coffee coffee = new Coffee(brewType, creamPercent, creamerType);
-        
-        if (CoffeeShopManager.Instance != null)
+        if (CoffeeShopManager.Instance == null || selectedCoffeeIndex < 0 || 
+            selectedCoffeeIndex >= CoffeeShopManager.Instance.coffees.Count)
         {
-            CoffeeShopManager.Instance.CompleteTopping(coffee, brewType);
+            Logger.Instance.Info("Invalid coffee selection");
+            return;
         }
 
-        Logger.Instance.Info("Collected coffee");
+        CreamerType creamerType = creamerSelector.GetSelectedCreamerType();
+        double creamPercent = currentPercentage / 100.0;
+        
+        Coffee coffee = CoffeeShopManager.Instance.coffees[selectedCoffeeIndex];
+        coffee.CreamPercent = creamPercent;
+        coffee.CreamerType = creamerType;
+        
+        CoffeeShopManager.Instance.OnCoffeeAdded?.Invoke();
 
         ResetMinigame();
     }
@@ -153,6 +163,7 @@ public class CoffeeTopper : MonoBehaviour
         isLocked = false;
         isPouring = false;
         hasCreamAdded = false;
+        selectedCoffeeIndex = -1;
         
         brewSelector.UnlockSelection();
         brewSelector.DeselectAll();
@@ -174,8 +185,6 @@ public class CoffeeTopper : MonoBehaviour
         {
             percentageText.text = $"{Mathf.RoundToInt(currentPercentage)}%";
         }
-
-        // NEED TO DO COFFEE FILLING VISUAL HERE
     }
 
     public float GetCurrentPercentage() => currentPercentage;

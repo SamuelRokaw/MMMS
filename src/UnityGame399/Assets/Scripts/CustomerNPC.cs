@@ -77,6 +77,20 @@ public class CustomerNPC : MonoBehaviour
     {
         Logger.Instance.Info("Customer NPC Destroyed");
     }
+    public void CreateOrderDialogue()
+    {
+        GameObject DialogInstance = Instantiate(dialoguePrefab);
+        DialogInstance.GetComponent<Dialog>().dialog[0] += $"{Customer.Name}";
+        DialogInstance.GetComponent<Dialog>().dialog[2] += $"{Coffee.BeanType} {Coffee.CreamPercent * 100}% {Coffee.CreamerType} coffee";
+    
+        DialogInstance.transform.Find("Panel").transform.Find("Background").transform.Find("Photo").GetComponent<Image>().sprite = CustomerSpriteRenderer.sprite;
+        Logger.Instance.Info($"Customer {Customer.Name} has ordered their coffee.");
+    }
+    
+    public string GetOrderString()
+    {
+        return $"Name: {Customer.Name}\nBean: {Coffee.BeanType}\nCreamer: {Coffee.CreamPercent * 100}% {Coffee.CreamerType}";
+    }
 
     public string Order()
     {
