@@ -257,5 +257,6 @@ public class CustomerManager : Interactable
     }
 
     public int GetWaitingCustomersCount() => waitingCustomers.Count;
+    public int GetCustomersWithOrders() => customersWithOrders.Count;
     public int GetOrdersCount() => customersWithOrders.Count;
 }

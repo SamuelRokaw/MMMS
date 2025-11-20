@@ -2,22 +2,19 @@ using UnityEngine;
 
 public class GrinderUpgrade : Upgrades
 {
-    public int amountToDecreaseBy;
+    public int amountToDecreaseBy = 7;
+    public CoffeeGrinderManager grinderManager;
     void Start()
     {
         if (unlocked == true)
         {
             Unlock();
         }
-        else
-        {
-            this.enabled = false;
-        }
     }
 
     public override void Unlock()
     {
         base.Unlock();
-        this.enabled = true;
+        grinderManager.clicksRequired -= amountToDecreaseBy;
     }
 }

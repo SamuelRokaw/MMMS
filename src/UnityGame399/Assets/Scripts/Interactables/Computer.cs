@@ -8,13 +8,19 @@ public class Computer : Interactable
     public CanvasGroup missionGroup;
     public List<GameObject> missions;
     public CanvasGroup shopGroup;
-    public List<bool> upgrades;
     public bool currentTab = false; //false for missions, true for shop
     public Button missionButton;
     public Button shopButton;
+    private Stats stats;
+    
+    //upgrades
+    public List<Upgrades> upgrades;
+    public List<int> upgradeCosts;
+    public List<GameObject> upgradesUI;
 
     private void Awake()
     {
+        stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Stats>();
         missionButton.interactable = false;
         shopButton.interactable = true;
     }
@@ -48,8 +54,13 @@ public class Computer : Interactable
     public void ChooseUpgrade(int shopIndex) //currently not used but is for future
     {
         Logger.Instance.Info("Upgrade chosen");
-        //other stuff like decreasing money also goes here
-        upgrades[shopIndex] = true;
+        if (upgradeCosts[shopIndex] <= stats.currentGold)
+        {
+            stats.ChangeGold(-1 * upgradeCosts[shopIndex]);
+            upgrades[shopIndex].Unlock();
+            upgradesUI[shopIndex].SetActive(false);
+        }
+        
     }
     
     public void ActivateCG(CanvasGroup cg)

@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class RoombaUpgrade : Upgrades
+public class ToppingUpgrade : Upgrades
 {
-    public GameObject roomba;
     void Start()
     {
         if (unlocked == true)
@@ -14,6 +13,5 @@ public class RoombaUpgrade : Upgrades
     public override void Unlock()
     {
         base.Unlock();
-        roomba.SetActive(true);
-    } 
+    }
 }

@@ -9,6 +9,7 @@ public class CoffeeGrinderManager : MonoBehaviour
 
     private int currentClicks = 0;
     private int lastSelectedIndex = -1;
+    
 
     private void Start()
     {
