@@ -130,10 +130,17 @@ public class Stats : MonoBehaviour
     
     public void SaveToPlayerPrefs()
     {
-        StatsData data = Save();
-        string json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString("PlayerStats", json);
-        PlayerPrefs.Save();
+        if(StateManager.Instance.currentShopState == ShopStates.Transition)
+        {
+            StatsData data = Save();
+            string json = JsonUtility.ToJson(data);
+            PlayerPrefs.SetString("PlayerStats", json);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            Logger.Instance.Info("Player Not Saved because it is not transition state");
+        }
     }
 
     public void LoadFromPlayerPrefs()

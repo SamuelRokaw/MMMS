@@ -1,3 +1,4 @@
+using Game399.Shared.Models;
 using PlayerStuff;
 using UnityEngine;
 
@@ -66,9 +67,25 @@ public class StateManager : MonoBehaviour
         }
     }
 
-    private void switchCoffeeShopState()
+    private void SwitchCoffeeShopState(ShopStates state)
     {
-        
+        switch(state)
+        {
+            case ShopStates.DayTime:
+                currentShopState = state;
+                nextShopState = ShopStates.NightTime;
+                break;
+            case ShopStates.NightTime:
+                currentShopState = state;
+                nextShopState = ShopStates.DayTime;
+                break;
+            case ShopStates.Transition:
+                currentShopState = state;
+                break;
+            case ShopStates.OverTime:
+                currentShopState = state;
+                break;
+        }
     }
 
     public void SwitchToMain()
@@ -107,5 +124,23 @@ public class StateManager : MonoBehaviour
     public void SwitchToTakingOutTrash()
     {
         SwitchState(GameStates.TakingOutTrash);
+    }
+
+    public void SwitchShopToDay()
+    {
+        SwitchCoffeeShopState(ShopStates.DayTime);
+    }
+    public void SwitchShopToNight()
+    {
+        SwitchCoffeeShopState(ShopStates.NightTime);
+    }
+    public void SwitchShopToOverTime()
+    {
+        SwitchCoffeeShopState(ShopStates.OverTime);
+    }
+
+    public void SwitchShopToTransition()
+    {
+        SwitchCoffeeShopState(ShopStates.Transition);
     }
 }

@@ -13,10 +13,17 @@ public class CoffeeShop : MonoBehaviour
     
     public void SaveToPlayerPrefs()
     {
-        ShopData data = Save();
-        string json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString("CoffeeShop", json);
-        PlayerPrefs.Save();
+        if(StateManager.Instance.currentShopState == ShopStates.Transition)
+        {
+            ShopData data = Save();
+            string json = JsonUtility.ToJson(data);
+            PlayerPrefs.SetString("CoffeeShop", json);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            Logger.Instance.Info("CoffeeShop Not Saved because it is not transition state");
+        }
     }
 
     public void LoadFromPlayerPrefs()
