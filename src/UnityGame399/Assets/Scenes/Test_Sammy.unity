@@ -26296,7 +26296,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1842262330}
   - component: {fileID: 1842262334}
-  - component: {fileID: 1842262333}
   - component: {fileID: 1842262331}
   - component: {fileID: 1842262332}
   m_Layer: 0
@@ -26368,20 +26367,6 @@ MonoBehaviour:
   chanceToSpawnCustomer: 10
   adUpgrade: {fileID: 1639503138}
   customerManager: {fileID: 362016489}
---- !u!114 &1842262333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842262329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b9de31a2b53e5459aafaab4a9b7aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AdUpgrade
-  unlocked: 0
-  amountToIncreaseBy: 0
 --- !u!114 &1842262334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26433,6 +26418,8 @@ MonoBehaviour:
   coffeeTypeSelector: {fileID: 1268077015}
   grindButton: {fileID: 1524916346}
   clicksRequired: 15
+  grindPopupPrefab: {fileID: 0}
+  popupParent: {fileID: 0}
 --- !u!4 &1858611861
 Transform:
   m_ObjectHideFlags: 0

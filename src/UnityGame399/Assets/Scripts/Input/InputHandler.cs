@@ -15,6 +15,8 @@ public class InputHandler : MonoBehaviour
     public CanvasGroup pauseMenu; //pause menu
     public StatsUI statsUI;
     public InventorySlidePanel inventorySlidePanel;
+    public GameObject ticketUI;
+    public bool isTicketUIOpen = true;
     
     //sprites
     [SerializeField] private List<Sprite> playerSprites;
@@ -31,6 +33,7 @@ public class InputHandler : MonoBehaviour
     public KeyCode pauseKey;
     public KeyCode statsKey;
     public KeyCode inventoryKey;
+    public KeyCode ticketKey;
     private Dictionary<KeyCode, Action> inputDictionary;
     private Dictionary<KeyCode, Action> inputMoveDictionary;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,7 +46,8 @@ public class InputHandler : MonoBehaviour
             {skill2Key, skill2},
             {pauseKey, pause},
             {statsKey, stats},
-            {inventoryKey, inventory}
+            {inventoryKey, inventory},
+            {ticketKey, ToggleTicket}
         };
         inputMoveDictionary = new Dictionary<KeyCode, Action>
         {
@@ -90,7 +94,7 @@ public class InputHandler : MonoBehaviour
             StateManager.Instance.SwitchToCoffeeShop();
             statsUI.closeMenu();
         }
-        else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop )
         {
             Logger.Instance.Info("Open Stats");
             statsUI.openMenu();
@@ -102,13 +106,11 @@ public class InputHandler : MonoBehaviour
     {
         if (StateManager.Instance.currentGameState == GameStates.InventoryMenu)
         {
-            StateManager.Instance.SwitchToCoffeeShop();
             inventorySlidePanel.TogglePanel();
             Logger.Instance.Info("Close Coffee Inventory");
         }
-        else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop && StateManager.Instance.nextShopState == ShopStates.NightTime)
         {
-            StateManager.Instance.SwitchToInventory();
             inventorySlidePanel.TogglePanel();
             Logger.Instance.Info("Opened Coffee Inventory");
         }
@@ -236,6 +238,23 @@ public class InputHandler : MonoBehaviour
         {
             Logger.Instance.Info("trying to interact");
             owI.Interact();
+        }
+    }
+
+    private void ToggleTicket()
+    {
+        if (StateManager.Instance.currentGameState == GameStates.CoffeeShop)
+        {
+            if (isTicketUIOpen)
+            {
+                ticketUI.SetActive(false);
+                isTicketUIOpen = false;
+            }
+            else
+            {
+                ticketUI.SetActive(true);
+                isTicketUIOpen = true;
+            }
         }
     }
 }

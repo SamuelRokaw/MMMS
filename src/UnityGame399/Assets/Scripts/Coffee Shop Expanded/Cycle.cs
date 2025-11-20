@@ -62,7 +62,6 @@ public class Cycle : MonoBehaviour
 
         if (odds >= Random.Range(1, 101))
         {
-            Logger.Instance.Info("Customer will be spawned");
             SpawnCustomer();
         }
     }
@@ -70,6 +69,7 @@ public class Cycle : MonoBehaviour
     {
         if ((customerManager.GetWaitingCustomersCount() + customerManager.GetCustomersWithOrders()) < maxCustomers)
         {
+            Logger.Instance.Info("Customer will be spawned");
             customerManager.SpawnCustomer();
         }
     }

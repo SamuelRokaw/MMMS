@@ -202,7 +202,7 @@ public class Stats : MonoBehaviour
         stats.CurrentGold = 100;
         stats.CurrentCafBean = 50;
         stats.CurrentDecafBean = 50;
-        stats.CurrentCarCreamer = 50;
+        stats.CurrentCarCreamer = 0;
         stats.CurrentMilkCreamer = 50;
         stats.AttackPower = 1;
         stats.HasDashSkill = true;
