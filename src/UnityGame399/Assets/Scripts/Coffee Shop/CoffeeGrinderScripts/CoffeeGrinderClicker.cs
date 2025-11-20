@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CoffeeGrinderClicker : MonoBehaviour // stole all of this shit from a tutorial
+public class CoffeeGrinderClicker : MonoBehaviour, IPointerClickHandler
 {
     public float pulseScaleMultiplier = 1.2f; 
     public float pulseDuration = 0.2f;
@@ -14,7 +15,7 @@ public class CoffeeGrinderClicker : MonoBehaviour // stole all of this shit from
         originalScale = transform.localScale;
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!isPulsing)
         {
@@ -28,13 +29,14 @@ public class CoffeeGrinderClicker : MonoBehaviour // stole all of this shit from
         
         Vector3 targetScale = originalScale * pulseScaleMultiplier;
         float timer = 0f;
+
         while (timer < pulseDuration / 2f)
         {
             transform.localScale = Vector3.Lerp(originalScale, targetScale, timer / (pulseDuration / 2f));
             timer += Time.deltaTime;
             yield return null;
         }
-        
+
         timer = 0f;
         while (timer < pulseDuration / 2f)
         {
