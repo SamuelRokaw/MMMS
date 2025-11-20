@@ -17,7 +17,7 @@ namespace PlayerStuff
         public int CurrentGold { get; set; } = 100;
         public int CurrentCafBean { get; set; } = 50;
         public int CurrentDecafBean{ get; set; } = 50;
-        public int CurrentCarCreamer { get; set; } = 50;
+        public int CurrentCarCreamer { get; set; } = 0;
         public int CurrentMilkCreamer { get; set; } = 50;
         public int Luck { get; set; } = 0;
         public int AttackPower { get; set; } = 1;

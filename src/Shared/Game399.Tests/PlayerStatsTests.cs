@@ -236,7 +236,7 @@ public class PlayerStatsTests
         public void ChangeCarCreamer_IncreasesCarCreamerCount()
         {
             stats.ChangeCarCreamer(2);
-            Assert.AreEqual(52, stats.CurrentCarCreamer);
+            Assert.AreEqual(2, stats.CurrentCarCreamer);
         }
 
         [Test]
@@ -244,7 +244,7 @@ public class PlayerStatsTests
         {
             stats.ChangeCarCreamer(4);
             stats.ChangeCarCreamer(-1);
-            Assert.AreEqual(53, stats.CurrentCarCreamer);
+            Assert.AreEqual(3, stats.CurrentCarCreamer);
         }
 
         [Test]

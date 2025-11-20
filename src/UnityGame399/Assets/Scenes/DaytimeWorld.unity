@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 95086882}
   m_Layer: 0
   m_Name: CoffeeShop
-  m_TagString: Untagged
+  m_TagString: CoffeeShop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12613,6 +12613,7 @@ MonoBehaviour:
   clicksRequired: 15
   grindPopupPrefab: {fileID: 4622601399666048881, guid: 5d835b568a5714edfa0b63d793e7b709, type: 3}
   popupParent: {fileID: 1730569092}
+  stats: {fileID: 1760918583}
 --- !u!1 &787262603
 GameObject:
   m_ObjectHideFlags: 0
@@ -13289,6 +13290,7 @@ MonoBehaviour:
   collectButton: {fileID: 2113027149}
   fillRate: 5
   maxPercentage: 100
+  stats: {fileID: 1760918583}
 --- !u!1 &922413181
 GameObject:
   m_ObjectHideFlags: 0

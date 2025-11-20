@@ -20,12 +20,23 @@ public class CustomerNPC : MonoBehaviour
     private Rigidbody2D rb;
     public bool isMoving = false;
     
+    //toppinng Upgrade related
+    public CoffeeShop coffeeShop;
+    
     void Awake()
     {
         Canvas = GameObject.Find("Canvas");
+        coffeeShop = GameObject.FindGameObjectWithTag("CoffeeShop").GetComponent<CoffeeShop>();
         CustomerSpriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
         Customer = new Customer();
         Coffee = new Coffee();
+        if (!coffeeShop.upgrades[2].unlocked)
+        {
+            while (Coffee.CreamerType == CreamerType.Caramel)
+            {
+                Coffee = new Coffee();
+            }
+        }
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
     }
