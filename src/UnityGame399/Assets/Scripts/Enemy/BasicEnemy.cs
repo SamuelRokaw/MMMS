@@ -62,7 +62,7 @@ public class BasicEnemy : MonoBehaviour
         AudioClip soundToPlay = deathSound != null ? deathSound : EnemyDeathEffectsManager.Instance?.defaultDeathSound;
         if (soundToPlay != null)
         {
-            AudioSource.PlayClipAtPoint(soundToPlay, transform.position, 0.3f);
+            SoundManager.Instance.playEnemySFX(soundToPlay);
         }
         
         ParticleSystem particleToSpawn = bloodSplatterPrefab != null ? bloodSplatterPrefab : EnemyDeathEffectsManager.Instance?.defaultBloodSplatter;

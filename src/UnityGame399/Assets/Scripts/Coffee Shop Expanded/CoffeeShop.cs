@@ -4,9 +4,8 @@ using System.Collections.Generic;
 
 public class CoffeeShop : MonoBehaviour
 {
-    public ShopStates currentState;
-    public ShopStates nextState; //should only ever be night/day, stored as int in ShopData 0 for day and 1 for night
-    public List<bool> upgrades; //list of bools for whetehr upgrades have been purchased
+    //nextstate should only ever be night/day, stored as int in ShopData 0 for day and 1 for night
+    public List<Upgrades> upgrades; //list of bools for whetehr upgrades have been purchased
     private void Awake()
     {
         LoadFromPlayerPrefs();
@@ -32,16 +31,16 @@ public class CoffeeShop : MonoBehaviour
         switch (data.nextState)
         {
             case 0:
-                nextState = ShopStates.DayTime;
-                currentState = ShopStates.Transition;
+                StateManager.Instance.nextShopState = ShopStates.DayTime;
+                StateManager.Instance.currentShopState = ShopStates.Transition;
                 break;
             case 1:
-                nextState = ShopStates.NightTime;
-                currentState = ShopStates.Transition;
+                StateManager.Instance.nextShopState = ShopStates.NightTime;
+                StateManager.Instance.currentShopState = ShopStates.Transition;
                 break;
             default:
-                nextState = ShopStates.DayTime;
-                currentState = ShopStates.Transition;
+                StateManager.Instance.nextShopState = ShopStates.DayTime;
+                StateManager.Instance.currentShopState = ShopStates.Transition;
                 break;
         }
         int index = 0;
@@ -49,11 +48,11 @@ public class CoffeeShop : MonoBehaviour
         {
             if (c == '0')
             {
-                upgrades[index] = false;
+                upgrades[index].unlocked = false;
             }
             else
             {
-                upgrades[index] = true;
+                upgrades[index].unlocked = true;
             }
             index++;
         }
@@ -61,7 +60,7 @@ public class CoffeeShop : MonoBehaviour
     public ShopData Save()
     {
         int tempint = 0;
-        switch (nextState)
+        switch (StateManager.Instance.nextShopState)
         {
             case ShopStates.DayTime:
                 tempint = 0;

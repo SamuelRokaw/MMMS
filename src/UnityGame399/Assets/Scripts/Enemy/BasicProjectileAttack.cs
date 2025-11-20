@@ -6,23 +6,22 @@ public class BasicProjectileAttack : AttackPattern
 {
     public GameObject projectile;
     public List<Transform> spawnPoints;
-    private SoundManager sM;
+    public AudioClip shootSFX;
     public override void attack()
     {
         base.attack();
         spawnBullets();
     }
-
-    public void Start()
-    {
-        sM = GameObject.FindGameObjectWithTag("Sounds").GetComponent<SoundManager>();
-    }
+    
 
     private void spawnBullets()
     {
         foreach (Transform spawnPoint in spawnPoints)
         {
-            //sM.playFSE(); //sound is delayed for some reason
+            if(shootSFX != null)
+            {
+                SoundManager.Instance.playEnemySFX(shootSFX);
+            }
             Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
             
         }

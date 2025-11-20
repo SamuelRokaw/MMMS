@@ -8,6 +8,8 @@ public class StateManager : MonoBehaviour
     [SerializeField] private AudioClip combatTrack;
     public static StateManager Instance {get; private set;}
     public GameStates currentGameState = GameStates.MainMenu;
+    public ShopStates currentShopState  = ShopStates.Transition;
+    public ShopStates nextShopState = ShopStates.DayTime; 
     void Awake()
     {
         if(Instance != null && Instance != this)
@@ -62,6 +64,11 @@ public class StateManager : MonoBehaviour
                 currentGameState = state;
                 break;
         }
+    }
+
+    private void switchCoffeeShopState()
+    {
+        
     }
 
     public void SwitchToMain()

@@ -439,6 +439,7 @@ MonoBehaviour:
   - {fileID: 3054535733435398051}
   - {fileID: 298253886567369693}
   - {fileID: 499714742515906657}
+  shootSFX: {fileID: 8300000, guid: b20c01d26a85560409339e0a7508f343, type: 3}
 --- !u!61 &7872294104752406019
 BoxCollider2D:
   m_ObjectHideFlags: 0
