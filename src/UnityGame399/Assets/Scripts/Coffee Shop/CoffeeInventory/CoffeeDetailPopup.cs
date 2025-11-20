@@ -51,6 +51,7 @@ public class CoffeeDetailPopup : MonoBehaviour
         }
 
         currentIndex = Mathf.Clamp(startIndex, 0, CoffeeShopManager.Instance.coffees.Count - 1);
+        CoffeeSubmissionHandler.Instance.SelectCoffee(currentIndex);
         
         if (popupPanel != null)
         {
@@ -62,6 +63,8 @@ public class CoffeeDetailPopup : MonoBehaviour
 
     public void HidePopup()
     {
+        CoffeeSubmissionHandler.Instance.DeselectCoffee();
+        
         if (popupPanel != null)
         {
             popupPanel.SetActive(false);
@@ -120,6 +123,7 @@ public class CoffeeDetailPopup : MonoBehaviour
         if (currentIndex < CoffeeShopManager.Instance.coffees.Count - 1)
         {
             currentIndex++;
+            CoffeeSubmissionHandler.Instance.SelectCoffee(currentIndex);
             UpdateDisplay();
         }
     }
@@ -129,41 +133,24 @@ public class CoffeeDetailPopup : MonoBehaviour
         if (currentIndex > 0)
         {
             currentIndex--;
+            CoffeeSubmissionHandler.Instance.SelectCoffee(currentIndex);
             UpdateDisplay();
         }
     }
 
     private void OnSubmitClicked()
     {
-        if (CoffeeShopManager.Instance == null || CoffeeShopManager.Instance.coffees.Count == 0)
+        if (!CoffeeSubmissionHandler.Instance.HasSelectedCoffee())
         {
-            Logger.Instance.Info("No coffee to submit!");
+            Logger.Instance.Info("No coffee selected");
             return;
         }
-
-        Coffee coffeeToSubmit = CoffeeShopManager.Instance.coffees[currentIndex];
         
-        CustomerManager customerManager = FindFirstObjectByType<CustomerManager>();
-        if (customerManager != null)
+        bool success = CoffeeSubmissionHandler.Instance.SubmitSelectedCoffee();
+    
+        if (success)
         {
-            customerManager.SubmitCoffee(coffeeToSubmit);
-            
-            CoffeeShopManager.Instance.coffees.RemoveAt(currentIndex);
-            CoffeeShopManager.Instance.OnCoffeeAdded?.Invoke(); 
-            
-
-            if (CoffeeShopManager.Instance.coffees.Count == 0)
-            {
-                HidePopup();
-            }
-            else
-            {
-                if (currentIndex >= CoffeeShopManager.Instance.coffees.Count)
-                {
-                    currentIndex = CoffeeShopManager.Instance.coffees.Count - 1;
-                }
-                UpdateDisplay();
-            }
+            HidePopup();
         }
     }
 

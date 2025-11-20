@@ -155,24 +155,24 @@ public class CustomerManager : Interactable
 
         GameObject currentCustomer = customersWithOrders[currentOrderIndex];
         CustomerNPC npc = currentCustomer.GetComponent<CustomerNPC>();
-        
+    
         if (npc == null || npc.Coffee == null)
         {
             Logger.Instance.Info("Customer has no order!");
             return;
         }
-        
+    
         int accuracy = CompareCoffees(npc.Coffee, submittedCoffee);
         Logger.Instance.Info($"Coffee submitted! Accuracy: {accuracy}%");
-        
+    
         int tipAmount = npc.FinishOrder(playerStats.Luck);
         playerStats.ChangeGold(tipAmount);
-        
+    
         trashCan.TryTrash(npc.Customer.TrashChance + playerStats.Luck);
         
         customersWithOrders.RemoveAt(currentOrderIndex);
         Destroy(currentCustomer);
-        
+    
         if (currentOrderIndex >= customersWithOrders.Count && customersWithOrders.Count > 0)
         {
             currentOrderIndex = customersWithOrders.Count - 1;
@@ -181,7 +181,7 @@ public class CustomerManager : Interactable
         {
             currentOrderIndex = 0;
         }
-        
+    
         foreach (GameObject customer in customersWithOrders)
         {
             customer.GetComponent<CustomerNPC>()?.ResumeMove();
