@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using PlayerStuff;
 
 public class Computer : Interactable
 {
@@ -46,9 +47,16 @@ public class Computer : Interactable
 
     public void ChooseMission(int missionIndex)
     {
-        Logger.Instance.Info("Mission chosen");
-        CloseUI();
-        CombatLoader.Instance.LoadCombat(missions[missionIndex]);
+        if(StateManager.Instance.currentShopState == ShopStates.NightTime)
+        {
+            Logger.Instance.Info("Mission chosen");
+            CloseUI();
+            CombatLoader.Instance.LoadCombat(missions[missionIndex]);
+        }
+        else
+        {
+            Logger.Instance.Info("Mission not chosen becuase it is not nighttime");
+        }
     }
 
     public void ChooseUpgrade(int shopIndex) //currently not used but is for future

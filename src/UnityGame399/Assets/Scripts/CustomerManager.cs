@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
+using PlayerStuff;
 using TMPro;
 
 [Serializable]
@@ -254,6 +255,13 @@ public class CustomerManager : Interactable
         
         UpdateOrderDisplay();
         Logger.Instance.Info("Order Finished. Next Customer Displayed");
+        if (StateManager.Instance.currentShopState == ShopStates.OverTime)
+        {
+            if(waitingCustomers.Count + customersWithOrders.Count == 0)
+            {
+                StateManager.Instance.SwitchShopToTransition();
+            }
+        }
     }
 
     public int GetWaitingCustomersCount() => waitingCustomers.Count;

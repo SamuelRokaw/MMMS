@@ -9,8 +9,8 @@ public class StateManager : MonoBehaviour
     [SerializeField] private AudioClip combatTrack;
     public static StateManager Instance {get; private set;}
     public GameStates currentGameState = GameStates.MainMenu;
-    public ShopStates currentShopState  = ShopStates.Transition;
-    public ShopStates nextShopState = ShopStates.DayTime; 
+    public ShopStates currentShopState  = ShopStates.DayTime;
+    public ShopStates nextShopState = ShopStates.NightTime; 
     void Awake()
     {
         if(Instance != null && Instance != this)
@@ -74,13 +74,16 @@ public class StateManager : MonoBehaviour
             case ShopStates.DayTime:
                 currentShopState = state;
                 nextShopState = ShopStates.NightTime;
+                ShopStateEvent.DayState?.Invoke();
                 break;
             case ShopStates.NightTime:
                 currentShopState = state;
                 nextShopState = ShopStates.DayTime;
+                ShopStateEvent.NightState?.Invoke();
                 break;
             case ShopStates.Transition:
                 currentShopState = state;
+                ShopStateEvent.TransitionState?.Invoke();
                 break;
             case ShopStates.OverTime:
                 currentShopState = state;

@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using PlayerStuff;
+using Random = UnityEngine.Random;
 
 public class Cycle : MonoBehaviour
 {
@@ -10,6 +12,39 @@ public class Cycle : MonoBehaviour
     public int chanceToSpawnCustomer = 10; //chance to spawn a customer every second, default is 10%
     public AdUpgrade adUpgrade;
     public CustomerManager customerManager;
+
+
+    public void Start()
+    {
+        if (StateManager.Instance.currentShopState == ShopStates.DayTime)
+        {
+            StartCycle();
+        }
+        else if (StateManager.Instance.currentShopState == ShopStates.NightTime)
+        {
+            StartCycle();
+        }
+    }
+    public void OnEnable()
+    {
+        Subscribe();
+    }
+
+    public void OnDisable()
+    {
+        Unsubscribe();
+    }
+    private void Subscribe()
+    {
+        ShopStateEvent.DayState += StartCycle;
+        ShopStateEvent.NightState += StartCycle;
+    }
+
+    private void Unsubscribe()
+    {
+        ShopStateEvent.DayState -= StartCycle;
+        ShopStateEvent.NightState -= StartCycle;
+    }
 
     public void StartCycle()
     {
@@ -33,7 +68,7 @@ public class Cycle : MonoBehaviour
     }
     private void SpawnCustomer()
     {
-        if ((customerManager.GetWaitingCustomersCount() + customerManager.GetCustomersWithOrders()) <= maxCustomers)
+        if ((customerManager.GetWaitingCustomersCount() + customerManager.GetCustomersWithOrders()) < maxCustomers)
         {
             customerManager.SpawnCustomer();
         }
