@@ -15,6 +15,9 @@ public class CoffeeBrewerManager : MonoBehaviour
     public TextMeshProUGUI timerText; 
     
     public int brewerID = 0; 
+    
+    public AudioClip brewingLoopSound; 
+    public AudioClip brewCompleteSound;
 
     private void Start()
     {
@@ -136,6 +139,10 @@ public class CoffeeBrewerManager : MonoBehaviour
             CoffeeShopManager.Instance.coffees.Add(plainCoffee);
             CoffeeShopManager.Instance.OnCoffeeAdded?.Invoke();
         }
+        string displayText = $"+1 Plain {brewedType} Coffee";
+        Color textColor = brewedType == BeanType.Decaf ? Color.cyan : new Color(1f, 0.5f, 0f);
+        
+        FloatingTextSpawner.Instance?.SpawnTextAtUI(displayText, transform, textColor);
     
         Logger.Instance.Info($"Plain {brewedType} coffee added to inventory!");
     

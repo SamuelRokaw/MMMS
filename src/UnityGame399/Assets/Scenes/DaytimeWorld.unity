@@ -12953,6 +12953,11 @@ MonoBehaviour:
   clicksRequired: 15
   grindPopupPrefab: {fileID: 4622601399666048881, guid: 5d835b568a5714edfa0b63d793e7b709, type: 3}
   popupParent: {fileID: 1730569092}
+  grindingSounds:
+  - {fileID: 8300000, guid: 21a10348a806d468f84e1bc832e0b6de, type: 3}
+  - {fileID: 8300000, guid: 6f1cb51da2d294d18a144f556e0410ba, type: 3}
+  - {fileID: 8300000, guid: b6d804232e0484af4aee6c6c6bf21d25, type: 3}
+  completionSound: {fileID: 8300000, guid: 0592048b0ddd747c18f6a087a8bef815, type: 3}
   stats: {fileID: 1760918583}
 --- !u!1 &787262603
 GameObject:
@@ -22609,6 +22614,10 @@ PrefabInstance:
       propertyPath: 'playerSprites.Array.data[2]'
       value: 
       objectReference: {fileID: 2966388318634517685, guid: 5666cd9e44d6b7445b0bc0c358e88b12, type: 3}
+    - target: {fileID: 7968358012412132196, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8852337323811217387, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       propertyPath: m_Name
       value: OverWorld_Controller 1
@@ -22668,6 +22677,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8852337323811217387, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1760918593}
+    - targetCorrespondingSourceObject: {fileID: 5341533626112121456, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1624961230}
     - targetCorrespondingSourceObject: {fileID: 8871142954881407074, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1624961227}
@@ -22700,6 +22712,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36df619abe6bc24da8d0220dffeab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
+--- !u!1 &1624961229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5341533626112121456, guid: fe4eaa957d79b8c44b89f2d9ab885156, type: 3}
+  m_PrefabInstance: {fileID: 1624961225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1624961230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624961229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1de0ff212d141d6b5f5899297b062e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingTextSpawner
+  floatingTextPrefab: {fileID: 7712332240406456650, guid: ee0cb0f07cc9044458c96267930738cc, type: 3}
+  spawnParent: {fileID: 1348067307}
+  spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1633084923
 GameObject:
   m_ObjectHideFlags: 0

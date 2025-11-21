@@ -14,6 +14,9 @@ public class CoffeeGrinderManager : MonoBehaviour
     public GameObject grindPopupPrefab;
     public RectTransform popupParent;
 
+    public AudioClip[] grindingSounds;
+    public AudioClip completionSound;
+
     public Stats stats;
 
     private void Start()
@@ -64,6 +67,12 @@ public class CoffeeGrinderManager : MonoBehaviour
         currentClicks++;
         Logger.Instance.Info($"Grinding beans: {currentClicks}/{clicksRequired}");
         
+        if (grindingSounds != null && grindingSounds.Length > 0 && SoundManager.Instance != null)
+        {
+            AudioClip randomGrind = grindingSounds[UnityEngine.Random.Range(0, grindingSounds.Length)];
+            SoundManager.Instance.playOtherSFX(randomGrind);
+        }
+        
         if (currentClicks >= clicksRequired)
         {
             CompleteGrinding();
@@ -80,25 +89,21 @@ public class CoffeeGrinderManager : MonoBehaviour
             BeanType beanType = lastSelectedIndex == 0 ? BeanType.Decaf : BeanType.Caffeinated;
             PlayerStatEvents.PlayerBeans(5, beanType);
             CoffeeShopManager.Instance.CompleteGrinding(beanType);
+            
+            if (completionSound != null && SoundManager.Instance != null)
+            {
+                SoundManager.Instance.playOtherSFX(completionSound);
+            }
+            
+            string displayText = $"+1 {beanType} Grounds";
+            Color textColor = beanType == BeanType.Decaf ? Color.cyan : new Color(1f, 0.5f, 0f);
+        
+            FloatingTextSpawner.Instance?.SpawnTextAtUI(displayText, transform, textColor);
         }
-
-        SpawnGrindPopup();
+        
         
         currentClicks = 0;
         lastSelectedIndex = -1;
-    }
-
-    private void SpawnGrindPopup()
-    {
-        if (grindPopupPrefab == null || popupParent == null)
-            return;
-
-        string beanType = lastSelectedIndex == 0 ? "Decaf" : "Caffeinated";
-
-        GameObject popup = Instantiate(grindPopupPrefab, popupParent);
-        popup.transform.localPosition = Vector3.zero;
-
-        popup.GetComponent<TextFloat>().Show($"+1 {beanType} Grounds");
     }
     
     public int GetCurrentClicks() => currentClicks;
