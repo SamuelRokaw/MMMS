@@ -43,6 +43,7 @@ public class CustomerNPC : MonoBehaviour
     
     void FixedUpdate()
     {
+        /*
         if (!hasCollided)
         {
             isMoving = true;
@@ -56,6 +57,7 @@ public class CustomerNPC : MonoBehaviour
             isMoving = false;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+        */
     }
     
     void OnCollisionEnter2D(Collision2D collision)

@@ -167,7 +167,7 @@ public class CustomerManager : Interactable
         Logger.Instance.Info($"Coffee submitted! Accuracy: {accuracy}%");
     
         int tipAmount = npc.FinishOrder(playerStats.Luck);
-        playerStats.ChangeGold(tipAmount);
+        PlayerStatEvents.PlayerMoneyChanges(tipAmount);
     
         trashCan.TryTrash(npc.Customer.TrashChance + playerStats.Luck);
         
@@ -228,7 +228,7 @@ public class CustomerManager : Interactable
         }
 
         GameObject submittedCustomer = customersWithOrders[currentOrderIndex];
-        playerStats.ChangeGold(submittedCustomer.GetComponent<CustomerNPC>().FinishOrder(playerStats.Luck));
+        PlayerStatEvents.PlayerMoneyChanges(submittedCustomer.GetComponent<CustomerNPC>().FinishOrder(playerStats.Luck));
         trashCan.TryTrash(submittedCustomer.GetComponent<CustomerNPC>().Customer.TrashChance + playerStats.Luck);
         
         customersWithOrders.RemoveAt(currentOrderIndex);

@@ -17,6 +17,7 @@ public class PlayerStatEvents :MonoBehaviour
     public static Action<int> PlayerUpgradesStat;
     public static Action<int, CreamerType> PlayerCreams;
     public static Action<int, BeanType>  PlayerBeans;
+    public static Action<int> PlayerMoneyChanges;
     
     
     
@@ -39,6 +40,7 @@ public class PlayerStatEvents :MonoBehaviour
         IncreaseSP += gainSP;
         PlayerCreams += DecreaseCreamer;
         PlayerBeans += DecreaseBeans;
+        PlayerMoneyChanges += ChangeMoney;
     }
 
     private void Unsubscribe()
@@ -51,6 +53,7 @@ public class PlayerStatEvents :MonoBehaviour
         IncreaseSP -= gainSP;
         PlayerCreams -= DecreaseCreamer;
         PlayerBeans -= DecreaseBeans;
+        PlayerMoneyChanges -= ChangeMoney;
     }
 
     private void OnItemInteracted(string upgradeName)
@@ -154,5 +157,10 @@ public class PlayerStatEvents :MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void ChangeMoney(int amount)
+    {
+        stats.ChangeGold(amount);
     }
 }
