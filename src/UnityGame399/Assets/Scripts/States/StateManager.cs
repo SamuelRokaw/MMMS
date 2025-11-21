@@ -55,9 +55,6 @@ public class StateManager : MonoBehaviour
             case GameStates.StatsMenu:
                 currentGameState = state;
                 break;
-            case GameStates.InventoryMenu:
-                currentGameState = state;
-                break;
             case GameStates.MakingCoffee:
                 currentGameState = state;
                 break;
@@ -114,10 +111,6 @@ public class StateManager : MonoBehaviour
     public void SwitchToPause()
     {
         SwitchState(GameStates.PauseMenu);
-    }
-    public void SwitchToInventory()
-    {
-        SwitchState(GameStates.InventoryMenu);
     }
     public void SwitchToMakingCofee()
     {

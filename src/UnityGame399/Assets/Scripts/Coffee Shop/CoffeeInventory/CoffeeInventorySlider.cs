@@ -54,7 +54,6 @@ public class InventorySlidePanel : MonoBehaviour
 
     public void ShowPanel()
     {
-        StateManager.Instance.SwitchToInventory();
         isShown = true;
     }
 

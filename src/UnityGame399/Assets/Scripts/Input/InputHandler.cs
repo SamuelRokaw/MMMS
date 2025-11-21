@@ -104,15 +104,9 @@ public class InputHandler : MonoBehaviour
     
     public void inventory()
     {
-        if (StateManager.Instance.currentGameState == GameStates.InventoryMenu)
+        if(StateManager.Instance.currentGameState == GameStates.CoffeeShop && StateManager.Instance.nextShopState == ShopStates.NightTime)
         {
             inventorySlidePanel.TogglePanel();
-            Logger.Instance.Info("Close Coffee Inventory");
-        }
-        else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop && StateManager.Instance.nextShopState == ShopStates.NightTime)
-        {
-            inventorySlidePanel.TogglePanel();
-            Logger.Instance.Info("Opened Coffee Inventory");
         }
     }
     
