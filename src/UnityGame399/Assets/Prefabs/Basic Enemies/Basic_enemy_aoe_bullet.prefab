@@ -369,6 +369,7 @@ MonoBehaviour:
   atkCooldown: 4
   attacking: 0
   ap: {fileID: 415381545849945556}
+  isBoss: 0
   deathSound: {fileID: 8300000, guid: 2468cdbce079f4769b3ebe457855d988, type: 3}
   bloodSplatterPrefab: {fileID: 0}
   player: {fileID: 0}
@@ -388,6 +389,7 @@ MonoBehaviour:
   spdMod: 1
   rotationSpeed: 15
   rotspdMod: 1
+  isWaveDefense: 0
 --- !u!50 &6502903360529636848
 Rigidbody2D:
   serializedVersion: 5
@@ -437,6 +439,7 @@ MonoBehaviour:
   - {fileID: 3054535733435398051}
   - {fileID: 298253886567369693}
   - {fileID: 499714742515906657}
+  shootSFX: {fileID: 8300000, guid: b20c01d26a85560409339e0a7508f343, type: 3}
 --- !u!61 &7872294104752406019
 BoxCollider2D:
   m_ObjectHideFlags: 0

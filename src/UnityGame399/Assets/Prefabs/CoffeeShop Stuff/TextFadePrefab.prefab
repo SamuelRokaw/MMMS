@@ -153,3 +153,16 @@ MonoBehaviour:
   floatSpeed: 50
   fadeSpeed: 1
   lifetime: 2
+  floatDistance: 50
+--- !u!225 &8950148782203665555
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622601399666048881}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

@@ -1,3 +1,4 @@
+using Game399.Shared.Models;
 using PlayerStuff;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class StateManager : MonoBehaviour
     [SerializeField] private AudioClip combatTrack;
     public static StateManager Instance {get; private set;}
     public GameStates currentGameState = GameStates.MainMenu;
+    public ShopStates currentShopState  = ShopStates.DayTime;
+    public ShopStates nextShopState = ShopStates.NightTime; 
     void Awake()
     {
         if(Instance != null && Instance != this)
@@ -52,14 +55,35 @@ public class StateManager : MonoBehaviour
             case GameStates.StatsMenu:
                 currentGameState = state;
                 break;
-            case GameStates.InventoryMenu:
-                currentGameState = state;
-                break;
             case GameStates.MakingCoffee:
                 currentGameState = state;
                 break;
             case GameStates.TakingOutTrash:
                 currentGameState = state;
+                break;
+        }
+    }
+
+    private void SwitchCoffeeShopState(ShopStates state)
+    {
+        switch(state)
+        {
+            case ShopStates.DayTime:
+                currentShopState = state;
+                nextShopState = ShopStates.NightTime;
+                ShopStateEvent.DayState?.Invoke();
+                break;
+            case ShopStates.NightTime:
+                currentShopState = state;
+                nextShopState = ShopStates.DayTime;
+                ShopStateEvent.NightState?.Invoke();
+                break;
+            case ShopStates.Transition:
+                currentShopState = state;
+                ShopStateEvent.TransitionState?.Invoke();
+                break;
+            case ShopStates.OverTime:
+                currentShopState = state;
                 break;
         }
     }
@@ -88,10 +112,6 @@ public class StateManager : MonoBehaviour
     {
         SwitchState(GameStates.PauseMenu);
     }
-    public void SwitchToInventory()
-    {
-        SwitchState(GameStates.InventoryMenu);
-    }
     public void SwitchToMakingCofee()
     {
         SwitchState(GameStates.MakingCoffee);
@@ -100,5 +120,23 @@ public class StateManager : MonoBehaviour
     public void SwitchToTakingOutTrash()
     {
         SwitchState(GameStates.TakingOutTrash);
+    }
+
+    public void SwitchShopToDay()
+    {
+        SwitchCoffeeShopState(ShopStates.DayTime);
+    }
+    public void SwitchShopToNight()
+    {
+        SwitchCoffeeShopState(ShopStates.NightTime);
+    }
+    public void SwitchShopToOverTime()
+    {
+        SwitchCoffeeShopState(ShopStates.OverTime);
+    }
+
+    public void SwitchShopToTransition()
+    {
+        SwitchCoffeeShopState(ShopStates.Transition);
     }
 }

@@ -15,6 +15,9 @@ public class PlayerStatEvents :MonoBehaviour
     public static Action<int> DecreaseSP;
     public static Action<int> IncreaseSP;
     public static Action<int> PlayerUpgradesStat;
+    public static Action<int, CreamerType> PlayerCreams;
+    public static Action<int, BeanType>  PlayerBeans;
+    public static Action<int> PlayerMoneyChanges;
     
     
     
@@ -35,6 +38,9 @@ public class PlayerStatEvents :MonoBehaviour
         stats.OnTakeDamage += DamageTaken2; //these events are in the base PlayerStats so they have to be subscribed like this
         DecreaseSP += useSP;
         IncreaseSP += gainSP;
+        PlayerCreams += DecreaseCreamer;
+        PlayerBeans += DecreaseBeans;
+        PlayerMoneyChanges += ChangeMoney;
     }
 
     private void Unsubscribe()
@@ -45,6 +51,9 @@ public class PlayerStatEvents :MonoBehaviour
         stats.OnDie -= dies;//these events are in the base PlayerStats so they have to be unsubscribed like this
         DecreaseSP -= useSP;
         IncreaseSP -= gainSP;
+        PlayerCreams -= DecreaseCreamer;
+        PlayerBeans -= DecreaseBeans;
+        PlayerMoneyChanges -= ChangeMoney;
     }
 
     private void OnItemInteracted(string upgradeName)
@@ -119,5 +128,39 @@ public class PlayerStatEvents :MonoBehaviour
                 Logger.Instance.Info("Player Attack increases");
                 break;
         }
+    }
+
+    private void DecreaseCreamer(int amount, CreamerType type)
+    {
+        switch (type)
+        {
+            case CreamerType.Caramel:
+                stats.ChangeCarCreamer(-amount);
+                break;
+            case CreamerType.Milk:
+                stats.ChangeMilkCreamer(-amount);
+                break;
+            default:
+                break;
+        }
+    }
+    private void DecreaseBeans(int amount, BeanType type)
+    {
+        switch (type)
+        {
+            case BeanType.Caffeinated:
+                stats.ChangeCafBean(-amount);
+                break;
+            case BeanType.Decaf:
+                stats.ChangeDecafBean(-amount);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void ChangeMoney(int amount)
+    {
+        stats.ChangeGold(amount);
     }
 }

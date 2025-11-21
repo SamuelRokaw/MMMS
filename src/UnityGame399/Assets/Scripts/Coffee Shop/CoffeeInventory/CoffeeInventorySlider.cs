@@ -42,7 +42,14 @@ public class InventorySlidePanel : MonoBehaviour
 
     public void TogglePanel()
     {
-        isShown = !isShown;
+        if (isShown)
+        {
+            HidePanel();
+        }
+        else
+        {
+            ShowPanel();
+        }
     }
 
     public void ShowPanel()
@@ -53,6 +60,7 @@ public class InventorySlidePanel : MonoBehaviour
     public void HidePanel()
     {
         isShown = false;
+        StateManager.Instance.SwitchToCoffeeShop();
     }
 
     public bool IsShown() => isShown;

@@ -177,6 +177,7 @@ MonoBehaviour:
   projectile: {fileID: 8789316286346777287, guid: b91f614139c71724284d2cc4b128d7f6, type: 3}
   spawnPoints:
   - {fileID: 6836689961243314666}
+  shootSFX: {fileID: 8300000, guid: b20c01d26a85560409339e0a7508f343, type: 3}
 --- !u!114 &2319203117170458631
 MonoBehaviour:
   m_ObjectHideFlags: 0

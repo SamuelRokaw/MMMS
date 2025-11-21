@@ -11,7 +11,6 @@ public class CoffeeShopManager : MonoBehaviour
     public int decafBrews = 0;
     public int caffeinatedBrews = 0;
     public List<Coffee> coffees = new List<Coffee>();
-    
     public UnityEvent OnCoffeeAdded;
     
     private void Awake()

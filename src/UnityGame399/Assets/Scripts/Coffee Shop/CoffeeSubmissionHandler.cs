@@ -1,4 +1,5 @@
 using UnityEngine;
+using PlayerStuff;
 public class CoffeeSubmissionHandler : MonoBehaviour
 {
     public static CoffeeSubmissionHandler Instance;
@@ -79,7 +80,15 @@ public class CoffeeSubmissionHandler : MonoBehaviour
         DeselectCoffee();
 
         Logger.Instance.Info("Coffee submitted successfully!");
+        if (StateManager.Instance.currentShopState == ShopStates.OverTime)
+        {
+            if(customerManager.GetWaitingCustomersCount() + customerManager.GetCustomersWithOrders() == 0)
+            {
+                StateManager.Instance.SwitchShopToTransition();
+            }
+        }
         return true;
+        
     }
     
     public Coffee GetSelectedCoffee() => selectedCoffee;
