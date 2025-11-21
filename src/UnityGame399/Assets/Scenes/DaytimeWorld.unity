@@ -1163,6 +1163,8 @@ MonoBehaviour:
   collectButton: {fileID: 2117022532}
   timerText: {fileID: 0}
   brewerID: 0
+  brewingLoopSound: {fileID: 0}
+  brewCompleteSound: {fileID: 0}
 --- !u!1 &95086876
 GameObject:
   m_ObjectHideFlags: 0
@@ -13904,6 +13906,8 @@ MonoBehaviour:
   fillRate: 5
   maxPercentage: 100
   stats: {fileID: 1760918583}
+  caramelbutton: {fileID: 1494392310}
+  caramelUpgrade: {fileID: 111539047}
 --- !u!1 &922413181
 GameObject:
   m_ObjectHideFlags: 0
@@ -20287,7 +20291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1494392311
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20444,6 +20448,8 @@ MonoBehaviour:
   collectButton: {fileID: 600343250}
   timerText: {fileID: 0}
   brewerID: 1
+  brewingLoopSound: {fileID: 0}
+  brewCompleteSound: {fileID: 0}
 --- !u!1 &1498790652
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -22,8 +23,19 @@ public class CoffeeTopperManager : MonoBehaviour
     private int selectedCoffeeIndex = -1;
 
     public Stats stats;
-    private float creamConsumeBuffer = 0f; 
-    
+    private float creamConsumeBuffer = 0f;
+
+    public GameObject caramelbutton;
+    public Upgrades caramelUpgrade;
+
+    public void OnEnable()
+    {
+        if (caramelUpgrade.unlocked)
+        {
+            caramelbutton.SetActive(true);
+        }
+    }
+
     private void Start()
     {
         if (coffeeCupButton != null)
