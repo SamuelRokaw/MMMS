@@ -1,46 +1,60 @@
 using UnityEngine;
 using TMPro;
-using System.Collections;
 
 public class TextFloat : MonoBehaviour
 {
-    public float lifetime = 1f;
-    public float floatDistance = 50f;
+    public TextMeshProUGUI textComponent;
+    public float floatSpeed = 50f; 
+    public float fadeSpeed = 1f; 
+    public float lifetime = 2f;
 
-    private TextMeshProUGUI text;
+    private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    private Vector3 startPos;
+    private float timer = 0f;
 
-    void Awake()
+    private void Awake()
     {
-        text = GetComponent<TextMeshProUGUI>();
+        rectTransform = GetComponent<RectTransform>();
+        
         canvasGroup = GetComponent<CanvasGroup>();
-    }
-
-    public void Show(string message)
-    {
-        text.text = message;
-        startPos = transform.localPosition;
-
-        StartCoroutine(PlayAnimation());
-    }
-
-    private IEnumerator PlayAnimation()
-    {
-        float timer = 0f;
-        Vector3 endPos = startPos + new Vector3(0, floatDistance, 0);
-
-        while (timer < lifetime)
+        if (canvasGroup == null)
         {
-            timer += Time.deltaTime;
-            float t = timer / lifetime;
-
-            transform.localPosition = Vector3.Lerp(startPos, endPos, t);
-            canvasGroup.alpha = 1f - t;
-
-            yield return null;
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
+        
+        if (textComponent == null)
+        {
+            textComponent = GetComponent<TextMeshProUGUI>();
+        }
+    }
 
-        Destroy(gameObject);
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        
+        rectTransform.anchoredPosition += Vector2.up * floatSpeed * Time.deltaTime;
+        
+        canvasGroup.alpha = Mathf.Lerp(1f, 0f, timer / lifetime);
+        
+        if (timer >= lifetime)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    public void SetText(string text)
+    {
+        if (textComponent != null)
+        {
+            textComponent.text = text;
+        }
+    }
+    
+    public void SetColor(Color color)
+    {
+        if (textComponent != null)
+        {
+            textComponent.color = color;
+        }
     }
 }
