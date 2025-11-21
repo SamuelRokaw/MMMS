@@ -18,6 +18,9 @@ public class Computer : Interactable
     public List<Upgrades> upgrades;
     public List<int> upgradeCosts;
     public List<GameObject> upgradesUI;
+    
+    //caramel missions
+    public GameObject caramelMisions;
 
     private void Awake()
     {
@@ -95,6 +98,14 @@ public class Computer : Interactable
             currentTab = false;
             missionButton.interactable = false;
             shopButton.interactable = true;
+            if (upgrades[2].unlocked)
+            {
+                caramelMisions.SetActive(true);
+            }
+            else
+            {
+                caramelMisions.SetActive(false);
+            }
         }
         else
         {
