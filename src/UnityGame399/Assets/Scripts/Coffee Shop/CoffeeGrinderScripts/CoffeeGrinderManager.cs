@@ -9,9 +9,12 @@ public class CoffeeGrinderManager : MonoBehaviour
 
     private int currentClicks = 0;
     private int lastSelectedIndex = -1;
+    
 
     public GameObject grindPopupPrefab;
     public RectTransform popupParent;
+
+    public Stats stats;
 
     private void Start()
     {
@@ -38,6 +41,25 @@ public class CoffeeGrinderManager : MonoBehaviour
         }
         
         lastSelectedIndex = currentSelectedIndex;
+        BeanType beanType = lastSelectedIndex == 0 ? BeanType.Decaf : BeanType.Caffeinated;
+        switch (beanType)
+        {
+            case BeanType.Caffeinated:
+                if (stats.currentCafBean < 5)
+                {
+                    Logger.Instance.Info("Not enough beans of selected coffee type. Can not grind beans.");
+                    return;
+                }
+                break;
+            case BeanType.Decaf:
+                if (stats.currentDecafBean < 5)
+                {
+                    Logger.Instance.Info("Not enough beans of selected coffee type. Can not grind beans.");
+                    return;
+                }
+
+                break;
+        }
         
         currentClicks++;
         Logger.Instance.Info($"Grinding beans: {currentClicks}/{clicksRequired}");
@@ -56,7 +78,7 @@ public class CoffeeGrinderManager : MonoBehaviour
         if (CoffeeShopManager.Instance != null)
         {
             BeanType beanType = lastSelectedIndex == 0 ? BeanType.Decaf : BeanType.Caffeinated;
-            
+            PlayerStatEvents.PlayerBeans(5, beanType);
             CoffeeShopManager.Instance.CompleteGrinding(beanType);
         }
 

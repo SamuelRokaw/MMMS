@@ -130,10 +130,17 @@ public class Stats : MonoBehaviour
     
     public void SaveToPlayerPrefs()
     {
-        StatsData data = Save();
-        string json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString("PlayerStats", json);
-        PlayerPrefs.Save();
+        if(StateManager.Instance.currentShopState == ShopStates.Transition)
+        {
+            StatsData data = Save();
+            string json = JsonUtility.ToJson(data);
+            PlayerPrefs.SetString("PlayerStats", json);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            Logger.Instance.Info("Player Not Saved because it is not transition state");
+        }
     }
 
     public void LoadFromPlayerPrefs()
@@ -195,7 +202,7 @@ public class Stats : MonoBehaviour
         stats.CurrentGold = 100;
         stats.CurrentCafBean = 50;
         stats.CurrentDecafBean = 50;
-        stats.CurrentCarCreamer = 50;
+        stats.CurrentCarCreamer = 0;
         stats.CurrentMilkCreamer = 50;
         stats.AttackPower = 1;
         stats.HasDashSkill = true;

@@ -20,6 +20,9 @@ public class CoffeeTopperManager : MonoBehaviour
     private bool isLocked = false;
     private bool hasCreamAdded = false;
     private int selectedCoffeeIndex = -1;
+
+    public Stats stats;
+    private float creamConsumeBuffer = 0f; 
     
     private void Start()
     {
@@ -50,14 +53,49 @@ public class CoffeeTopperManager : MonoBehaviour
 
         UpdateUI();
     }
-
+    
     private void Update()
     {
         if (isPouring)
         {
+            CreamerType creamerType = creamerSelector.GetSelectedCreamerType();
+
+            switch (creamerType)
+            {
+                case CreamerType.Caramel:
+                    if (stats.currentCarCreamer <= 0)
+                    {
+                        Logger.Instance.Info("No creamer left!");
+                        isPouring = false;
+                        creamerSelector.UnlockSelection();
+                    }
+                    break;
+                case CreamerType.Milk:
+                    if (stats.currentMilkCreamer <= 0)
+                    {
+                        Logger.Instance.Info("No creamer left!");
+                        isPouring = false;
+                        creamerSelector.UnlockSelection();
+                    }
+                    break;
+            }
+            
+            
             currentPercentage += fillRate * Time.deltaTime;
             currentPercentage = Mathf.Min(currentPercentage, maxPercentage);
-            
+
+            float drainRate = 1f;
+            creamConsumeBuffer += drainRate * Time.deltaTime;
+            int wholeUnits = Mathf.FloorToInt(creamConsumeBuffer);
+            if (wholeUnits > 0)
+            { 
+                for (int i = 0; i < wholeUnits; i++)
+                {
+                    PlayerStatEvents.PlayerCreams?.Invoke(1, creamerType);
+                }
+                creamConsumeBuffer -= wholeUnits;
+            }
+
             if (currentPercentage > 0 && !hasCreamAdded)
             {
                 hasCreamAdded = true;
@@ -68,7 +106,7 @@ public class CoffeeTopperManager : MonoBehaviour
             }
 
             UpdateUI();
-            
+
             if (currentPercentage >= maxPercentage)
             {
                 isPouring = false;

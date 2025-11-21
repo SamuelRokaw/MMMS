@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using PlayerStuff;
 
 public class Combat : MonoBehaviour
 {
@@ -104,7 +105,12 @@ public class Combat : MonoBehaviour
         {
             csUI.SetActive(true);
         }
+        if (StateManager.Instance.currentShopState == ShopStates.OverTime)
+        {
+            StateManager.Instance.SwitchShopToTransition();
+        }
         Destroy(this.gameObject);
+        
     }
 
     private IEnumerator ExitCombatWithFade(bool playerWon)

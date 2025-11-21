@@ -7,7 +7,6 @@ namespace PlayerStuff
         Combat,
         PauseMenu,
         StatsMenu,
-        InventoryMenu,
         Dialogue,
         MakingCoffee,
         TakingOutTrash,
