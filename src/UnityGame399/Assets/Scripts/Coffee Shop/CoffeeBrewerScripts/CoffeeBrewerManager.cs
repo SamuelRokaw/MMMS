@@ -15,6 +15,9 @@ public class CoffeeBrewerManager : MonoBehaviour
     public TextMeshProUGUI timerText; 
     
     public int brewerID = 0; 
+    
+    public AudioClip brewingLoopSound; 
+    public AudioClip brewCompleteSound;
 
     private void Start()
     {
