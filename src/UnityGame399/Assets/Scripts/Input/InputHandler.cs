@@ -47,24 +47,43 @@ public class InputHandler : MonoBehaviour
         inventoryAction = actionMap.FindAction("Inventory");
         ticketAction = actionMap.FindAction("Ticket");
 
-        // Subscribe to events
-        attackAction.performed += ctx => attack();
-        interactAction.performed += ctx => Interact();
-        skill1Action.performed += ctx => skill1();
-        skill2Action.performed += ctx => skill2();
-        pauseAction.performed += ctx => pause();
-        statsAction.performed += ctx => stats();
-        inventoryAction.performed += ctx => inventory();
-        ticketAction.performed += ctx => ToggleTicket();
-        
+        // Subscribe to events with named methods
+        attackAction.performed += OnAttack;
+        interactAction.performed += OnInteract;
+        skill1Action.performed += OnSkill1;
+        skill2Action.performed += OnSkill2;
+        pauseAction.performed += OnPause;
+        statsAction.performed += OnStats;
+        inventoryAction.performed += OnInventory;
+        ticketAction.performed += OnTicket;
 
         actionMap.Enable();
     }
 
     private void OnDisable()
     {
+        // Unsubscribe from events
+        attackAction.performed -= OnAttack;
+        interactAction.performed -= OnInteract;
+        skill1Action.performed -= OnSkill1;
+        skill2Action.performed -= OnSkill2;
+        pauseAction.performed -= OnPause;
+        statsAction.performed -= OnStats;
+        inventoryAction.performed -= OnInventory;
+        ticketAction.performed -= OnTicket;
+
         actionMap.Disable();
     }
+    
+    // Named handlers for input actions
+    private void OnStats(InputAction.CallbackContext ctx) => stats();
+    private void OnInventory(InputAction.CallbackContext ctx) => inventory();
+    private void OnPause(InputAction.CallbackContext ctx) => pause();
+    private void OnSkill1(InputAction.CallbackContext ctx) => skill1();
+    private void OnSkill2(InputAction.CallbackContext ctx) => skill2();
+    private void OnAttack(InputAction.CallbackContext ctx) => attack();
+    private void OnInteract(InputAction.CallbackContext ctx) => Interact();
+    private void OnTicket(InputAction.CallbackContext ctx) => ToggleTicket();
 
     private void Update()
     {

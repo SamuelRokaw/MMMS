@@ -79,9 +79,9 @@ public class Cycle : MonoBehaviour
         int i = 0;
         while (i < length * 60)
         {
+            yield return new WaitForSeconds(1f);
             if(StateManager.Instance.currentGameState != GameStates.PauseMenu)
             {
-                yield return new WaitForSeconds(1f);
                 i++;
                 if (StateManager.Instance.currentShopState == ShopStates.DayTime)
                 {
