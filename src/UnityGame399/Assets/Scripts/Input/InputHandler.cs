@@ -1,88 +1,127 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 using PlayerStuff;
 using TMPro;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UI.Button;
+using UnityEngine.InputSystem;
+using System.Collections.Generic;
+
 
 public class InputHandler : MonoBehaviour
 {
-    //we will have a seperate class that changes these
-    public OverworldMovement owM; //overworld
-    public OverworldInteraction owI; //overworld
-    public CombatControl cC;  //combat
-    public CanvasGroup pauseMenu; //pause menu
+    public OverworldMovement owM;
+    public OverworldInteraction owI;
+    public CombatControl cC;
+    public CanvasGroup pauseMenu;
     public StatsUI statsUI;
     public InventorySlidePanel inventorySlidePanel;
     public GameObject ticketUI;
     public bool isTicketUIOpen = true;
-    
-    //sprites
+
     [SerializeField] private List<Sprite> playerSprites;
     [SerializeField] private SpriteRenderer owSpriteRenderer;
-    
-    //action dictionary
-    public KeyCode upKey;
-    public KeyCode downKey;
-    public KeyCode leftKey;
-    public KeyCode rightKey;
-    public KeyCode skill1Key;
-    public KeyCode skill2Key;
-    public KeyCode attackKey;
-    public KeyCode pauseKey;
-    public KeyCode statsKey;
-    public KeyCode inventoryKey;
-    public KeyCode ticketKey;
-    private Dictionary<KeyCode, Action> inputDictionary;
-    private Dictionary<KeyCode, Action> inputMoveDictionary;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private InputActionMap actionMap;
+    private InputAction moveAction;
+    private InputAction attackAction;
+    private InputAction interactAction;
+    private InputAction skill1Action;
+    private InputAction skill2Action;
+    private InputAction pauseAction;
+    private InputAction statsAction;
+    private InputAction inventoryAction;
+    private InputAction ticketAction;
+
+    private void OnEnable()
     {
-        inputDictionary = new Dictionary<KeyCode, Action>
-        {
-            {attackKey, attack},
-            {skill1Key, skill1},
-            {skill2Key, skill2},
-            {pauseKey, pause},
-            {statsKey, stats},
-            {inventoryKey, inventory},
-            {ticketKey, ToggleTicket}
-        };
-        inputMoveDictionary = new Dictionary<KeyCode, Action>
-        {
-            {upKey, moveup },
-            {downKey, movedown},
-            {leftKey, moveleft},
-            {rightKey, moveright},
-        };
+        // Get the Player action map from your singleton
+        actionMap = PlayerControlsManager.Instance.inputActions.FindActionMap("Player");
+
+        // Cache actions
+        moveAction = actionMap.FindAction("Move");
+        attackAction = actionMap.FindAction("Attack");
+        interactAction = actionMap.FindAction("Interact");
+        skill1Action = actionMap.FindAction("Skill1");
+        skill2Action = actionMap.FindAction("Skill2");
+        pauseAction = actionMap.FindAction("Pause");
+        statsAction = actionMap.FindAction("Stats");
+        inventoryAction = actionMap.FindAction("Inventory");
+        ticketAction = actionMap.FindAction("Ticket");
+
+        // Subscribe to events
+        attackAction.performed += ctx => attack();
+        interactAction.performed += ctx => Interact();
+        skill1Action.performed += ctx => skill1();
+        skill2Action.performed += ctx => skill2();
+        pauseAction.performed += ctx => pause();
+        statsAction.performed += ctx => stats();
+        inventoryAction.performed += ctx => inventory();
+        ticketAction.performed += ctx => ToggleTicket();
         
+
+        actionMap.Enable();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        // Check for key presses and call the corresponding method
-        foreach (var entry in inputDictionary)
+        actionMap.Disable();
+    }
+
+    private void Update()
+    {
+        // Poll movement every frame
+        Vector2 input = moveAction.ReadValue<Vector2>();
+        HandleMove(input);
+    }
+
+    private void HandleMove(Vector2 input)
+    {
+        if (input == Vector2.zero) return;
+
+        if (StateManager.Instance.currentGameState == GameStates.Combat)
         {
-            if (Input.GetKeyDown(entry.Key)) // If the key is pressed down
+            if (input.y > 0)
             {
-                entry.Value.Invoke(); // Call the associated method
+                cC.moveup(); 
+                cC.changeSprite(playerSprites[1], 1);
             }
-            
+            else if (input.y < 0)
+            {
+                cC.movedown(); 
+                cC.changeSprite(playerSprites[0], 4);
+            }
+            else if (input.x < 0)
+            {
+                cC.moveleft(); 
+                cC.changeSprite(playerSprites[2], 3);
+            }
+            else if (input.x > 0)
+            {
+                cC.moveright(); 
+                cC.changeSprite(playerSprites[2], 2);
+            }
         }
-    }
-
-    void FixedUpdate()  //for movement, should hopefully make it  consistent across all users
-    {
-        // Check for key presses and call the corresponding method
-        foreach (var entry in inputMoveDictionary)
+        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
         {
-            if (Input.GetKey(entry.Key)) // If the key is pressed
+            if (input.y > 0)
             {
-                entry.Value.Invoke(); // Call the associated method
+                owSpriteRenderer.sprite = playerSprites[1]; owSpriteRenderer.flipX = false; 
+                owM.moveup();
             }
-            
+            else if (input.y < 0)
+            {
+                owSpriteRenderer.sprite = playerSprites[0]; owSpriteRenderer.flipX = false; 
+                owM.movedown();
+            }
+            else if (input.x < 0)
+            {
+                owSpriteRenderer.sprite = playerSprites[2]; owSpriteRenderer.flipX = true; 
+                owM.moveleft();
+            }
+            else if (input.x > 0)
+            {
+                owSpriteRenderer.sprite = playerSprites[2]; owSpriteRenderer.flipX = false; 
+                owM.moveright();
+            }
         }
     }
 
@@ -91,8 +130,9 @@ public class InputHandler : MonoBehaviour
         if (StateManager.Instance.currentGameState == GameStates.StatsMenu)
         {
             Logger.Instance.Info("Close Stats");
-            StateManager.Instance.SwitchToCoffeeShop();
             statsUI.closeMenu();
+            StateManager.Instance.SwitchToCoffeeShop();
+            
         }
         else if(StateManager.Instance.currentGameState == GameStates.CoffeeShop )
         {
@@ -130,77 +170,6 @@ public class InputHandler : MonoBehaviour
         }
     }
     
-    
-    private void moveup()
-    {
-        
-        if(StateManager.Instance.currentGameState == GameStates.Combat)
-        {
-            cC.moveup();
-            cC.changeSprite(playerSprites[1], 1);
-            Logger.Instance.Info("Moved Up");
-        }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
-        {
-            Logger.Instance.Info("Moved Up");
-            owSpriteRenderer.sprite = playerSprites[1];
-            owSpriteRenderer.flipX = false;
-            owM.moveup();
-        }
-    }
-    private void movedown()
-    {
-        
-        if(StateManager.Instance.currentGameState == GameStates.Combat)
-        {
-            Logger.Instance.Info("Moved Down");
-            cC.changeSprite(playerSprites[0], 4);
-            
-            cC.movedown();
-        }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
-        {
-            Logger.Instance.Info("Moved Down");
-            owSpriteRenderer.sprite = playerSprites[0];
-            owSpriteRenderer.flipX = false;
-            owM.movedown();
-        }
-    }
-    private void moveleft()
-    {
-        
-        if(StateManager.Instance.currentGameState == GameStates.Combat)
-        {
-            Logger.Instance.Info("Moved Left");
-            cC.changeSprite(playerSprites[2], 3);
-            
-            cC.moveleft();
-        }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
-        {
-            Logger.Instance.Info("Moved Left");
-            owSpriteRenderer.sprite = playerSprites[2];
-            owSpriteRenderer.flipX = true;
-            owM.moveleft();
-        }
-    }
-    private void moveright()
-    {
-        
-        if(StateManager.Instance.currentGameState == GameStates.Combat)
-        {
-            Logger.Instance.Info("Moved Right");
-            cC.changeSprite(playerSprites[2], 2);
-            cC.moveright();
-        }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
-        {
-            Logger.Instance.Info("Moved Right");
-            owSpriteRenderer.sprite = playerSprites[2];
-            owSpriteRenderer.flipX = false;
-            owM.moveright();
-        }
-    }
     private void skill1()
     {
         
@@ -222,13 +191,16 @@ public class InputHandler : MonoBehaviour
 
     private void attack()
     {
-        
         if(StateManager.Instance.currentGameState == GameStates.Combat)
         {
             Logger.Instance.Info("trying to attack");
             cC.punch();
         }
-        else if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
+    }
+
+    private void Interact()
+    {
+        if (StateManager.Instance.currentGameState == GameStates.CoffeeShop || StateManager.Instance.currentGameState == GameStates.TakingOutTrash)
         {
             Logger.Instance.Info("trying to interact");
             owI.Interact();
