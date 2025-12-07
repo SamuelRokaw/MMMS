@@ -40,12 +40,14 @@ public class Computer : Interactable
     {
         Logger.Instance.Info("Computer UI opened");
         computerUI.SetActive(true);
+        StateManager.Instance.SwitchToMakingCofee();
     }
 
     public void CloseUI()
     {
         Logger.Instance.Info("Computer UI closed");
         computerUI.SetActive(false);
+        StateManager.Instance.SwitchToCoffeeShop();
     }
 
     public void ChooseMission(int missionIndex)

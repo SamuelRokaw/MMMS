@@ -6,7 +6,8 @@ public class StartUp : MonoBehaviour
     public void NewGame()
     {
         Logger.Instance.Info("Creating new game");
-        PlayerPrefs.DeleteAll(); //deletes all saved data, player stat, area interactables data
+        PlayerPrefs.DeleteKey("CoffeeShop");
+        PlayerPrefs.DeleteKey("PlayerStats");
         stats.ResetPlayerPrefs(); // makes a new player saved data to be loaded
 
     }

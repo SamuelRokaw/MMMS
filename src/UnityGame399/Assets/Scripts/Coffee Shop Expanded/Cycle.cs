@@ -80,10 +80,13 @@ public class Cycle : MonoBehaviour
         while (i < length * 60)
         {
             yield return new WaitForSeconds(1f);
-            i++;
-            if (StateManager.Instance.currentShopState == ShopStates.DayTime)
+            if(StateManager.Instance.currentGameState != GameStates.PauseMenu)
             {
-                RollToSpawnCustomer();
+                i++;
+                if (StateManager.Instance.currentShopState == ShopStates.DayTime)
+                {
+                    RollToSpawnCustomer();
+                }
             }
         }
 

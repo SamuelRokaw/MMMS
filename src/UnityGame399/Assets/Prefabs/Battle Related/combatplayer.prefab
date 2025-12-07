@@ -196,7 +196,7 @@ MonoBehaviour:
   punchPrefab: {fileID: 3110260225468949744, guid: aa78259d815b90c43b521527eb12778f, type: 3}
   dash: {fileID: 418810695739933412}
   spear: {fileID: 6327120668403259831}
-  speed: 10
+  speed: 15
   spdMod: 1
 --- !u!114 &418810695739933412
 MonoBehaviour:

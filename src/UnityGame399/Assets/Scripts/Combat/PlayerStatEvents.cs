@@ -11,12 +11,11 @@ public class PlayerStatEvents :MonoBehaviour
     //events
     public static Action<int> PlayerTakesDamage;
     public static Action Die;
-    public static Action<int> DecreaseOxygen;
     public static Action<int> DecreaseSP;
     public static Action<int> IncreaseSP;
     public static Action<int> PlayerUpgradesStat;
-    public static Action<int, CreamerType> PlayerCreams;
-    public static Action<int, BeanType>  PlayerBeans;
+    public static Action<int, CreamerType> PlayerUsesCream;
+    public static Action<int, BeanType>  PlayerUsesBeans;
     public static Action<int> PlayerMoneyChanges;
     
     
@@ -38,8 +37,8 @@ public class PlayerStatEvents :MonoBehaviour
         stats.OnTakeDamage += DamageTaken2; //these events are in the base PlayerStats so they have to be subscribed like this
         DecreaseSP += useSP;
         IncreaseSP += gainSP;
-        PlayerCreams += DecreaseCreamer;
-        PlayerBeans += DecreaseBeans;
+        PlayerUsesCream += DecreaseCreamer;
+        PlayerUsesBeans += DecreaseBeans;
         PlayerMoneyChanges += ChangeMoney;
     }
 
@@ -51,8 +50,8 @@ public class PlayerStatEvents :MonoBehaviour
         stats.OnDie -= dies;//these events are in the base PlayerStats so they have to be unsubscribed like this
         DecreaseSP -= useSP;
         IncreaseSP -= gainSP;
-        PlayerCreams -= DecreaseCreamer;
-        PlayerBeans -= DecreaseBeans;
+        PlayerUsesCream -= DecreaseCreamer;
+        PlayerUsesBeans -= DecreaseBeans;
         PlayerMoneyChanges -= ChangeMoney;
     }
 
