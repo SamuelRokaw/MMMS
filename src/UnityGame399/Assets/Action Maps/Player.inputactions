@@ -223,22 +223,22 @@
                 },
                 {
                     "name": "",
-                    "id": "98164161-2d45-4d35-81c3-7726b55c17e4",
-                    "path": "<Mouse>/leftButton",
+                    "id": "ceb6384e-228a-4564-9d01-e438e24fd245",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";GamePad",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ceb6384e-228a-4564-9d01-e438e24fd245",
-                    "path": "<Gamepad>/rightTrigger",
+                    "id": "87d3c928-8eb5-43f7-b858-3a2a2f277dae",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";GamePad",
+                    "groups": ";Keyboard",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false

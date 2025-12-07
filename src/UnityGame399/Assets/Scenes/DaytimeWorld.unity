@@ -148,6 +148,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4193331559917682430, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193331559917682430, guid: cc15241a9051eb1428ad4b0be2bc4a11, type: 3}
       propertyPath: playerRB
       value: 
       objectReference: {fileID: 422144}
