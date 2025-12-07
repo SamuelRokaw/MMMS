@@ -1869,7 +1869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0533c06992f1bf240b3d1ae5317c9ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cycle
-  cycleDuration: 3
+  cycleDuration: 2
   maxCustomers: 5
   chanceToSpawnCustomer: 10
   adUpgrade: {fileID: 222859215}

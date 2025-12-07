@@ -87,7 +87,7 @@ public class CoffeeGrinderManager : MonoBehaviour
         if (CoffeeShopManager.Instance != null)
         {
             BeanType beanType = lastSelectedIndex == 0 ? BeanType.Decaf : BeanType.Caffeinated;
-            PlayerStatEvents.PlayerBeans(5, beanType);
+            PlayerStatEvents.PlayerUsesBeans(5, beanType);
             CoffeeShopManager.Instance.CompleteGrinding(beanType);
             
             if (completionSound != null && SoundManager.Instance != null)

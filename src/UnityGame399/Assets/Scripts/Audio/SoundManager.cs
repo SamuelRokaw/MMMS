@@ -29,6 +29,7 @@ public class SoundManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        LoadAudioSettings();
     }
 
     public void playBackGroundTrack(AudioClip clip)
@@ -130,10 +131,7 @@ public class SoundManager : MonoBehaviour
         enemySFXSource.volume = Mathf.Clamp01(volume) * masterVolume;
         PlayerPrefs.SetFloat("EnemyVolume", volume);
     }
-
-    // -------------------------------
-    // MASTER VOLUME CONTROL
-    // -------------------------------
+    
     public void SetMasterVolume(float volume)
     {
         masterVolume = Mathf.Clamp01(volume);
@@ -150,10 +148,7 @@ public class SoundManager : MonoBehaviour
     {
         return masterVolume;
     }
-
-    // -------------------------------
-    // SAVE / LOAD SETTINGS
-    // -------------------------------
+    
     public void SaveAudioSettings()
     {
         PlayerPrefs.SetFloat("MasterVolume", masterVolume);

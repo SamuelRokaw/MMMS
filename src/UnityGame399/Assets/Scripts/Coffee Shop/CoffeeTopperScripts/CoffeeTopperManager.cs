@@ -103,7 +103,7 @@ public class CoffeeTopperManager : MonoBehaviour
             { 
                 for (int i = 0; i < wholeUnits; i++)
                 {
-                    PlayerStatEvents.PlayerCreams?.Invoke(1, creamerType);
+                    PlayerStatEvents.PlayerUsesCream?.Invoke(1, creamerType);
                 }
                 creamConsumeBuffer -= wholeUnits;
             }
