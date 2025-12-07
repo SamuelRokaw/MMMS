@@ -79,7 +79,7 @@ public class Cycle : MonoBehaviour
         int i = 0;
         while (i < length * 60)
         {
-            if(StateManager.Instance.currentGameState == GameStates.PauseMenu)
+            if(StateManager.Instance.currentGameState != GameStates.PauseMenu)
             {
                 yield return new WaitForSeconds(1f);
                 i++;
